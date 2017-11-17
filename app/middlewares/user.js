@@ -26,7 +26,7 @@ exports.signup = function (req, res) {
         }
 
         if(user){
-            return res.redirect('/signin')
+            return res.redirect('/users/signin')
         }else{
             var user=new User(_user);
 
@@ -34,7 +34,7 @@ exports.signup = function (req, res) {
                 if(err){
                     console.log(err);
                 }
-
+                console.log(user);
                 res.redirect('/')
             })
         }
@@ -52,9 +52,9 @@ exports.signin = function (req, res) {
         if(err){
             console.log(err)
         }
-
+        console.log(user);
         if(!user){
-            return res.redirect('/signup')
+            return res.redirect('/users/signup')
         }
 
         //对比密码是否正确
@@ -68,7 +68,7 @@ exports.signin = function (req, res) {
                 req.session.user=user;
                 return res.redirect('/')
             }else{
-                return res.redirect('/signin')
+                return res.redirect('/users/signin')
             }
         })
     })
@@ -77,6 +77,41 @@ exports.signin = function (req, res) {
 
 //注销操作
 exports.logout = function(req,res){
-    delete req.session.user;
-    res.redirect('/')
+    var user = req.session.user;
+    if(user){
+        delete req.session.user;
+        res.redirect('/');
+    }
+    else{
+        res.redirect('/users/signin');
+    }
+};
+
+exports.Showpersonal = function (req, res) {
+    res.render('personal', {
+        css_add: '',
+        js_add: ''
+    });
+};
+
+
+//midware for user
+exports.signinRequired = function(req,res,next){
+    var user = req.session.user;
+
+    if(!user){
+        return res.redirect('/users/signin')
+    }
+
+    next();
+};
+
+exports.adminRequired = function(req,res,next){
+    var user = req.session.user;
+
+    if(user.role<=10){
+        return res.redirect('/users/signin')
+    }
+
+    next();
 };

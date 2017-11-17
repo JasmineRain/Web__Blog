@@ -15,7 +15,7 @@ var UserSchema = new mongoose.Schema({
     // >50: super admin 开发时的超级管理员
     role:{
         type:Number,
-        default:0
+        default:50
     },
     meta:{
         createAt:{
@@ -29,7 +29,7 @@ var UserSchema = new mongoose.Schema({
     },
     avatar: { type: 'string' },
     gender: { type: 'string'},
-    bio: { type: 'string' }
+    desc: { type: 'string' }
 });
 
 //静态方法，在model层可使用这个方法，不需要new 实例化

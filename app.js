@@ -1,5 +1,6 @@
 var express = require('express');
 var session = require('express-session');
+var mongoStore=require('connect-mongo')(session); //session持久化，将session存在mongo中
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,9 +8,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 var mongoose = require('mongoose');
-var index = require('./routes/index');
-var users = require('./routes/users');
-var personal = require('./routes/personal');
 var morgan = require("morgan");
 
 var app = express();
@@ -27,7 +25,7 @@ if('development'===app.get('env')){
     app.set('showStackError',true);
     app.use(morgan(':method :url :status'));
     app.locals.pretty=true;//格式化显示代码，不要让全部html显示在一行
-    mongoose.set('debug',true)
+    mongoose.set('debug',false)
 }
 
 
@@ -45,9 +43,6 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/personal',personal);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
