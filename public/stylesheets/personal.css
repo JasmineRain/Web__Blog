@@ -1,0 +1,78 @@
+
+.per-header{
+    height: 300px;
+    background-image:url(http://img2.niutuku.com/desk/1208/2156/ntk-2156-36622.jpg);
+    background-repeat: no-repeat;
+    background-size:100%;
+}
+.per-ico{
+    object-fit:cover;
+    width: 200px;
+    border-radius: 50%;
+    margin-top:50px;
+}
+.per-detail{
+    margin-top:100px;
+    color:#fff;
+}
+.per-name{
+    font-size: 45px;
+}
+.per-write{
+    font-size: 25px;
+}
+
+
+
+/* 侧边栏 */
+.per-guide ul{
+    width:100%;
+    border-radius: 0;
+}
+.per-guide li{
+    width:100%;
+}
+
+/* 主体内容 */
+.per-content{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+/* 时间线 */
+.per-timeline{
+    margin: 20px 0 0 10px;
+    display: none;
+}
+.per-timeline h1{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+/* 所有文章 */
+.per-post{
+
+}
+
+.per-post h1{
+    font-size: 40px;
+}
+.per-post-mes{
+    font-size: 16px;
+}
+.post-mes-item{
+    margin-left: 10px;
+    float: left;
+}
+.per-post p {
+    font-size: 20px;
+    margin-left: 10px;
+}
+.post-content{
+    margin:10px 0;
+}
+
+
+.clear{
+    clear: both;
+}
