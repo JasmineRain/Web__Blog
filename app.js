@@ -1,16 +1,36 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
-
+var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var personal = require('./routes/personal');
+var morgan = require("morgan");
 
 var app = express();
+var dbUrl='mongodb://localhost/test';
+
+mongoose.connect(dbUrl);
+app.use(session({
+    secret:'Blog',
+    store:new mongoStore({
+        url:dbUrl,
+        collection:'sessions'
+    })
+}));
+if('development'===app.get('env')){
+    app.set('showStackError',true);
+    app.use(morgan(':method :url :status'));
+    app.locals.pretty=true;//格式化显示代码，不要让全部html显示在一行
+    mongoose.set('debug',true)
+}
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +40,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));

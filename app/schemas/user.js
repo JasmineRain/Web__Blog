@@ -28,7 +28,7 @@ var UserSchema = new mongoose.Schema({
         }
     },
     avatar: { type: 'string' },
-    gender: { type: 'string', enum: ['m', 'f', 'x'] },
+    gender: { type: 'string'},
     bio: { type: 'string' }
 });
 
