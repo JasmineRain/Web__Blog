@@ -39,7 +39,7 @@ ol,ul,dir,menu,dd{margin-left:40px}
 ol{list-style-type:decimal}
 ol ul,ul ol,ul ul,ol ol{margin-top:0; margin-bottom:0}
 u,ins{text-decoration:underline}
-br:before{content:”\A”}
+br:before{content:'\A'}
 :before,:after{white-space:pre-line}
 
 center{text-align:center}
@@ -47,8 +47,17 @@ abbr,acronym{font-variant:small-caps; letter-spacing:0.1em}
 :link,:visited{text-decoration:underline}
 :focus{outline:thin dotted invert}
 
-@media print{
-h1{page-break-before:always}
-h1,h2,h3,
-h4,h5,h6{page-break-after:avoid}
-ul,ol,dl{page-break-before:avoid}
+@media print {
+    h1 {
+        page-break-before: always
+    }
+
+    h1, h2, h3,
+    h4, h5, h6 {
+        page-break-after: avoid
+    }
+
+    ul, ol, dl {
+        page-break-before: avoid
+    }
+}
