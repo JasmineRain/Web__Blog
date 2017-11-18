@@ -6,7 +6,11 @@
         <a href="/personal">个人中心<span class="layui-badge-dot"></span></a>
     </li>
     <li class="layui-nav-item">
-        <a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img">我</a>
+        <a href="">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+            <%if(user){%>欢迎,&nbsp;<%=user.name%></a>
+            <%}else{%>我</a>
+            <%}%>
         <dl class="layui-nav-child">
             <%if(user){%>
             <dd><a href="/users/logout">注销</a></dd>
