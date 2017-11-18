@@ -1,5 +1,26 @@
 # Web__Blog
 
+注意：修改editor.min.css源码
+
+//新增
+html, body {      
+  height: 100%;
+  width: 100%;
+}
+
+.editormd {
+  width: 90%;
+  height: 90%;//修改
+  margin: 0 auto;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  font-family: "Meiryo UI", "Microsoft YaHei", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+}
+
+
 ##11.17
 完成了登录注册
 
