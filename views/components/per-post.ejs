@@ -1,0 +1,30 @@
+<fieldset class="layui-elem-field">
+    <legend><%=post.title%></legend>
+    <div class="layui-field-box">
+        <div class="post-content layui-row">
+            <div class="layui-col-md4">
+                <div class="per-post-cover">
+                    <img src="<%=post.cover%>">
+                </div>
+            </div>
+            <div class="layui-col-md8">
+                <div class="per-post-content">
+                        <p><label style="font-size:25px;"><%=post.content.substring(0,1)%></label><%=post.content.substring(1,170)%> ...</p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="per-post-mes layui-col-md9">
+                <div class="post-mes-item"> <i class="layui-icon">&#xe637;</i>发表于<%=post.time%></div>
+                <div class="post-mes-item"><i class="layui-icon">&#xe6c6;</i><%=post.praise%>赞</div>
+                <div class="post-mes-item"><i class="layui-icon">&#xe705;</i><%=post.watch%>浏览</div>
+                <div class="post-mes-item"><i class="layui-icon">&#xe63a;</i><%=post.comment%>评论</div>
+                <div class="clear"></div>
+            </div>
+            <div class="per-post-menu layui-col-md3">
+                <button class="layui-btn layui-btn-small layui-btn-primary">查看/编辑</button>
+                <button class="layui-btn layui-btn-small layui-btn-primary">删除</button>
+            </div>            
+        </div>
+    </div>
+</fieldset>

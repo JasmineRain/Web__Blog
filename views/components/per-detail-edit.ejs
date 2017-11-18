@@ -1,0 +1,59 @@
+<div class="per-mes-edi">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称：</label>
+                <div class="layui-input-block">
+                    <input value="<%=perDetail.nickName%>" type="text" name="nickname" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="name layui-form-item">
+                <label class="layui-form-label">姓名：</label>
+                <div class="layui-input-block">
+                    <input  value="<%=perDetail.name%>" type="text" name="name" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别：</label>
+                <div class="layui-input-block">
+                    <%if(perDetail.gender==='男'){%>
+                        <input type="radio" name="sex" value="男" title="男" checked>
+                        <input type="radio" name="sex" value="女" title="女">
+                    <%}else{%>
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女" checked>
+                    <%}%>
+    
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱：</label>
+                <div class="layui-input-block">
+                    <input value="<%=perDetail.email%>" type="text" name="email" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话：</label>
+                <div class="layui-input-block">
+                    <input value="<%=perDetail.phone%>" type="text" name="phone" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">签名：</label>
+                <div class="layui-input-block">
+                    <input value="<%=perDetail.signature%>" type="text" name="signature" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">个人简介：</label>
+                <div class="layui-input-block">
+                    <textarea name="introduce" placeholder="<%=perDetail.introduce%>" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>

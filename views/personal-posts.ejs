@@ -17,12 +17,14 @@
     </div>
     <div class="per-content layui-col-md10">
         <div class="per-content-title">
-            <h1>时间线</h1>
+            <h1>我的文章</h1>
         </div>
         <div>
-            <div class="one-content">
-                <%- include('components/per-timeline')%>
-            </div>
+            <%for(var i=0;i<posts.length;i++){%>
+                <div class="one-content">
+                    <%-include('components/per-post',{post:posts[i]})%>
+                </div>
+                <%}%>
         </div>
     </div>
 </div>

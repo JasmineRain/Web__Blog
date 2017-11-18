@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var appData= require('../../data.json');//虚拟数据
 
 
 //登录页面
@@ -92,11 +93,35 @@ exports.logout = function(req,res){
 exports.Showpersonal = function (req, res) {
     res.render('personal', {
         user:req.session.user,
-        css_add: '',
-        js_add: ''
+        timeline:appData.timeline,
+        posts:appData.perPosts,
+        attention:appData.attention,
+        perDetail:appData.perDetail
     });
 };
 
+exports.ShowPeronalAttention = function(req,res){
+    res.render('personal-attention', {
+        user:req.session.user,
+        attention:appData.attention,
+        perDetail:appData.perDetail
+    });
+}
+
+exports.ShowPeronalPosts = function(req,res){
+    res.render('personal-posts', {
+        user:req.session.user,
+        posts:appData.perPosts,
+        perDetail:appData.perDetail
+    });
+}
+
+exports.ShowPeronalDetail = function(req,res){
+    res.render('personal-detail', {
+        user:req.session.user,
+        perDetail:appData.perDetail
+    });
+}
 
 //midware for user
 exports.signinRequired = function(req,res,next){

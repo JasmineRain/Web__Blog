@@ -1,78 +1,270 @@
+/* 公用 */
+body{
+    background: #f3f3f3;
+}
+.one-content {
+    background: #ffffff;
+    padding: 16px 25px;
+    margin-bottom: 20px; 
+}
+.per-content-title{
+    background: #fff;
+    padding: 16px 20px;
+}
+.per-content-title h1{
+    font-size: 30px;
+}
 
-.per-header{
-    height: 300px;
-    background-image:url(http://img2.niutuku.com/desk/1208/2156/ntk-2156-36622.jpg);
+
+.layui-nav {
+    border-radius: 0px;
+}
+
+.return {
+    position: fixed;
+    bottom: 40px;
+    right: 100px;
+}
+
+.return button {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 992px) {
+    .return {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+.per-header {
+    height: 250px;
+    background-image: url(http://img2.niutuku.com/desk/1208/2156/ntk-2156-36622.jpg);
     background-repeat: no-repeat;
-    background-size:100%;
+    background-size: 100%;
 }
-.per-ico{
-    object-fit:cover;
-    width: 200px;
+
+.per-ico {
+    object-fit: cover;
+    width: 70%;
     border-radius: 50%;
-    margin-top:50px;
+    margin-top: 50px;
 }
-.per-detail{
-    margin-top:100px;
-    color:#fff;
+
+@media screen and (max-width: 992px) {
+    .per-ico {
+        object-fit: cover;
+        width: 150px;
+        border-radius: 50%;
+        margin-top: 50px;
+    }
 }
-.per-name{
+
+.per-mes-mini {
+    margin-top: 80px;
+    color: #fff;
+    padding: 20px;
+}
+
+.per-name {
     font-size: 45px;
 }
-.per-write{
+
+.per-write {
     font-size: 25px;
 }
 
 
-
 /* 侧边栏 */
-.per-guide ul{
-    width:100%;
+.per-nav-val{
+    position: fixed;
+    top: 0;
+}
+.per-guide{
+    padding: 10px 0;
+}
+.per-guide ul {
+    width: 100%;
     border-radius: 0;
 }
-.per-guide li{
-    width:100%;
+
+.per-guide li {
+    width: 100%;
 }
 
+.guide-square {
+    width: 100%;
+    position: relative;
+    max-width: 200px;
+    margin-top: 20%;
+}
+
+.guide-square:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.guide-square img{
+    position: absolute ;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+
 /* 主体内容 */
-.per-content{
-    padding-top: 20px;
-    padding-left: 20px;
+
+.per-content {
+    padding: 10px;
+}
+
+.post-content div {
+    height: 150px;
+    overflow: hidden;
 }
 
 /* 时间线 */
-.per-timeline{
-    margin: 20px 0 0 10px;
-    display: none;
-}
-.per-timeline h1{
+
+.per-timeline h1 {
     font-size: 30px;
     margin-bottom: 10px;
 }
 
+
 /* 所有文章 */
-.per-post{
 
+.post-content {
+    margin: 10px 0;
 }
 
-.per-post h1{
-    font-size: 40px;
+.per-post-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-.per-post-mes{
+
+.per-post-content {
+    padding-left: 20px;
+}
+
+@media screen and (max-width: 992px) {
+    .per-post-content {
+        padding-left: 0px;
+    }
+}
+
+.per-post-mes {
+    margin: 10px 0;
     font-size: 16px;
 }
-.post-mes-item{
-    margin-left: 10px;
+
+.post-mes-item {
+    margin-right: 10px;
     float: left;
 }
-.per-post p {
-    font-size: 20px;
+
+.per-post-menu button {
+    float: right;
+    margin-right: 0px;
     margin-left: 10px;
 }
-.post-content{
-    margin:10px 0;
+
+@media screen and (max-width: 992px) {
+    .per-post-menu button {
+        float: left;
+        margin-right: 10px;
+        margin-left: 0px;
+    }
 }
 
 
-.clear{
+/* 个人关注 */
+.per-atten-ico{
+    padding-left: 10px;
+}
+.per-atten-post{
+    margin: 20px 10px; 
+}
+.square {
+    width: 60%;
+    position: relative;
+    max-width: 200px;
+}
+
+.square:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.square img{
+    position: absolute ;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+.per-atten-author{
+    margin-left: -25px;
+}
+.per-atten-author h1{
+    font-size: 20px;
+    margin:5px 0 5px 0; 
+}
+
+.per-atten-cancel {
+    float: right;
+    margin-right: 10px;
+}
+
+.per-atten-option div{
+    text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+    .per-atten-author{
+        margin-left: 0px;
+    }
+    .square {
+        width: 90%;
+        position: relative;
+        max-width: 200px;
+    }
+    .square img{
+        border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .square:after {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+    .per-atten-post{
+        margin: 10px; 
+    }
+    .per-atten-author h1{
+        font-size: 14px;
+        margin:0; 
+    }
+}
+
+/* 个人信息 */
+.per-mes-lab {
+    margin-bottom: 20px;
+}
+
+
+.per-mes p {
+    margin: 10px 0 0 20px;
+    /* font-size: 18px; */
+}
+
+.clear {
     clear: both;
 }
