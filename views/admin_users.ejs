@@ -1,0 +1,35 @@
+<%- include('header')%>
+<%- include('nav') %>
+
+
+
+<div class="full"></div>
+
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>用户名</th>
+        <th>性别</th>
+        <th>权限</th>
+        <th>说明</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%for(var i =0;i<users.length;i++) { %>
+    <tr>
+        <td><%=users[i].name%></td>
+        <td><%=users[i].gender%></td>
+        <td><%=users[i].role%></td>
+        <td><%=users[i].desc%></td>
+    </tr>
+    <%}%>
+    </tbody>
+</table>
+
+
+<%- include('footer') %>

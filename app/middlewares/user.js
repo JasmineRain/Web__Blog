@@ -107,6 +107,12 @@ exports.signinRequired = function(req,res,next){
     next();
 };
 
+
+
+
+
+//--------------------------------以下为管理员中间件-------------------
+
 exports.adminRequired = function(req,res,next){
     var user = req.session.user;
 
@@ -116,3 +122,18 @@ exports.adminRequired = function(req,res,next){
 
     next();
 };
+
+exports.list = function(req,res){
+    User.fetch(function(err,users){
+        if(err){
+            console.log(err)
+        }
+
+        res.render('admin_users',{
+            user:req.session.user,
+            title:'用户列表页面',
+            users:users
+        })
+    })
+};
+
