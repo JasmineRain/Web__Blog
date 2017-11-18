@@ -1,10 +1,40 @@
 var express = require('express');
+var session = require('express-session');
+var mongoStore=require('connect-mongo')(session);
 var path = require('path');
 var favicon = require('serve-favicon');
+var serveStatic = require('serve-static');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
+
+var mongoose = require('mongoose');
+var index = require('./routes/index');
+var users = require('./routes/users');
+var personal = require('./routes/personal');
+var morgan = require("morgan");
+var app = express();
+var dbUrl='mongodb://localhost/test';
+
+mongoose.connect(dbUrl);
+app.use(session({
+    secret:'Blog',
+    resave:false,
+    saveUninitialized:true,
+    store:new mongoStore({
+        url:dbUrl,
+        collection:'sessions'
+    })
+
+}));
+
+if('development'===app.get('env')){
+    app.set('showStackError',true);
+    app.use(morgan(':method :url :status'));
+    app.locals.pretty=true;//格式化显示代码，不要让全部html显示在一行
+    mongoose.set('debug',false)
+}
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -26,7 +56,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(serveStatic(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
@@ -50,5 +80,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

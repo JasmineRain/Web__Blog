@@ -4,6 +4,7 @@ var User = require('../models/user');
 //登录页面
 exports.showSignin = function (req, res) {
     res.render('signin',{
+        user:req.session.user,
         title:'登录页'
     })
 };
@@ -11,6 +12,7 @@ exports.showSignin = function (req, res) {
 //注册页面
 exports.showSignup = function (req, res) {
     res.render('signup',{
+        user:req.session.user,
         title:'注册页'
     })
 };
@@ -64,7 +66,7 @@ exports.signin = function (req, res) {
             }
 
             if(isMatch){
-                //将用户登录信息存入session中
+                //将用户登录信息存入session
                 req.session.user=user;
                 return res.redirect('/')
             }else{
@@ -89,6 +91,7 @@ exports.logout = function(req,res){
 
 exports.Showpersonal = function (req, res) {
     res.render('personal', {
+        user:req.session.user,
         css_add: '',
         js_add: ''
     });
@@ -98,11 +101,9 @@ exports.Showpersonal = function (req, res) {
 //midware for user
 exports.signinRequired = function(req,res,next){
     var user = req.session.user;
-
     if(!user){
         return res.redirect('/users/signin')
     }
-
     next();
 };
 

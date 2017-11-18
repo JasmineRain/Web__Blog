@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
+</head>
+<body>
+
+<div id="editormd">
+    <textarea>### Hello Editor.md !</textarea>
+</div>
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/editor.md/editormd.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var editor = editormd("editormd", {
+            path : "/libs/editor.md/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+        });
+
+    });
+</script>
+</body>
+</html>
