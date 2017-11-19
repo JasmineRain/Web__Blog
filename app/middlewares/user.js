@@ -37,8 +37,7 @@ exports.signup = function (req, res) {
                 if(err){
                     console.log(err);
                 }
-                console.log(user);
-                res.redirect('/')
+                res.redirect('/');
             })
         }
     })
@@ -106,7 +105,7 @@ exports.ShowPeronalAttention = function(req,res){
         attention:appData.attention,
         perDetail:appData.perDetail
     });
-}
+};
 
 exports.ShowPeronalPosts = function(req,res){
     res.render('personal-posts', {
@@ -114,14 +113,17 @@ exports.ShowPeronalPosts = function(req,res){
         posts:appData.perPosts,
         perDetail:appData.perDetail
     });
-}
+};
 
 exports.ShowPeronalDetail = function(req,res){
     res.render('personal-detail', {
         user:req.session.user,
         perDetail:appData.perDetail
     });
-}
+};
+
+
+
 
 //midware for user
 exports.signinRequired = function(req,res,next){

@@ -21,6 +21,7 @@ exports.showArticle = function(req, res, next) {
     var article_md = md.render(article_text);
 
     res.render('article', {
+        user:req.session.user,
         css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">',
         js_add: '',
         article: article_md

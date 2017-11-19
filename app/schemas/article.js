@@ -13,7 +13,10 @@ var ArticleSchema = new mongoose.Schema({
         }
     },
     author: { type: 'string' },
-    desc: { type: 'string' }
+    desc: { type: 'string' },
+    readc: Number,
+    commentc:Number,
+    applausec:Number
 });
 
 module.exports=ArticleSchema;

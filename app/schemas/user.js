@@ -27,9 +27,11 @@ var UserSchema = new mongoose.Schema({
             default:Date.now()
         }
     },
-    avatar: { type: 'string' },
-    gender: { type: 'string'},
-    desc: { type: 'string' }
+    avatar: String ,
+    gender: { type: String},
+    desc: String ,
+    signature: String,
+    email : String
 });
 
 //静态方法，在model层可使用这个方法，不需要new 实例化
