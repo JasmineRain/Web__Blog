@@ -16,6 +16,7 @@ var users = require('./routes/users');
 var personal = require('./routes/personal');
 var article = require('./routes/article');
 var admin = require('./routes/admin');
+var upload = require('./routes/upload');
 
 
 var morgan = require("morgan");
@@ -63,6 +64,7 @@ app.use('/users', users);
 app.use('/personal',personal);
 app.use('/article',article);
 app.use('/admin',admin);
+app.use('/upload',upload);
 
 
 // catch 404 and forward to error handler

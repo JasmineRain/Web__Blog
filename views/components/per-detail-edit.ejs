@@ -1,33 +1,33 @@
 <div class="per-mes-edi">
-    <form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">更改背景</label>
+        <button type="button" class="layui-btn layui-btn-primary" id="per-background">
+            <i class="layui-icon">&#xe67c;</i>
+        </button>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">更改头像</label>
+        <button type="button" class="layui-btn layui-btn-primary" id="per-icon">
+            <i class="layui-icon">&#xe67c;</i>
+        </button>
+    </div>
+    <form class="layui-form" action="" method="post">
         <div class="layui-form-item">
-            <label class="layui-form-label">更改背景：</label>
-            <button type="button" class="layui-btn layui-btn-primary" id="per-background">
-                <i class="layui-icon">&#xe67c;</i>
-            </button>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">更改头像：</label>
-            <button type="button" class="layui-btn layui-btn-primary" id="per-icon">
-                <i class="layui-icon">&#xe67c;</i>
-            </button>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">昵称：</label>
+            <label class="layui-form-label">昵称</label>
             <div class="layui-input-block">
-                <input value="<%=perDetail.nickName%>" type="text" name="nickname" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                <input value="<%=perDetail.nickName%>" type="text" name="nickname" required lay-verify="required" placeholder="请输入昵称" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
         <div class="name layui-form-item">
-            <label class="layui-form-label">姓名：</label>
+            <label class="layui-form-label">姓名</label>
             <div class="layui-input-block">
-                <input value="<%=perDetail.name%>" type="text" name="name" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                <input value="<%=perDetail.name%>" type="text" name="name" required lay-verify="required" placeholder="请输入姓名" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">性别：</label>
+            <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
                 <%if(perDetail.gender==='男'){%>
                     <input type="radio" name="sex" value="男" title="男" checked>
@@ -40,35 +40,28 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">邮箱：</label>
+            <label class="layui-form-label">邮箱</label>
             <div class="layui-input-block">
-                <input value="<%=perDetail.email%>" type="text" name="email" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                <input value="<%=perDetail.email%>" type="text" name="email" required lay-verify="required" placeholder="留下联系方式吧~" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">电话：</label>
+            <label class="layui-form-label">签名</label>
             <div class="layui-input-block">
-                <input value="<%=perDetail.phone%>" type="text" name="phone" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
-                    class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">签名：</label>
-            <div class="layui-input-block">
-                <input value="<%=perDetail.signature%>" type="text" name="signature" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                <input value="<%=perDetail.signature%>" type="text" name="signature" required lay-verify="required" placeholder="心之所向" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">个人简介：</label>
+            <label class="layui-form-label">个人简介</label>
             <div class="layui-input-block">
-                <textarea name="introduce" placeholder="<%=perDetail.introduce%>" class="layui-textarea"></textarea>
+                <textarea name="introduce" placeholder="介绍下自己吧~" class="layui-textarea"><%=perDetail.introduce%></textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="mes-edit-push layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 <!-- <button type="reset mes-edit-return" class="layui-btn layui-btn-primary">返回</button> -->
             </div>

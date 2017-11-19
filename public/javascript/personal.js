@@ -50,6 +50,12 @@ layui.use('upload', function(){
     var uploadInst = upload.render({
       elem: '#per-background' //绑定元素
       ,url: '/upload/' //上传接口
+      ,auto:false
+      ,bindAction:"mes-edit-push"
+      ,choose:function(res){
+        console.log("选择文件");
+        console.log(res.pushFile());
+      }
       ,done: function(res){
         //上传完毕回调
       }
@@ -66,6 +72,8 @@ layui.use('upload', function(){
     var uploadInst = upload.render({
       elem: '#per-icon' //绑定元素
       ,url: '/upload/' //上传接口
+      ,auto:false
+      ,bindAction:"mes-edit-push"
       ,done: function(res){
         //上传完毕回调
       }

@@ -122,6 +122,12 @@ exports.ShowPeronalDetail = function(req,res){
     });
 };
 
+exports.ShowPeronalDetailEdit = function(req,res){
+    res.render('personal-detail-edit', {
+        user:req.session.user,
+        perDetail:appData.perDetail
+    });
+};
 
 
 

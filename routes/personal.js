@@ -11,4 +11,11 @@ router.get('/posts',User.signinRequired,User.ShowPeronalPosts);
 
 router.get('/detail',User.signinRequired,User.ShowPeronalDetail);
 
+router.get('/detailEdit',User.signinRequired,User.ShowPeronalDetailEdit);
+
+
+router.post('/detailEdit',User.signinRequired,function(req,res){
+    console.log("表单上传");
+})
+
 module.exports = router;
