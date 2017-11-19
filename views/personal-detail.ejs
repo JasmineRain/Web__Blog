@@ -13,21 +13,24 @@
         <div class="per-nav">
             <%-include('components/per-guide')%>
         </div>
-
     </div>
     <div class="per-content layui-col-md10">
-        <div class="per-content-title">
-            <h1>我的资料</h1>
-        </div>
-        <div class="one-content">
-            <%-include('components/per-detail')%>
+        <div class="mes-watch">
+            <div class="per-content-title">
+                <h1>我的资料</h1>
+            </div>
+            <div class="one-content">
+                <%-include('components/per-detail')%>
+            </div>
         </div>
 
-        <div class="per-content-title">
-            <h1>编辑我的资料</h1>
-        </div>
-        <div class="one-content">
-            <%-include('components/per-detail-edit')%>
+        <div class="mes-edit" style="display:none">
+            <div class="per-content-title">
+                <h1>编辑我的资料</h1>
+            </div>
+            <div class="one-content">
+                <%-include('components/per-detail-edit')%>
+            </div>
         </div>
     </div>
 </div>

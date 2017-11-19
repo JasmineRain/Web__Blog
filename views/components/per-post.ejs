@@ -2,15 +2,13 @@
     <legend><%=post.title%></legend>
     <div class="layui-field-box">
         <div class="post-content layui-row">
-            <div class="layui-col-md4">
+            <div class="layui-col-md4 layui-col-sm4">
                 <div class="per-post-cover">
                     <img src="<%=post.cover%>">
                 </div>
             </div>
-            <div class="layui-col-md8">
-                <div class="per-post-content">
-                        <p><label style="font-size:25px;"><%=post.content.substring(0,1)%></label><%=post.content.substring(1,170)%> ...</p>
-                </div>
+            <div class="layui-col-md8 layui-col-sm8 per-post-content">
+                <p><label style="font-size:25px;"><%=post.content.substring(0,1)%></label><%=post.content.substring(1,170)%> ...</p>
             </div>
         </div>
         <div class="layui-row">

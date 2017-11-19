@@ -1,4 +1,5 @@
 $(document).ready(function () {
+   //返回顶部
     $('.return').click(function(){
         console.log('click');
         let height=$(document).scrollTop();
@@ -6,6 +7,18 @@ $(document).ready(function () {
         $("html,body").animate({scrollTop:0},500);
     })
 
+    //编辑
+    $('.mes-edit-butt').click(function(){
+      console.log('.mes-edit-butt click');
+      $('.mes-edit').fadeIn();
+      $('.mes-watch').hide();
+    })
+
+    $('.mes-edit-return').click(function(){
+      console.log('.mes-edit-butt click');
+      $('.mes-edit').hide();
+      $('.mes-watch').fadeIn();
+    })
     // $(window).scroll(function () {
     //     let dy=$('.nav-cahnge').offset().top-$(document).scrollTop();
     //     if(dy<0){
@@ -27,4 +40,36 @@ $(document).ready(function () {
 
     // });
 })
+
+layui.use('upload', function(){
+    var upload = layui.upload;
+     
+    //执行实例
+    var uploadInst = upload.render({
+      elem: '#per-background' //绑定元素
+      ,url: '/upload/' //上传接口
+      ,done: function(res){
+        //上传完毕回调
+      }
+      ,error: function(){
+        //请求异常回调
+      }
+    });
+  });
+
+  layui.use('upload', function(){
+    var upload = layui.upload;
+     
+    //执行实例
+    var uploadInst = upload.render({
+      elem: '#per-icon' //绑定元素
+      ,url: '/upload/' //上传接口
+      ,done: function(res){
+        //上传完毕回调
+      }
+      ,error: function(){
+        //请求异常回调
+      }
+    });
+  });
 

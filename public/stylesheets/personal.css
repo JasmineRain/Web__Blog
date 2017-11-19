@@ -123,11 +123,6 @@ body{
     padding: 10px;
 }
 
-.post-content div {
-    height: 150px;
-    overflow: hidden;
-}
-
 /* 时间线 */
 
 .per-timeline h1 {
@@ -137,6 +132,16 @@ body{
 
 
 /* 所有文章 */
+.post-content div {
+    height: 150px;
+    overflow: hidden;
+}
+@media screen and (max-width: 992px) {
+    .per-post-content {
+        height: auto !important;
+    }
+}
+
 
 .post-content {
     margin: 10px 0;
