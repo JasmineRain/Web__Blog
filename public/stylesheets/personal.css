@@ -84,9 +84,23 @@ body{
 .per-guide{
     padding: 10px 0;
 }
+
+@media screen and (max-width: 992px) {
+    .per-guide{
+        padding: 10px 0;
+        display: none;
+    }
+    .per-guide-xs{
+        display: block;
+    }
+}
 .per-guide ul {
     width: 100%;
     border-radius: 0;
+}
+
+.per-guide-xs ul{
+    width: 100%;
 }
 
 .per-guide li {
@@ -158,6 +172,9 @@ body{
 }
 
 @media screen and (max-width: 992px) {
+    .one-content-xs{
+        padding: 15px 10px;
+    }
     .per-post-content {
         padding-left: 0px;
     }

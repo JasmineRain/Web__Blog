@@ -13,12 +13,14 @@ $(document).ready(function () {
       $('.mes-edit').fadeIn();
       $('.mes-watch').hide();
     })
+    //编辑返回
+    // $('.mes-edit-return').click(function(){
+    //   console.log('.mes-edit-butt click');
+    //   $('.mes-edit').hide();
+    //   $('.mes-watch').fadeIn();
+    // })
 
-    $('.mes-edit-return').click(function(){
-      console.log('.mes-edit-butt click');
-      $('.mes-edit').hide();
-      $('.mes-watch').fadeIn();
-    })
+    
     // $(window).scroll(function () {
     //     let dy=$('.nav-cahnge').offset().top-$(document).scrollTop();
     //     if(dy<0){
