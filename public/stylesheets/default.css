@@ -1,6 +1,5 @@
-html,address,blockquote,body,dd,div,dl,dt,fieldset,form,frame,frameset,h1,h2,h3,h4,h5,h6,noframes,ol,p,ul,center,dir,hr,menu,pre{display:block}
+address,blockquote,body,dd,div,dl,dt,fieldset,form,frame,frameset,h1,h2,h3,h4,h5,h6,noframes,ol,p,ul,center,dir,hr,menu,pre{display:block}
 li{display:list-item}
-head{display:none}
 table{display:table}
 tr{display:table-row}
 thead{display:table-header-group}
@@ -12,10 +11,9 @@ td,th{display:table-cell;}
 caption{display:table-caption}
 th{font-weight:bolder; text-align:center}
 caption{text-align:center}
-body{margin:8px; line-height:1.12}
-h1{font-size:2em; margin:.67em 0}
-h2{font-size:1.5em; margin:.75em 0}
-h3{font-size:1.17em; margin:.83em 0}
+h1{font-size:2.5em; margin:.67em 0}
+h2{font-size:2em; margin:.75em 0}
+h3{font-size:1.5em; margin:.83em 0}
 h4,p,blockquote,ul,fieldset,form,ol,dl,dir,menu{margin:1.12em 0}
 
 h5{font-size:.83em; margin:1.5em 0}
@@ -35,16 +33,18 @@ thead,tbody,tfoot{vertical-align:middle}
 td,th{vertical-align:inherit}
 s,strike,del{text-decoration:line-through}
 hr{border:1px inset}
-ol,ul,dir,menu,dd{margin-left:40px}
+ol,dir,menu,dd{margin-left:40px}
 ol{list-style-type:decimal}
 ol ul,ul ol,ul ul,ol ol{margin-top:0; margin-bottom:0}
 u,ins{text-decoration:underline}
 br:before{content:'\A'}
 :before,:after{white-space:pre-line}
+pre{
+  font-size: 1.1em;
+}
 
 center{text-align:center}
 abbr,acronym{font-variant:small-caps; letter-spacing:0.1em}
-:link,:visited{text-decoration:underline}
 :focus{outline:thin dotted invert}
 
 @media print {

@@ -1,7 +1,26 @@
 <%- include('header')%>
-<%- include('nav')%>
-  <div id="#" class="article">
+
+  <%- include('nav')%>
+
     <link rel="stylesheet" href="/stylesheets/default.css">
-    <%-article%>
-  </div>
-<%- include('footer') %>
+    <div class="article" class="article">
+      <h1 class="title"><%-article.title%></h1>
+      <div class="author">
+        <a class="avatar" href="#"><img src= "//upload.jianshu.io/users/upload_avatars/4800119/5214d79f-7464-471c-aaa0-8946c22dfd4a.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+        </a>
+        <div class="info">
+          <span class="name"><a href="#"><%-article.author%></a></span>
+          <!-- 关注用户按钮 -->
+          <a class="btn btn-success follow"><span>关注</span></a>
+          <!-- 文章数据信息 -->
+          <div class="meta">
+            <span class="publish-time"><%-article.meta.updateAt%></span>
+            <span class="views-count">阅读 <%-article.readc%></span><span class="comments-count">评论 <%-article.commentc%></span>
+            <span class="rewards-count ">赞赏 <%-article.applausec%></span></div>
+
+        </div>
+        <!-- 如果是当前作者，加入编辑按钮 -->
+      </div>
+      <%-article.content%>
+    </div>
+    <%- include('footer') %>

@@ -14,6 +14,7 @@ var ArticleSchema = new mongoose.Schema({
     },
     author: { type: 'string' },
     desc: { type: 'string' },
+    content:String,
     readc: Number,
     commentc:Number,
     applausec:Number
