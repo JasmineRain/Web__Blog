@@ -1,5 +1,3 @@
-//render
-var ArticleModel = require('../models/article.js');
 var hljs = require('highlight.js'); // https://highlightjs.org/
 var md = require('markdown-it')({
   highlight: function(str, lang) {
@@ -37,10 +35,10 @@ exports.showArticle = function(req, res, next) {
   res.render('article', {
     user: req.session.user,
     article: article,
-    css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
-    js_add: ''
+    css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">'
   });
-  // ArticleModel.findOne({//find article by article_id
+
+  // Article.findOne({//find article by article_id
   //   '_id': article_id
   // }, function(err, article) {
   //   var content_md = md.render(article.content);//render
@@ -58,7 +56,41 @@ exports.showArticle = function(req, res, next) {
 
 exports.newArticle = function(req, res, next) {
   res.render('md_editor', {
-    css_add: '<link rel="stylesheet" href="editormd.min.css" />',
-    js_add: ''
+    css_add: '<link rel="stylesheet" href="editormd.min.css" />'
   })
 };
+
+exports.editArticle = function(req, res, next) {
+  var article_id = req.param._id;
+  Article.findOne({
+    _id: article_id
+  }, function(err, article) {
+    res.render('md_editor', {
+      css_add: '<link rel="stylesheet" href="editormd.min.css" />',
+      title: article.title,
+      content: article.content,
+      article_id: article_id
+    })
+  })
+};
+
+//提交文章
+exports.postArticle = function(req, res, next) {
+  var _article = {
+    title: req.body.title,
+    content: req.body.content,
+    author: req.session.user,
+    desc: '???',
+    readc: 0,
+    commentc:0,
+    applausec:0
+  }
+  var article = new Article(_article);
+
+  article.save(function(err, article) {
+    if (err) {
+      console.log(err);
+    }
+    res.send('ok');
+  })
+}
