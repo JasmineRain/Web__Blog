@@ -37,6 +37,8 @@ exports.newArticle = function(req, res, next) {
   })
 };
 
+
+
 exports.editArticle = function(req, res, next) {
   var article_id = req.params._id;
   Article.findOne({
