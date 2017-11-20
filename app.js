@@ -58,6 +58,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(serveStatic(path.join(__dirname, 'public')));
+app.use('/upload',express.static(path.join(__dirname, 'upload')));
 
 app.use('/', index);
 app.use('/users', users);
