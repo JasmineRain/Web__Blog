@@ -23,4 +23,26 @@
       </div>
       <%-article.content%>
     </div>
+
+
+
+    <div class="full"></div>
+    <div class="full"></div>
+<form class="layui-form" action="/users/comment" method="post">
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">编辑评论</label>
+        <div class="layui-input-block">
+            <textarea name="comment[content]" placeholder="评价" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <input type="hidden" name="comment[article]" value=<%-article._id%>>
+    <!-- <input type="hidden" name="comment[from]" value="user[_id]%>"> -->
+    <input type="text">
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
     <%- include('footer') %>

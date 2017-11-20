@@ -4,7 +4,7 @@ var ObjectId = Schema.Types.ObjectId;
 
 //schema模型，数据类型
 var CommentSchema = new Schema({
-    movie:{type:ObjectId,ref:'Movie'},
+    article:{type:ObjectId,ref:'Article'},
     from:{type:ObjectId,ref:'User'},
     reply:[{
         from:{type:ObjectId,ref:'User'},
