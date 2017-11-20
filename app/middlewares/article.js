@@ -30,7 +30,7 @@ exports.showArticle = function(req, res, next) {
     readc: 5,
     commentc: 6,
     applausec: 7
-  }
+  };
   var content_md = md.render(article.content); //render
   article.content = content_md;
   res.render('article', {
@@ -61,7 +61,8 @@ exports.newArticle = function(req, res, next) {
   })
 };
 
-<<<<<<< HEAD
+
+
 exports.editArticle = function(req, res, next) {
   var article_id = req.param._id;
   Article.findOne({
@@ -86,7 +87,7 @@ exports.postArticle = function(req, res, next) {
     readc: 0,
     commentc:0,
     applausec:0
-  }
+  };
   var article = new Article(_article);
 
   article.save(function(err, article) {
@@ -95,8 +96,7 @@ exports.postArticle = function(req, res, next) {
     }
     res.send('ok');
   })
-}
-=======
+};
 
 
 //detail page
@@ -126,4 +126,3 @@ exports.detail = function(req,res){
             })
     })
 };
->>>>>>> 074de9cb6f38fcc4bbc83c782839443dcdc9c892
