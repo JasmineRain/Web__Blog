@@ -1,2 +1,6 @@
 node_modules/*
 public/libs/*
+upload/image/avatar/*
+!upload/image/avatar
+upload/image/background/*
+!upload/image/background
