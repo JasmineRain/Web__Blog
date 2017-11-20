@@ -1,5 +1,5 @@
-//render
-var ArticleModel = require('../models/article.js');
+var Article = require('../models/article.js');
+var Comment = require('../models/comment');
 var hljs = require('highlight.js'); // https://highlightjs.org/
 var md = require('markdown-it')({
   highlight: function(str, lang) {
@@ -12,7 +12,6 @@ var md = require('markdown-it')({
     return ''; // use external default escaping
   }
 });
-var Article = require('../models/article');
 
 
 
@@ -61,4 +60,34 @@ exports.newArticle = function(req, res, next) {
     css_add: '<link rel="stylesheet" href="editormd.min.css" />',
     js_add: ''
   })
+};
+
+
+
+//detail page
+exports.detail = function(req,res){
+    var id=req.params.id;
+
+    //每次进入电影详情页则该电影访客数pv加一
+    // Movie.update({_id:id},{$inc:{pv:1}},function(err){
+    //     if(err){
+    //         console.log(err)
+    //     }
+    // })
+
+    Article.findById(id,function(err,article){
+        Comment
+            .find({article:id})
+            .populate('from','name')
+            .populate('reply.from reply.to','name')
+            .exec(function(err,comments){
+                console.log(comments);
+                res.render('detail',{
+                    title:'详情页面'+article.title,
+                    article:article,
+                    comments:comments,
+                    user:req.session.user
+                })
+            })
+    })
 };
