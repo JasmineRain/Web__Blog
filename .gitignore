@@ -1,6 +1,2 @@
 node_modules/*
 public/libs/*
-!/upload/
-!/upload/image/
-!/upload/image/avatar/
-!/upload/image/background/
