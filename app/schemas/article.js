@@ -41,5 +41,6 @@ ArticleSchema.pre('save',function(next){
     }else{
         this.meta.updateAt=Date.now()
     }
+    next();
 });
 module.exports=ArticleSchema;

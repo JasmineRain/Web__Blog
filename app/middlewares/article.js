@@ -16,42 +16,18 @@ var md = require('markdown-it')({
 
 
 exports.showArticle = function(req, res, next) {
-
-  // var article_id = req.param.article_id;//get article_id
-  var article = {
-    title: 'JavaScript闭包',
-    meta: {
-      createAt: Date.now(),
-      updateAt: Date.now()
-    },
-    author: 'ghr',
-    desc: '66666',
-    content: '**闭包**是指有权访问另一个函数作用域中的变量的函数。\n  --------------------------------------------------------------------------------\n  ## **创建闭包**\n  **创建闭包**的常见方式就是在一个函数内部创建另一个函数\n  ```javascript\n  function createComparisonFunction(propertyName) {\n    return function(object1, object2) {\n      var value1 = object1[propertyName];\n      var value2 = object2[propertyName];\n      if (value1 < value2) {\n        return -1;\n      } else if (value1 > value2) {\n        return 1;\n      } else {\n        return 0;\n      }\n    };\n  }\n  ```',
-    readc: 5,
-    commentc: 6,
-    applausec: 7
-  }
-  var content_md = md.render(article.content); //render
-  article.content = content_md;
-  res.render('article', {
-    user: req.session.user,
-    article: article,
-    css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">'
+  var article_id = req.params._id; //get article_id
+  Article.findOne({ //find article by article_id
+    '_id': article_id
+  }, function(err, article) {
+    var content_md = md.render(article.content); //render
+    article.content = content_md;
+    res.render('article', {
+      user: req.session.user,
+      article: article,
+      css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
+    });
   });
-
-  // Article.findOne({//find article by article_id
-  //   '_id': article_id
-  // }, function(err, article) {
-  //   var content_md = md.render(article.content);//render
-  //   article.content = content_md;
-  //   res.render('article', {
-  //     user: req.session.user,
-  //     article: article,
-  //     css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
-  //     js_add: ''
-  //   });
-  // });
-
 };
 
 
@@ -61,69 +37,80 @@ exports.newArticle = function(req, res, next) {
   })
 };
 
-<<<<<<< HEAD
 exports.editArticle = function(req, res, next) {
-  var article_id = req.param._id;
+  var article_id = req.params._id;
   Article.findOne({
     _id: article_id
   }, function(err, article) {
     res.render('md_editor', {
       css_add: '<link rel="stylesheet" href="editormd.min.css" />',
-      title: article.title,
-      content: article.content,
-      article_id: article_id
+      article: article
     })
   })
 };
 
 //提交文章
 exports.postArticle = function(req, res, next) {
-  var _article = {
-    title: req.body.title,
-    content: req.body.content,
-    author: req.session.user,
-    desc: '???',
-    readc: 0,
-    commentc:0,
-    applausec:0
-  }
-  var article = new Article(_article);
-
-  article.save(function(err, article) {
-    if (err) {
-      console.log(err);
+  var _article = {};
+  if (req.body.article._id) {
+    Article.findById(req.body.article._id, function(err, article) {
+      article.title = req.body.article.title;
+      article.content = req.body.article.content;
+      article.save(function(err, article) {
+        if (err) {
+          console.log(err);
+        }
+        res.redirect('/');
+      })
+    })
+  } else {
+    _article = {
+      title: req.body.article.title,
+      content: req.body.article.content,
+      author: req.session.user,
+      desc: '???',
+      readc: 0,
+      commentc: 0,
+      applausec: 0
     }
-    res.send('ok');
-  })
+    var article = new Article(_article);
+    article.save(function(err, article) {
+      if (err) {
+        console.log(err);
+      }
+      res.redirect('/');
+    })
+  }
 }
-=======
+
 
 
 //detail page
-exports.detail = function(req,res){
-    var id=req.params.id;
+exports.detail = function(req, res) {
+  var id = req.params._id;
 
-    //每次进入电影详情页则该电影访客数pv加一
-    // Movie.update({_id:id},{$inc:{pv:1}},function(err){
-    //     if(err){
-    //         console.log(err)
-    //     }
-    // })
+  //每次进入电影详情页则该电影访客数pv加一
+  // Movie.update({_id:id},{$inc:{pv:1}},function(err){
+  //     if(err){
+  //         console.log(err)
+  //     }
+  // })
 
-    Article.findById(id,function(err,article){
-        Comment
-            .find({article:id})
-            .populate('from','name')
-            .populate('reply.from reply.to','name')
-            .exec(function(err,comments){
-                console.log(comments);
-                res.render('detail',{
-                    title:'详情页面'+article.title,
-                    article:article,
-                    comments:comments,
-                    user:req.session.user
-                })
-            })
-    })
+  Article.findById(id, function(err, article) {
+    Comment
+      .find({
+        article: id
+      })
+      .populate('from', 'name')
+      .populate('reply.from reply.to', 'name')
+      .exec(function(err, comments) {
+        console.log(comments);
+        res.render('detail', {
+          title: '详情页面' + article.title,
+          article: article,
+          comments: comments,
+          user: req.session.user
+        })
+      })
+  })
 };
->>>>>>> 074de9cb6f38fcc4bbc83c782839443dcdc9c892

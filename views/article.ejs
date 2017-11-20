@@ -35,8 +35,8 @@
             <textarea name="comment[content]" placeholder="评价" class="layui-textarea"></textarea>
         </div>
     </div>
-    <input type="hidden" name="comment[article]" value="<%= article._id%>">
-    <input type="hidden" name="comment[from]" value="<%=user._id%>">
+    <input type="hidden" name="comment[article]" value=<%-article._id%>>
+    <!-- <input type="hidden" name="comment[from]" value="user[_id]%>"> -->
     <input type="text">
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -44,5 +44,5 @@
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
-</form>>
+</form>
     <%- include('footer') %>

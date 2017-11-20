@@ -8,14 +8,24 @@
 </head>
 
 <body>
-<form class="contain" action="/article/post" method="POST">
+  <form class="contain" action="/article/post" method="POST">
 
-  <input type="text" name="title" value="新文章">
-  <div id="editormd">
-    <textarea name="content">### Hello Editor.md !</textarea>
-  </div>
-  <input type="submit" name="submit" value="submit">
-</form>
+
+      <% if(locals.article) { %>
+        <input type="text" name="article[_id]" value="<%-article._id%>" style="display:none">
+      <input type="text" name="article[title]" value="<%-article.title%>" >
+      <div id="editormd">
+        <textarea name="article[content]"><%-article.content%></textarea>
+      </div>
+      <input type="submit" name="submit" value="submit">
+      <% } else { %>
+        <input type="text" name="article[title]" value="新文章">
+        <div id="editormd">
+          <textarea name="article[content]">### Hello Editor.md !</textarea>
+        </div>
+        <input type="submit" name="submit" value="submit">
+        <% } %>
+  </form>
 
   <script src="/libs/jquery/dist/jquery.min.js"></script>
   <script src="/libs/editor.md/editormd.min.js"></script>
@@ -24,11 +34,6 @@
       var editor = editormd("editormd", {
         path: "/libs/editor.md/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
       });
-
-      // $("#submit").click(function(){
-      //   var data=$("textarea.editormd-markdown-textarea").val();
-      //   console.log(data);
-      // })
     });
   </script>
 </body>
