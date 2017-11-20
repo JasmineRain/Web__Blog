@@ -285,6 +285,14 @@ body{
     margin-bottom: 20px;
 }
 
+.per-background-hide{
+    display: none;
+}
+
+.per-avatar-hide{
+    display: none;
+}
+
 
 .per-mes p {
     margin: 10px 0 0 20px;
