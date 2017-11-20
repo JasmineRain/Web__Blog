@@ -8,9 +8,7 @@ router.get('/', function(req, res, next) {
   console.log(req.session.user);
   res.render('index', {
     user:req.session.user,
-    title: 'Express',
-    css_add: '',
-    js_add: ''
+    title: 'Express'
   });
 });
 
