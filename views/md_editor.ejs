@@ -12,7 +12,7 @@
 
 
       <% if(locals.article) { %>
-        <input type="text" name="article[_id]" value="<%-article._id%>" style="display:none">
+      <input type="text" name="article[_id]" value="<%-article._id%>" style="display:none">
       <input type="text" name="article[title]" value="<%-article.title%>" >
       <div id="editormd">
         <textarea name="article[content]"><%-article.content%></textarea>

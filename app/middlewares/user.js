@@ -174,7 +174,7 @@ exports.adminRequired = function(req, res, next) {
   next();
 };
 
-exports.list = function(req, res) {
+exports.listusers = function(req, res) {
   User.fetch(function(err, users) {
     if (err) {
       console.log(err)
@@ -187,3 +187,4 @@ exports.list = function(req, res) {
     })
   })
 };
+

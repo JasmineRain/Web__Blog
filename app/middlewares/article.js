@@ -16,17 +16,32 @@ var md = require('markdown-it')({
 
 
 exports.showArticle = function(req, res, next) {
-  var article_id = req.params._id; //get article_id
-  Article.findOne({ //find article by article_id
-    '_id': article_id
-  }, function(err, article) {
-    var content_md = md.render(article.content); //render
+  var article_id = req.params._id;
+  Article.findOne({'_id': article_id}, function(err, article) {
+    var content_md = md.render(article.content);
     article.content = content_md;
-    res.render('article', {
-      user: req.session.user,
-      article: article,
-      css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
-    });
+    Comment
+        .find({
+              article: article_id})
+        .populate('from', 'name')
+        .populate('reply.from reply.to', 'name')
+        .exec(function(err, comments) {
+            console.log(comments);
+            res.render('article', {
+                css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
+                title: '详情页面' + article.title,
+                article: article,
+                comments: comments,
+                user: req.session.user
+            })
+        });
+
+    // res.render('article', {
+    //     comments: comments,
+    //   user: req.session.user,
+    //   article: article,
+    //   css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">'
+    // });
   });
 };
 
@@ -42,8 +57,7 @@ exports.newArticle = function(req, res, next) {
 exports.editArticle = function(req, res, next) {
   var article_id = req.params._id;
   Article.findOne({
-    _id: article_id
-  }, function(err, article) {
+    _id: article_id}, function(err, article) {
     res.render('md_editor', {
       css_add: '<link rel="stylesheet" href="editormd.min.css" />',
       article: article
@@ -74,7 +88,7 @@ exports.postArticle = function(req, res, next) {
       readc: 0,
       commentc: 0,
       applausec: 0
-    }
+    };
     var article = new Article(_article);
     article.save(function(err, article) {
       if (err) {
@@ -83,7 +97,7 @@ exports.postArticle = function(req, res, next) {
       res.redirect('/');
     })
   }
-}
+};
 
 
 
@@ -115,4 +129,19 @@ exports.detail = function(req, res) {
         })
       })
   })
+};
+
+
+exports.listarticles = function(req, res) {
+    Article.fetch(function(err, articles) {
+        if (err) {
+            console.log(err)
+        }
+
+        res.render('admin_articles', {
+            user: req.session.user,
+            title: '文章列表页面',
+            articles: articles
+        })
+    })
 };
