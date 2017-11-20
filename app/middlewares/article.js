@@ -52,8 +52,6 @@ exports.showArticle = function(req, res, next) {
   //     js_add: ''
   //   });
   // });
-  // // var article_text = '# **JavaScript闭包**\n  **闭包**是指有权访问另一个函数作用域中的变量的函数。\n  --------------------------------------------------------------------------------\n  ## **创建闭包**\n  **创建闭包**的常见方式就是在一个函数内部创建另一个函数\n  ```javascript\n  function createComparisonFunction(propertyName) {\n    return function(object1, object2) {\n      var value1 = object1[propertyName];\n      var value2 = object2[propertyName];\n      if (value1 < value2) {\n        return -1;\n      } else if (value1 > value2) {\n        return 1;\n      } else {\n        return 0;\n      }\n    };\n  }\n  ```'; //article-test
-  // var article_md = md.render(article_text);
 
 };
 
