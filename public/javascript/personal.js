@@ -34,22 +34,13 @@ $(document).ready(function () {
       if(dy<0&&scrollFlag){
         console.log("改变导航栏");
         scrollFlag=false;
-         // $('.per-nav').hide();
-          //$('.per-nav-val').show();
-         // $('.per-guide-flex').show();
-         // $('.per-guide').addClass("per-guide-flex");
-          // $('.per-nav').removeClass("layui-col-md2");
-          // $('.per-nav-val').show();
-
+         $('.per-guide').addClass("per-guide-flex layui-col-md8");
+         $('.per-guide-in').addClass("layui-col-md2");
       }else if(dy>0&&!scrollFlag){
         console.log("恢复导航栏");
         scrollFlag=true;
-         // $('.per-nav-val').hide();
-         // $('.per-nav').show();
-          //$('.per-guide-flex').hide();
-          // $('.per-nav').addClass("layui-col-md2");
-          //$('.per-guide').removeClass("per-guide-flex");
-          // $('.per-nav-val').hide();
+          $('.per-guide').removeClass("per-guide-flex layui-col-md8");
+          $('.per-guide-in').removeClass("layui-col-md2");
       }
 
   });

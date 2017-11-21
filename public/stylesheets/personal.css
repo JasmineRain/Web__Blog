@@ -88,7 +88,7 @@ body {
 
 /* 侧边栏 */
 
-.per-nav-val {
+.per-guide-flex {
     position: fixed;
     top: 0;
 }
@@ -315,11 +315,12 @@ body {
     display: none;
 }
 
-.per-background{
-    width:70%;
+.per-background {
+    width: 70%;
 }
-.per-avatar{
-    width:30%;
+
+.per-avatar {
+    width: 30%;
 }
 
 .per-mes p {

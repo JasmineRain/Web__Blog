@@ -177,15 +177,9 @@ exports.PeronalDetailEdit = function (req, res) {
       if(_user.gender){
         user.gender=_user.gender;
       }
-      if(_user.email){
-        user.email=_user.email;
-      }
-      if(_user.signature){
-        user.signature=_user.signature;
-      }
-      if(_user.desc){
-        user.desc=_user.desc;
-      }
+      user.email=_user.email;
+      user.signature=_user.signature;
+      user.desc=_user.desc;
 
       user.save(function(err,user){
         if(err){
