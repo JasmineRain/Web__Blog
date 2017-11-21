@@ -28,6 +28,7 @@ var UserSchema = new mongoose.Schema({
         }
     },
     avatar: String ,
+    background: String,
     gender: { type: String},
     desc: String ,
     signature: String,

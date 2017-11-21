@@ -4,7 +4,7 @@ var appData = require('../../data.json'); //虚拟数据
 
 
 //登录页面
-exports.showSignin = function(req, res) {
+exports.showSignin = function (req, res) {
   res.render('signin', {
     user: req.session.user,
     title: '登录页'
@@ -12,7 +12,7 @@ exports.showSignin = function(req, res) {
 };
 
 //注册页面
-exports.showSignup = function(req, res) {
+exports.showSignup = function (req, res) {
   res.render('signup', {
     user: req.session.user,
     title: '注册页'
@@ -21,12 +21,12 @@ exports.showSignup = function(req, res) {
 
 
 //注册操作
-exports.signup = function(req, res) {
+exports.signup = function (req, res) {
   var _user = req.body.user;
 
   User.findOne({
     name: _user.name
-  }, function(err, user) {
+  }, function (err, user) {
     if (err) {
       console.log(err)
     }
@@ -36,7 +36,7 @@ exports.signup = function(req, res) {
     } else {
       var user = new User(_user);
 
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) {
           console.log(err);
         }
@@ -48,12 +48,14 @@ exports.signup = function(req, res) {
 
 
 //登录操作
-exports.signin = function(req, res) {
+exports.signin = function (req, res) {
   var _user = req.body.user;
   var name = _user.name;
   var password = _user.password;
 
-  User.findOne({name: name}, function(err, user) {
+  User.findOne({
+    name: name
+  }, function (err, user) {
     if (err) {
       console.log(err)
     }
@@ -63,7 +65,7 @@ exports.signin = function(req, res) {
     }
 
     //对比密码是否正确
-    user.comparePassword(password, function(err, isMatch) {
+    user.comparePassword(password, function (err, isMatch) {
       if (err) {
         console.log(err);
       }
@@ -81,7 +83,7 @@ exports.signin = function(req, res) {
 
 
 //注销操作
-exports.logout = function(req, res) {
+exports.logout = function (req, res) {
   var user = req.session.user;
   if (user) {
     delete req.session.user;
@@ -91,7 +93,10 @@ exports.logout = function(req, res) {
   }
 };
 
-exports.Showpersonal = function(req, res) {
+
+//个人主页相关操作
+//时间轴
+exports.Showpersonal = function (req, res) {
   res.render('personal', {
     user: req.session.user,
     timeline: appData.timeline,
@@ -100,41 +105,143 @@ exports.Showpersonal = function(req, res) {
     perDetail: appData.perDetail
   });
 };
-
-exports.ShowPeronalAttention = function(req, res) {
+//我的关注
+exports.ShowPeronalAttention = function (req, res) {
   res.render('personal-attention', {
     user: req.session.user,
     attention: appData.attention,
     perDetail: appData.perDetail
   });
 };
-
-exports.ShowPeronalPosts = function(req, res) {
+//我的文章
+exports.ShowPeronalPosts = function (req, res) {
   res.render('personal-posts', {
     user: req.session.user,
     posts: appData.perPosts,
     perDetail: appData.perDetail
   });
 };
-
-exports.ShowPeronalDetail = function(req, res) {
+//我的资料
+exports.ShowPeronalDetail = function (req, res) {
   res.render('personal-detail', {
     user: req.session.user,
     perDetail: appData.perDetail
   });
 };
-
-exports.ShowPeronalDetailEdit = function(req, res) {
+//编辑我的资料
+exports.ShowPeronalDetailEdit = function (req, res) {
   res.render('personal-detail-edit', {
     user: req.session.user,
     perDetail: appData.perDetail
   });
 };
 
+exports.PeronalDetailEdit = function (req, res) {
+  var _user=req.body.user;
+  console.log(_user);
+  User.findOne({
+    '_id': req.session.user._id
+  },function(err,user){
+    if(err){
+      console.log(err);
+    }
+    if(user){
+      if(_user.name){
+        user.name=_user.name;
+      }
+      if(_user.gender){
+        user.gender=_user.gender;
+      }
+      if(_user.email){
+        user.email=_user.email;
+      }
+      if(_user.signature){
+        user.signature=_user.signature;
+      }
+      if(_user.desc){
+        user.desc=_user.desc;
+      }
+
+      user.save(function(err,user){
+        if(err){
+          console.log(err);
+        }
+        console.log('更改成功');
+        res.send({
+          code:0,
+          suc:'更改成功'
+        })
+      })
+    }
+  })
+};
+
+//upload相关操作
+//更改背景图
+exports.UploadChangeBackground = function (req, res) {
+  console.log('执行');
+  var _user = req.session.user;
+  var backgroundPath = req.file.path;
+  //console.log('avatar文件上传 '+ req.file.filename);//, req.file, req.session.user);
+  //res.send(req.file.path);
+  //console.log(_user);
+  console.log(_user.name, backgroundPath)
+  User.findOne({
+    '_id': _user._id
+  }, function (err, user) {
+    if (err) {
+      console.log('1111111111', err);
+    }
+    console.log('okkkkkk')
+    if (user) {
+      user.background = backgroundPath;
+      console.log('2', user)
+      user.save(function (err, user) {
+        if (err) {
+          console.log('2', err);
+        }
+        res.send({
+          code: 0,
+          path: req.file.path
+        });
+      })
+    } else {
+      res.render('/singin');
+    }
+  })
+};
+//更改头像
+exports.UploadChangeAvatar = function (req, res) {
+  console.log('执行');
+  var _user = req.session.user;
+  var avatarPath = req.file.path;
+  User.findOne({
+    '_id': _user._id
+  }, function (err, user) {
+    if (err) {
+      console.log(err);
+    }
+    if (user) {
+      user.avatar = avatarPath;
+      user.save(function (err, user) {
+        if (err) {
+          console.log(err);
+        }
+        res.send({
+          code: 0,
+          path: req.file.path
+        });
+      })
+    } else {
+      res.render('/singin');
+    }
+  })
+};
+
 
 
 //midware for user
-exports.signinRequired = function(req, res, next) {
+exports.signinRequired = function (req, res, next) {
   var user = req.session.user;
   if (!user) {
     return res.redirect('/users/signin');
@@ -143,17 +250,17 @@ exports.signinRequired = function(req, res, next) {
 };
 
 //检查当前登录用户是否为该文章的作者
-exports.authorCheck = function(req, res, next) {
+exports.authorCheck = function (req, res, next) {
   var user = req.session.user;
   var article_id = req.param._id;
   Article.findOne({
     _id: article_id
-  }, function(err, article) {
+  }, function (err, article) {
     if (err) {
       console.log(err);
     }
     if (article) {
-      if(article.author!=user){
+      if (article.author != user) {
         return res.redirect('/users/signin');
       }
     }
@@ -164,7 +271,7 @@ exports.authorCheck = function(req, res, next) {
 
 //--------------------------------以下为管理员中间件-------------------
 
-exports.adminRequired = function(req, res, next) {
+exports.adminRequired = function (req, res, next) {
   var user = req.session.user;
 
   if (user.role <= 10) {
@@ -174,8 +281,8 @@ exports.adminRequired = function(req, res, next) {
   next();
 };
 
-exports.listusers = function(req, res) {
-  User.fetch(function(err, users) {
+exports.listusers = function (req, res) {
+  User.fetch(function (err, users) {
     if (err) {
       console.log(err)
     }
@@ -187,4 +294,3 @@ exports.listusers = function(req, res) {
     })
   })
 };
-

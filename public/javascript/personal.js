@@ -15,12 +15,6 @@ $(document).ready(function () {
     $('.mes-edit').fadeIn();
     $('.mes-watch').hide();
   })
-  //编辑返回
-  // $('.mes-edit-return').click(function(){
-  //   console.log('.mes-edit-butt click');
-  //   $('.mes-edit').hide();
-  //   $('.mes-watch').fadeIn();
-  // })
 
   layui.use('form', function () {
     var form = layui.form;
@@ -54,6 +48,7 @@ $(document).ready(function () {
   // });
 })
 
+//背景上传
 layui.use('upload', function () {
   var upload = layui.upload;
 
@@ -62,8 +57,12 @@ layui.use('upload', function () {
     elem: '#per-background', //绑定元素
     url: '/upload/background/', //上传接口
     field: 'background',
+    before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+      layer.load(); //上传loading
+    },
     done: function (res) {
       //上传完毕回调
+      layer.closeAll('loading'); //关闭loading
       //假设code=0代表上传成功
       if (res.code == 0) {
         console.log('ok');
@@ -85,6 +84,7 @@ layui.use('upload', function () {
   });
 });
 
+//头像上传
 layui.use('upload', function () {
   var upload = layui.upload;
 
@@ -93,8 +93,12 @@ layui.use('upload', function () {
     elem: '#per-avatar', //绑定元素
     url: '/upload/avatar/', //上传接口
     field: 'avatar',
+    before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+      layer.load(); //上传loading
+    },
     done: function (res) {
       //上传完毕回调
+      layer.closeAll('loading'); //关闭loading
       //假设code=0代表上传成功
       if (res.code == 0) {
         console.log($('.per-avatar')[0]);

@@ -14,9 +14,6 @@ router.get('/detail',User.signinRequired,User.ShowPeronalDetail);
 router.get('/detailEdit',User.signinRequired,User.ShowPeronalDetailEdit);
 
 
-router.post('/detailEdit',User.signinRequired,function(req,res){
-    console.log(req.body.user);
-    console.log("表单上传");
-})
+router.post('/detailEdit',User.signinRequired,User.PeronalDetailEdit)
 
 module.exports = router;
