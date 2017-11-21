@@ -1,20 +1,23 @@
 /* 公用 */
-body{
+
+body {
     background: #f3f3f3;
 }
+
 .one-content {
     background: #ffffff;
     padding: 16px 25px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
-.per-content-title{
+
+.per-content-title {
     background: #fff;
     padding: 16px 20px;
 }
-.per-content-title h1{
+
+.per-content-title h1 {
     font-size: 30px;
 }
-
 
 .layui-nav {
     border-radius: 0px;
@@ -38,11 +41,18 @@ body{
     }
 }
 
-.per-header {
+.per-head {
+    position: relative;
     height: 250px;
-    background-image: url(http://img2.niutuku.com/desk/1208/2156/ntk-2156-36622.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
+}
+
+.per-head-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .per-ico {
@@ -77,33 +87,36 @@ body{
 
 
 /* 侧边栏 */
-.per-nav-val{
+
+.per-nav-val {
     position: fixed;
     top: 0;
 }
-.per-guide{
+
+.per-guide {
     padding: 10px 0;
 }
 
-.per-guide-xs{
+.per-guide-xs {
     display: none;
 }
 
 @media screen and (max-width: 992px) {
-    .per-guide{
+    .per-guide {
         padding: 10px 0;
         display: none;
     }
-    .per-guide-xs{
+    .per-guide-xs {
         display: block;
     }
 }
+
 .per-guide ul {
     width: 100%;
     border-radius: 0;
 }
 
-.per-guide-xs ul{
+.per-guide-xs ul {
     width: 100%;
 }
 
@@ -124,8 +137,8 @@ body{
     padding-top: 100%;
 }
 
-.guide-square img{
-    position: absolute ;
+.guide-square img {
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -141,6 +154,7 @@ body{
     padding: 10px;
 }
 
+
 /* 时间线 */
 
 .per-timeline h1 {
@@ -150,16 +164,17 @@ body{
 
 
 /* 所有文章 */
+
 .post-content div {
     height: 150px;
     overflow: hidden;
 }
+
 @media screen and (max-width: 992px) {
     .per-post-content {
         height: auto !important;
     }
 }
-
 
 .post-content {
     margin: 10px 0;
@@ -176,7 +191,7 @@ body{
 }
 
 @media screen and (max-width: 992px) {
-    .one-content-xs{
+    .one-content-xs {
         padding: 15px 10px;
     }
     .per-post-content {
@@ -210,12 +225,15 @@ body{
 
 
 /* 个人关注 */
-.per-atten-ico{
+
+.per-atten-ico {
     padding-left: 10px;
 }
-.per-atten-post{
-    margin: 20px 10px; 
+
+.per-atten-post {
+    margin: 20px 10px;
 }
+
 .square {
     width: 60%;
     position: relative;
@@ -228,8 +246,8 @@ body{
     padding-top: 100%;
 }
 
-.square img{
-    position: absolute ;
+.square img {
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -237,12 +255,14 @@ body{
     border: 3px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
 }
-.per-atten-author{
+
+.per-atten-author {
     margin-left: -25px;
 }
-.per-atten-author h1{
+
+.per-atten-author h1 {
     font-size: 20px;
-    margin:5px 0 5px 0; 
+    margin: 5px 0 5px 0;
 }
 
 .per-atten-cancel {
@@ -250,12 +270,12 @@ body{
     margin-right: 10px;
 }
 
-.per-atten-option div{
+.per-atten-option div {
     text-align: center;
 }
 
 @media screen and (max-width: 992px) {
-    .per-atten-author{
+    .per-atten-author {
         margin-left: 0px;
     }
     .square {
@@ -263,7 +283,7 @@ body{
         position: relative;
         max-width: 200px;
     }
-    .square img{
+    .square img {
         border: 1px solid rgba(0, 0, 0, 0.2);
     }
     .square:after {
@@ -271,28 +291,36 @@ body{
         display: block;
         padding-top: 100%;
     }
-    .per-atten-post{
-        margin: 10px; 
+    .per-atten-post {
+        margin: 10px;
     }
-    .per-atten-author h1{
+    .per-atten-author h1 {
         font-size: 14px;
-        margin:0; 
+        margin: 0;
     }
 }
 
+
 /* 个人信息 */
+
 .per-mes-lab {
     margin-bottom: 20px;
 }
 
-.per-background-hide{
+.per-background-hide {
     display: none;
 }
 
-.per-avatar-hide{
+.per-avatar-hide {
     display: none;
 }
 
+.per-background{
+    width:70%;
+}
+.per-avatar{
+    width:30%;
+}
 
 .per-mes p {
     margin: 10px 0 0 20px;

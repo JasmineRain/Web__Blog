@@ -57,7 +57,7 @@ layui.use('upload', function () {
     elem: '#per-background', //绑定元素
     url: '/upload/background/', //上传接口
     field: 'background',
-    before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+    before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
       layer.load(); //上传loading
     },
     done: function (res) {
@@ -65,13 +65,15 @@ layui.use('upload', function () {
       layer.closeAll('loading'); //关闭loading
       //假设code=0代表上传成功
       if (res.code == 0) {
-        console.log('ok');
-        $('.per-background')[0].src = "\\" + res.path;
-        $('.per-background-hide').show();
+        //图片预览
         layui.use('layer', function () {
           var layer = layui.layer;
           layer.msg('背景更改成功');
         });
+
+        console.log($('.per-head-background')[0]);
+        //应用变化
+        $('.per-head-background')[0].src = ("\\" + res.path);
       }
     },
     error: function () {
@@ -93,7 +95,7 @@ layui.use('upload', function () {
     elem: '#per-avatar', //绑定元素
     url: '/upload/avatar/', //上传接口
     field: 'avatar',
-    before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+    before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
       layer.load(); //上传loading
     },
     done: function (res) {
@@ -101,13 +103,14 @@ layui.use('upload', function () {
       layer.closeAll('loading'); //关闭loading
       //假设code=0代表上传成功
       if (res.code == 0) {
-        console.log($('.per-avatar')[0]);
-        $('.per-avatar')[0].src = "\\" + res.path;
-        $('.per-avatar-hide').show();
         layui.use('layer', function () {
           var layer = layui.layer;
           layer.msg('头像更改成功');
         });
+
+        //应用变化
+        $('.per-head-avatar')[0].src = ("\\" + res.path);
+
       }
     },
     error: function () {
