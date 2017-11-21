@@ -28,7 +28,7 @@ exports.showArticle = function(req, res, next) {
         .exec(function(err, comments) {
             console.log(comments);
             res.render('article', {
-                css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
+                css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atelier-dune-dark.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
                 title: '详情页面' + article.title,
                 article: article,
                 comments: comments,
