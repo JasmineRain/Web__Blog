@@ -97,36 +97,55 @@ exports.logout = function (req, res) {
 //个人主页相关操作
 //时间轴
 exports.Showpersonal = function (req, res) {
-  res.render('personal', {
-    user: req.session.user,
-    timeline: appData.timeline,
-    posts: appData.perPosts,
-    attention: appData.attention,
-    perDetail: appData.perDetail
-  });
+  var _id= req.session.user._id;
+  User.findOne({
+    '_id': _id
+  },function(err,user){
+    res.render('personal', {
+      user: req.session.user,
+      timeline: appData.timeline,
+      perDetail: user
+    });
+  })
 };
 //我的关注
 exports.ShowPeronalAttention = function (req, res) {
-  res.render('personal-attention', {
-    user: req.session.user,
-    attention: appData.attention,
-    perDetail: appData.perDetail
-  });
+  var _id= req.session.user._id;
+  User.findOne({
+    '_id': _id
+  },function(err,user){
+    res.render('personal-attention', {
+      user: req.session.user,
+      attention: appData.attention,
+      perDetail: user
+    });
+  })
+
 };
 //我的文章
 exports.ShowPeronalPosts = function (req, res) {
-  res.render('personal-posts', {
-    user: req.session.user,
-    posts: appData.perPosts,
-    perDetail: appData.perDetail
-  });
+  var _id= req.session.user._id;
+  User.findOne({
+    '_id': _id
+  },function(err,user){
+    res.render('personal-posts', {
+      user: req.session.user,
+      posts: appData.perPosts,
+      perDetail: user
+    });
+  })
 };
 //我的资料
 exports.ShowPeronalDetail = function (req, res) {
-  res.render('personal-detail', {
-    user: req.session.user,
-    perDetail: appData.perDetail
-  });
+  var _id= req.session.user._id;
+  User.findOne({
+    '_id': _id
+  },function(err,user){
+    res.render('personal-detail', {
+      user: req.session.user,
+      perDetail: user
+    });
+  })
 };
 //编辑我的资料
 exports.ShowPeronalDetailEdit = function (req, res) {

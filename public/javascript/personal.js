@@ -26,26 +26,33 @@ $(document).ready(function () {
       //return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
   });
-  // $(window).scroll(function () {
-  //     let dy=$('.nav-cahnge').offset().top-$(document).scrollTop();
-  //     if(dy<0){
-  //        // $('.per-nav').hide();
-  //         //$('.per-nav-val').show();
-  //        // $('.per-guide-flex').show();
-  //        // $('.per-guide').addClass("per-guide-flex");
-  //         // $('.per-nav').removeClass("layui-col-md2");
-  //         // $('.per-nav-val').show();
 
-  //     }else{
-  //        // $('.per-nav-val').hide();
-  //        // $('.per-nav').show();
-  //         //$('.per-guide-flex').hide();
-  //         // $('.per-nav').addClass("layui-col-md2");
-  //         //$('.per-guide').removeClass("per-guide-flex");
-  //         // $('.per-nav-val').hide();
-  //     }
+  //导航栏重定位
+  let scrollFlag=true;
+  $(window).scroll(function () {
+      let dy=$('.nav-cahnge').offset().top-$(document).scrollTop();
+      if(dy<0&&scrollFlag){
+        console.log("改变导航栏");
+        scrollFlag=false;
+         // $('.per-nav').hide();
+          //$('.per-nav-val').show();
+         // $('.per-guide-flex').show();
+         // $('.per-guide').addClass("per-guide-flex");
+          // $('.per-nav').removeClass("layui-col-md2");
+          // $('.per-nav-val').show();
 
-  // });
+      }else if(dy>0&&!scrollFlag){
+        console.log("恢复导航栏");
+        scrollFlag=true;
+         // $('.per-nav-val').hide();
+         // $('.per-nav').show();
+          //$('.per-guide-flex').hide();
+          // $('.per-nav').addClass("layui-col-md2");
+          //$('.per-guide').removeClass("per-guide-flex");
+          // $('.per-nav-val').hide();
+      }
+
+  });
 })
 
 //背景上传

@@ -27,8 +27,8 @@ var UserSchema = new mongoose.Schema({
             default:Date.now()
         }
     },
-    avatar: String ,
-    background: String,
+    avatar: {type:String, default:'http://img1.mukewang.com/575cd43d0001242904190419-200-200.jpg'},
+    background: {type:String, default:'http://www.deskcar.com/desktop/else/2009221114947/12.jpg'},
     gender: { type: String},
     desc: String ,
     signature: String,

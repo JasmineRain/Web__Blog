@@ -1,10 +1,4 @@
 <!-- 我的资料 -->
-<div class="per-mes-lab nickname">
-    <label>
-        <strong>昵称：</strong>
-        <%=perDetail.nickName%>
-    </label>
-</div>
 <div class="per-mes-lab name">
     <label>
         <strong>姓名：</strong>
@@ -25,13 +19,6 @@
 </div>
 <div class="per-mes-lab intro">
     <label>
-        <strong>电话：</strong>
-        <%=perDetail.phone%>
-    </label>
-
-</div>
-<div class="per-mes-lab intro">
-    <label>
         <strong>签名：</strong>
         <%=perDetail.signature%>
     </label>
@@ -41,7 +28,7 @@
         <strong>个人简介：</strong>
     </label>
     <p>
-        <%=perDetail.introduce%>
+        <%=perDetail.desc%>
     </p>
 </div>
 <button class="layui-btn layui-btn-primary" onclick="javascrtpt:window.location.href='/personal/detailEdit'">编辑</button>
