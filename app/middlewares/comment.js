@@ -13,15 +13,13 @@ exports.save = function(req,res){
                 to:_comment.tid,
                 content:_comment.content
             };
-
             comment.reply.push(reply);
 
             comment.save(function(err,comment){
                 if(err){
                     console.log(err)
                 }
-
-                res.redirect('/article')
+                res.redirect('/article/'+articleId)
             })
         })
     }else{
@@ -30,7 +28,7 @@ exports.save = function(req,res){
             if(err){
                 console.log(err)
             }
-            res.redirect('/article')
+            res.redirect('/article/'+articleId)
         })
     }
 };

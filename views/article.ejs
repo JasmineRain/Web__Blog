@@ -28,7 +28,7 @@
 
     <div class="full"></div>
     <div class="full"></div>
-<form class="layui-form" action="/users/comment" method="post">
+<form class="layui-form" action="/comment/new" method="post">
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">编辑评论</label>
         <div class="layui-input-block">
@@ -36,7 +36,8 @@
         </div>
     </div>
     <input type="hidden" name="comment[article]" value=<%-article._id%>>
-    <input type="hidden" name="comment[from]" value="user[_id]%>">
+    <input type="hidden" name="comment[from]" value="<%-user._id%>">
+    <input type="hidden" name="comment[to]" value="<%-article.author%>">
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>

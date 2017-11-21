@@ -14,6 +14,6 @@ router.get('/detail',User.signinRequired,User.ShowPeronalDetail);
 router.get('/detailEdit',User.signinRequired,User.ShowPeronalDetailEdit);
 
 
-router.post('/detailEdit',User.signinRequired,User.PeronalDetailEdit)
+router.post('/detailEdit',User.signinRequired,User.PeronalDetailEdit);
 
 module.exports = router;
