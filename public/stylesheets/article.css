@@ -56,3 +56,20 @@ span.name a{
 .meta{
   font-size: 14px;
 }
+
+code{
+  font-size: 1.07em;
+  background-color: #272727;
+  color: #cdcd9a;
+  padding: 0.2em;
+  margin: 0.2em;
+  border-radius:7px;
+}
+p{
+  font-size: 1.2em;
+}
+pre{
+  background-color: #272727;
+  padding: 1.12em;
+  border-radius:5px;
+}
