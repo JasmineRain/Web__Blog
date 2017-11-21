@@ -173,10 +173,7 @@ exports.PeronalDetailEdit = function (req, res) {
           console.log(err);
         }
         console.log('更改成功');
-        res.send({
-          code:0,
-          suc:'更改成功'
-        })
+        res.redirect('back');
       })
     }
   })
