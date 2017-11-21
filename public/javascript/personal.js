@@ -66,7 +66,7 @@ layui.use('upload', function () {
       //假设code=0代表上传成功
       if (res.code == 0) {
         console.log('ok');
-        $('.per-background')[0].src = "http://localhost:3000/" + res.path;
+        $('.per-background')[0].src = "\\" + res.path;
         $('.per-background-hide').show();
         layui.use('layer', function () {
           var layer = layui.layer;
@@ -102,7 +102,7 @@ layui.use('upload', function () {
       //假设code=0代表上传成功
       if (res.code == 0) {
         console.log($('.per-avatar')[0]);
-        $('.per-avatar')[0].src = "http://localhost:3000/" + res.path;
+        $('.per-avatar')[0].src = "\\" + res.path;
         $('.per-avatar-hide').show();
         layui.use('layer', function () {
           var layer = layui.layer;

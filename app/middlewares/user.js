@@ -130,17 +130,23 @@ exports.ShowPeronalDetail = function (req, res) {
 };
 //编辑我的资料
 exports.ShowPeronalDetailEdit = function (req, res) {
-  res.render('personal-detail-edit', {
-    user: req.session.user,
-    perDetail: appData.perDetail
-  });
+  var _id= req.session.user._id;
+  User.findOne({
+    '_id': _id
+  },function(err,user){
+    res.render('personal-detail-edit', {
+      user: req.session.user,
+      perDetail: user
+    });
+  })
 };
 
 exports.PeronalDetailEdit = function (req, res) {
   var _user=req.body.user;
+  var _id= req.session.user._id;
   console.log(_user);
   User.findOne({
-    '_id': req.session.user._id
+    '_id': _id
   },function(err,user){
     if(err){
       console.log(err);
