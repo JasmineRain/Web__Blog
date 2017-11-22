@@ -28,22 +28,39 @@
     <div class="full"></div>
     <div class="full"></div>
 
-<% for(var i=0;i<comments.length;i++) { %>
-<div class="media">
-    <div class="media-left">
-        <a href="#">
-            <img class="media-object" src="/img/defaultAvatar.jpg" width="64px" height="64px">
-        </a>
-    </div>
-    <a href="#commentForm" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
-        <div class="media-body">
-            <h4 class="media-heading"><%-article.author.name%></h4>
-            <%-comments[i].content%>
+<ul class="media-list">
+    <% for(var i=0;i<comments.length;i++) { %>
+    <li class="media">
+        <div class="media-left">
+            <a class="comment" href="#commentForm" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
+                <img class="media-object" src="/img/defaultAvatar.jpg"  width="64px" height="64px">
+            </a>
         </div>
-    </a>
-</div>
-<div class="full"></div>
-<%}%>
+        <div class="media-body">
+            <h4 class="media-heading"><%-comments[i].from.name%></h4>
+            <p><%-comments[i].content%></p>
+            <% if((comments[i].reply)&&(comments[i].reply.length>0)) {%>
+                <%for(var j=0;j<comments[i].reply.length;j++){ %>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                 <img class="media-object" src="/img/defaultAvatar.jpg"  width="64px" height="64px">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><%-comments[i].reply[j].from.name%></h4>
+                            <%-comments[i].reply[j].content%>
+                        </div>
+                    </div>
+                <%}%>
+            <%}%>
+        </div>
+    </li>
+    <div class="full_small"></div>
+    <%}%>
+
+</ul>
+
 
     <div class="full"></div>
     <div class="full"></div>
@@ -56,7 +73,6 @@
     </div>
     <input type="hidden" name="comment[article]" value=<%-article._id%>>
     <input type="hidden" name="comment[from]" value="<%-user._id%>">
-    <input type="hidden" name="comment[to]" value="<%-article.author%>">
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>
@@ -64,4 +80,5 @@
         </div>
     </div>
 </form>
+
     <%- include('footer') %>
