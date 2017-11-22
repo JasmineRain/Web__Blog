@@ -72,6 +72,7 @@ exports.postArticle = function(req, res, next) {
     Article.findById(req.body.article._id, function(err, article) {
       article.title = req.body.article.title;
       article.content = req.body.article.content;
+      article.desc = req.body.article.content.substring(0,500);//截取前50个字符作为简介
       article.save(function(err, article) {
         if (err) {
           console.log(err);
@@ -84,7 +85,7 @@ exports.postArticle = function(req, res, next) {
       title: req.body.article.title,
       content: req.body.article.content,
       author: req.session.user,
-      desc: '???',
+      desc: req.body.article.content.substring(0,500),//截取前50个字符作为简介
       readc: 0,
       commentc: 0,
       applausec: 0
