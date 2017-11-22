@@ -3,17 +3,18 @@
 
 
 ### 注意：修改editor.min.css源码
- 新增
 ```css
-html, body {
+html, body {      
   height: 100%;
   width: 100%;
 }
-
-
+.contain{      
+  height: 70%;
+  width: 90%;
+}
 .editormd {
   width: 90%;
-  height: 90%;//修改
+  height: 90%;
   margin: 0 auto;
   text-align: left;
   overflow: hidden;
