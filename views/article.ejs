@@ -31,7 +31,7 @@
 <% for(var i=0;i<comments.length;i++) { %>
 <div class="media">
     <div class="media-left">
-        <a href="#">
+        <a href="#comments" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
             <img class="media-object" src="http://t.cn/RCzsdCq" width="64px" height="64px">
         </a>
     </div>
@@ -40,13 +40,14 @@
         <%-comments[i].content%>
     </div>
 </div>
+<div class="full"></div>
 <%}%>
 
     <div class="full"></div>
     <div class="full"></div>
-<form class="layui-form" action="/comment/new" method="post">
+<form class="layui-form" action="/comment/new" method="post" id="comments">
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">编辑评论</label>
+        <label class="layui-form-label">评论</label>
         <div class="layui-input-block">
             <textarea name="comment[content]" placeholder="评价" class="layui-textarea"></textarea>
         </div>

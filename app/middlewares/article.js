@@ -42,7 +42,7 @@ exports.showArticle = function(req, res, next) {
     //   css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">'
     // });
   })
-      .populate('author','name -_id');
+      .populate('author','name');
 };
 
 
