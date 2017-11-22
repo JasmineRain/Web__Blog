@@ -79,6 +79,7 @@ abbr,acronym{font-variant:small-caps; letter-spacing:0.1em}
 }
 .media-object {
     display: block;
+    border-radius: 50%;
 }
 .media-object.img-thumbnail {
     max-width: none;
