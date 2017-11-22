@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
+</head>
+
+<body>
+  <form class="contain" action="/article/post" method="POST">
+    <% if(locals.article) { %>
+      <input type="text" name="article[_id]" value="<%-article._id%>" style="display:none">
+      <input type="text" name="article[title]" value="<%-article.title%>">
+      <% } else { %>
+        <input type="text" name="article[title]" value="新文章">
+        <% } %>
+    <%-include('components/editor')%>
+    <input type="submit" name="submit" value="submit">
+  </form>
+
+  <script src="/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/libs/editor.md/editormd.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      var editor = editormd("editormd", {
+        path: "/libs/editor.md/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+      });
+    });
+  </script>
+</body>
+</html>
