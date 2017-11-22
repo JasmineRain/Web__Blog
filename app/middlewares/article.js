@@ -26,7 +26,7 @@ exports.showArticle = function(req, res, next) {
         .populate('from', 'name')
         .populate('reply.from reply.to', 'name')
         .exec(function(err, comments) {
-            res.render('article', {
+            res.render('article_details', {
                 css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atelier-dune-dark.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
                 title: '详情页面' + article.title,
                 article: article,
@@ -34,20 +34,13 @@ exports.showArticle = function(req, res, next) {
                 user: req.session.user
             })
         });
-
-    // res.render('article', {
-    //     comments: comments,
-    //   user: req.session.user,
-    //   article: article,
-    //   css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><link rel="stylesheet" href="/stylesheets/article.css">'
-    // });
   })
       .populate('author','name');
 };
 
 
 exports.newArticle = function(req, res, next) {
-  res.render('md_editor', {
+  res.render('article_edit', {
     css_add: '<link rel="stylesheet" href="editormd.min.css" />'
   })
 };
