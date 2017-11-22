@@ -1,0 +1,56 @@
+body {
+  height: 98%;
+  width: 99%;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+.contain{
+  margin: auto;
+  height: 80%;
+  width: 100%;
+}
+.editormd {
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  font-family: "Meiryo UI", "Microsoft YaHei", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+}
+.title{
+  height: 6%;
+  width: 40%;
+  margin: 0.8%;
+  margin-left: 8%;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
+  background-color: #eee;
+}
+.submit{
+  height: 9%;
+  width: 15%;
+  margin: 5px;
+  margin-left: 70%;
+  font-size: 25px;
+  padding: 3px 10px;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 10px;
+  background-color: #eee;
+  cursor:pointer;
+  font-size: 35px;
+  min-width: 50px;
+}
+.submit:hover{
+    background-color: black;
+    color: white;
+}

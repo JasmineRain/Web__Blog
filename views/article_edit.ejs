@@ -4,18 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
+  <link rel="stylesheet" href="/stylesheets/article_edit.css">
 </head>
 
 <body>
   <form class="contain" action="/article/post" method="POST">
     <% if(locals.article) { %>
       <input type="text" name="article[_id]" value="<%-article._id%>" style="display:none">
-      <input type="text" name="article[title]" value="<%-article.title%>">
+      <input type="text" class="title" name="article[title]" value="<%-article.title%>">
       <% } else { %>
-        <input type="text" name="article[title]" value="新文章">
+        <input type="text" class="title" name="article[title]" value="新文章">
         <% } %>
     <%-include('components/editor')%>
-    <input type="submit" name="submit" value="submit">
+    <input type="submit" class="submit" name="submit" value="提&nbsp;交">
   </form>
 
   <script src="/libs/jquery/dist/jquery.min.js"></script>
