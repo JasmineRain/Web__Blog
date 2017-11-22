@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-
+var Schema = mongoose.Schema;
+var ObjectId = Schema.Types.ObjectId;
 var ArticleSchema = new mongoose.Schema({
     title:String,
     meta:{
@@ -12,7 +13,7 @@ var ArticleSchema = new mongoose.Schema({
             default:Date.now()
         }
     },
-    author: { type: 'string' },
+    author: { type: ObjectId, ref:'User' },
     desc: { type: 'string' },
     content:String,
     readc: Number,
