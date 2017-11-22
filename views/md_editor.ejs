@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -9,22 +8,14 @@
 
 <body>
   <form class="contain" action="/article/post" method="POST">
-
-
-      <% if(locals.article) { %>
+    <% if(locals.article) { %>
       <input type="text" name="article[_id]" value="<%-article._id%>" style="display:none">
-      <input type="text" name="article[title]" value="<%-article.title%>" >
-      <div id="editormd">
-        <textarea name="article[content]"><%-article.content%></textarea>
-      </div>
-      <input type="submit" name="submit" value="submit">
+      <input type="text" name="article[title]" value="<%-article.title%>">
       <% } else { %>
         <input type="text" name="article[title]" value="新文章">
-        <div id="editormd">
-          <textarea name="article[content]">### Hello Editor.md !</textarea>
-        </div>
-        <input type="submit" name="submit" value="submit">
         <% } %>
+    <%-include('components/editor')%>
+    <input type="submit" name="submit" value="submit">
   </form>
 
   <script src="/libs/jquery/dist/jquery.min.js"></script>
@@ -37,5 +28,4 @@
     });
   </script>
 </body>
-
 </html>
