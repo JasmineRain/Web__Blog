@@ -13,7 +13,7 @@ html {
 }
 .editormd {
   width: 80%;
-  height: 80%;
+  height: 82%;
   margin: 0 auto;
   text-align: left;
   overflow: hidden;
@@ -36,21 +36,29 @@ html {
   background-color: #eee;
 }
 .submit{
-  height: 9%;
-  width: 15%;
+  height: 7%;
+  width: 13%;
   margin: 5px;
   margin-left: 70%;
-  font-size: 25px;
   padding: 3px 10px;
-  border-width: 1px;
-  border-color: black;
-  border-radius: 10px;
-  background-color: #eee;
   cursor:pointer;
-  font-size: 35px;
+  font-size: 30px;
   min-width: 50px;
+  border: 0;
+  border-radius: 10px;
 }
 .submit:hover{
     background-color: black;
     color: white;
+}
+
+@-webkit-keyframes preyPulse {
+  from { background-color: #888; -webkit-box-shadow: 0 0 25px #888; }
+  50% { background-color: #c0c0c0; -webkit-box-shadow: 0 0 9px #c8c8c8; }
+  to { background-color: #888; -webkit-box-shadow: 0 0 25px #888; }
+}
+.submit {
+  -webkit-animation-name: preyPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
 }
