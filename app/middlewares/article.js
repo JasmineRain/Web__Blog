@@ -58,7 +58,7 @@ exports.editArticle = function(req, res, next) {
   var article_id = req.params._id;
   Article.findOne({
     _id: article_id}, function(err, article) {
-    res.render('md_editor', {
+    res.render('article_edit', {
       css_add: '<link rel="stylesheet" href="editormd.min.css" />',
       article: article
     })
