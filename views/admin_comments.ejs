@@ -1,0 +1,35 @@
+<%- include('header')%>
+<%- include('nav') %>
+
+
+
+<div class="full"></div>
+
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>文章ID</th>
+        <th>内容</th>
+        <th>时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%for(var i =0;i<comments.length;i++) { %>
+    <tr>
+        <td><%=comments[i]._id%></td>
+        <td><%=comments[i].article%></td>
+        <td><%=comments[i].content%></td>
+        <td><%=comments[i].meta.createAt%></td>
+    </tr>
+    <%}%>
+    </tbody>
+</table>
+
+
+<%- include('footer') %>

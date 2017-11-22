@@ -6,4 +6,5 @@ var User = require('../app/middlewares/user');
 router.post('/new', User.signinRequired, Comment.save);
 
 
+
 module.exports = router;

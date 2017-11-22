@@ -32,3 +32,17 @@ exports.save = function(req,res){
         })
     }
 };
+
+exports.listcomments = function(req, res) {
+    Comment.fetch(function(err, comments) {
+        if (err) {
+            console.log(err)
+        }
+
+        res.render('admin_comments', {
+            user: req.session.user,
+            title: '文章列表页面',
+            comments: comments
+        })
+    })
+};
