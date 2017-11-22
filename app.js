@@ -53,8 +53,10 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
+  limit:'5mb'
 }));
+// app.use(express.json({limit: '5mb'}));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(serveStatic(path.join(__dirname, 'public')));
