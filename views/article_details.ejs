@@ -31,21 +31,23 @@
 <% for(var i=0;i<comments.length;i++) { %>
 <div class="media">
     <div class="media-left">
-        <a href="#comments" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
+        <a href="#">
             <img class="media-object" src="/img/defaultAvatar.jpg" width="64px" height="64px">
         </a>
     </div>
-    <div class="media-body">
-        <h4 class="media-heading"><%-article.author.name%></h4>
-        <%-comments[i].content%>
-    </div>
+    <a href="#commentForm" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
+        <div class="media-body">
+            <h4 class="media-heading"><%-article.author.name%></h4>
+            <%-comments[i].content%>
+        </div>
+    </a>
 </div>
 <div class="full"></div>
 <%}%>
 
     <div class="full"></div>
     <div class="full"></div>
-<form class="layui-form" action="/comment/new" method="post" id="comments">
+<form class="layui-form" action="/comment/new" method="post" id="commentForm">
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">评论</label>
         <div class="layui-input-block">
