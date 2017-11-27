@@ -1,8 +1,7 @@
 .article {
   width: 38%;
-  min-width: 400px;
+  min-width: 500px;
   margin: auto;
-  word-wrap: break-word;
   word-break: normal;
   margin-top: 50px;
 }
@@ -43,9 +42,11 @@
 span.name {
   font-size: 16px;
 }
-span.name a{
-  color:black;
+
+span.name a {
+  color: black;
 }
+
 .btn-success {
   font-size: 13px;
   border-radius: 40px;
@@ -53,23 +54,65 @@ span.name a{
   background-color: #42c02e;
   padding: 2px 4px;
 }
-.meta{
+
+.meta {
   font-size: 14px;
 }
 
-code{
+code {
   font-size: 1.07em;
   background-color: #272727;
   color: #cdcd9a;
   padding: 0.2em;
   margin: 0.2em;
-  border-radius:7px;
+  border-radius: 7px;
 }
-p{
+
+p {
   font-size: 1.2em;
 }
-pre{
+
+pre {
   background-color: #272727;
-  padding: 1.12em;
-  border-radius:5px;
+  padding-left: 1.12em;
+  border-radius: 5px;
+  overflow: auto;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+/*行号*/
+
+
+ul.pre-numbering {
+  padding: 0;
+  background-color: inherit;
+  color: #996655;
+}
+
+code {
+  display: block;
+  padding: 12px 24px;
+  overflow-y: auto;
+  font-weight: 300;
+  font-family: Menlo, monospace;
+  font-size: 0.8em;
+}
+code.has-numbering {
+    margin-left: 21px;
+}
+
+.pre-numbering {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    padding: 12px 2px 12px 0;
+    border-right: 1px solid #C3CCD0;
+    border-radius: 3px 0 0 3px;
+    background-color: #EEE;
+    text-align: right;
+    font-family: Menlo, monospace;
+    font-size: 0.8em;
+    color: #AAA;
 }

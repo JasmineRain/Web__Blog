@@ -28,6 +28,7 @@ exports.showArticle = function(req, res, next) {
         .exec(function(err, comments) {
             res.render('article_details', {
                 css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atelier-dune-dark.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
+                js_add:'<script src="/javascript/article.js"></script>',
                 title: '详情页面' + article.title,
                 article: article,
                 comments: comments,
