@@ -1,14 +1,16 @@
 body {
-  height: 98%;
-  width: 99%;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 html {
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 .contain{
   margin: auto;
-  height: 80%;
+  height: 83%;
   width: 100%;
 }
 .editormd {
@@ -61,4 +63,11 @@ html {
   -webkit-animation-name: preyPulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
+}
+.editormd-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: none;
+  margin: 0 auto;
 }

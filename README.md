@@ -2,29 +2,6 @@
 
 
 
-### 注意：修改editor.min.css源码
-```css
-html, body {      
-  height: 100%;
-  width: 100%;
-}
-.contain{      
-  height: 70%;
-  width: 90%;
-}
-.editormd {
-  width: 90%;
-  height: 90%;
-  margin: 0 auto;
-  text-align: left;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  font-family: "Meiryo UI", "Microsoft YaHei", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
-}
-```
-
 ## 11.17
 完成了登录注册
 
@@ -44,9 +21,16 @@ todo:移植评论部分功能以及加入管理员相关页面，查询所有用
 
 ## 11.22
  完成编辑页，文章详情页，叠楼评论，加载动画
- 
+
  todo:<br>
  -调整路由跳转，串联功能<br>
  -首页最新最热以及分页<br>
  -访客统计，分类，搜索<br>
  -操作提示
+
+## 11.29
+ -编辑页面全屏修复
+ -文章页代码块完成
+
+ todo：
+ -搜索功能
