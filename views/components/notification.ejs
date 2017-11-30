@@ -1,0 +1,21 @@
+<div class="ui grid">
+    <div class="">
+
+        <% if (success) { %>
+            <div class=" notification layui-bg-blue">
+                <p>
+                    <%= success %>
+                </p>
+            </div>
+            <% } %>
+
+                <% if (error) { %>
+                    <div class="notification layui-bg-red">
+                        <p>
+                            <%= error %>
+                        </p>
+                    </div>
+                    <% } %>
+
+    </div>
+</div>

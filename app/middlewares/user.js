@@ -76,6 +76,7 @@ exports.signin = function (req, res) {
       if (isMatch) {
         //将用户登录信息存入session
         req.session.user = user;
+        req.flash('success', '登录成功');
         return res.redirect('/')
       } else {
         return res.redirect('/users/signin')
@@ -89,7 +90,8 @@ exports.signin = function (req, res) {
 exports.logout = function (req, res) {
   var user = req.session.user;
   if (user) {
-    delete req.session.user;
+    req.session.user = null;
+    req.flash('success', '注销成功');
     res.redirect('/');
   } else {
     res.redirect('/users/signin');
