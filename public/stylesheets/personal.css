@@ -1,5 +1,45 @@
 /* 公用 */
 
+.notification {
+    position: fixed;
+    right: -100%;
+    bottom: 20px;
+    text-align: center;
+    animation: shownoti 5s;
+    -moz-animation: shownoti 5s; /* Firefox */
+    -webkit-animation: shownoti 5s; /* Safari and Chrome */
+    -o-animation: shownoti 5s; /* Opera */
+    max-width: 200px;
+}
+.notification-content{
+    padding: 20px;
+}
+@keyframes  shownoti {
+    0%   {right: -100%;}
+    20%  {right: 20px;}
+    80%  {right: 20px;}
+    100% {right: -100%;}
+}
+@-moz-keyframes shownoti {
+    0%   {right: -100%;}
+    20%  {right: 20px;}
+    80%  {right: 20px;}
+    100% {right: -100%;}
+}
+@-webkit-keyframes shownoti {
+    0%   {right: -100%;}
+    20%  {right: 20px;}
+    80%  {right: 20px;}
+    100% {right: -100%;}
+}
+@-o-keyframes shownoti {
+    0%   {right: -100%;}
+    20%  {right: 20px;}
+    80%  {right: 20px;}
+    100% {right: -100%;}
+}
+
+
 body {
     background: #f3f3f3;
 }

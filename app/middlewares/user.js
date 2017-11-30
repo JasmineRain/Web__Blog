@@ -76,7 +76,7 @@ exports.signin = function (req, res) {
       if (isMatch) {
         //将用户登录信息存入session
         req.session.user = user;
-        req.flash('success', '登录成功');
+        req.flash('success', '登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功');
         return res.redirect('/')
       } else {
         return res.redirect('/users/signin')

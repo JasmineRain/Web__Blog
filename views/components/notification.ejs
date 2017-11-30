@@ -1,8 +1,8 @@
 <div class="ui grid">
-    <div class="">
+    <div class="notification">
 
         <% if (success) { %>
-            <div class=" notification layui-bg-blue">
+            <div class="notification-content  layui-bg-blue">
                 <p>
                     <%= success %>
                 </p>
@@ -10,7 +10,7 @@
             <% } %>
 
                 <% if (error) { %>
-                    <div class="notification layui-bg-red">
+                    <div class="notification-content layui-bg-red">
                         <p>
                             <%= error %>
                         </p>
