@@ -62,7 +62,7 @@ function animate() {
     dot.ya *= (dot.y > canvas.height || dot.y < 0) ? -1 : 1;
     // 绘制点
     //ctx.fillRect(dot.x - 0.5, dot.y - 0.5, 5, 5);
-    ctx.fillStyle='#ECEEEF';
+    ctx.fillStyle='#EEE';
     ctx.beginPath();
     ctx.arc(dot.x, dot.y,dot.r,0, Math.PI * 2, true)
     ctx.closePath();
@@ -91,7 +91,7 @@ function animate() {
         //ctx.lineWidth = ratio / 2;
         ctx.lineWidth = ratio*2;
        // ctx.strokeStyle = 'rgba(255,255,255,' + (ratio + 0.2) + ')';
-       ctx.strokeStyle ='#ECEEEF';
+       ctx.strokeStyle ='#EEE';
         ctx.moveTo(dot.x, dot.y);
         ctx.lineTo(d2.x, d2.y);
         ctx.stroke();
