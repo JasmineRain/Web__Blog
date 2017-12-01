@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 var mongoose = require('mongoose');
-const flash = require('connect-flash')
+const flash = require('connect-flash');
 
 
 var index = require('./routes/index');
@@ -64,16 +64,15 @@ app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(serveStatic(path.join(__dirname, 'public')));
 app.use('/upload', express.static(path.join(__dirname, 'upload')));
 // flash 中间件，用来显示通知
-app.use(flash())
+app.use(flash());
 
 // 添加模板必需的三个变量
 app.use(function (req, res, next) {
-    console.log('6666666666666666666666666');
-    res.locals.user = req.session.user
-    res.locals.success = req.flash('success').toString()
-    res.locals.error = req.flash('error').toString()
+    res.locals.user = req.session.user;
+    res.locals.success = req.flash('success').toString();
+    res.locals.error = req.flash('error').toString();
     next()
-})
+});
 
 app.use('/', index);
 app.use('/users', users);
