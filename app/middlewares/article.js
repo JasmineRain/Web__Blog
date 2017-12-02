@@ -1,7 +1,12 @@
 var Article = require('../models/article.js');
 var Comment = require('../models/comment');
 var hljs = require('highlight.js'); // https://highlightjs.org/
+let kt = require('katex'),
+  tm = require('markdown-it-texmath').use(kt);
 var md = require('markdown-it')({
+  html: true,
+  linkify: true,
+  typography: true,
   highlight: function(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
@@ -12,31 +17,37 @@ var md = require('markdown-it')({
     return ''; // use external default escaping
   }
 });
+md.use(require('markdown-it-emoji'))
+  .use(require('markdown-it-toc'))
+  .use(tm);
 
 
 
 exports.showArticle = function(req, res, next) {
   var article_id = req.params._id;
-  Article.findOne({'_id': article_id}, function(err, article) {
-    var content_md = md.render(article.content);
-    article.content = content_md;
-    Comment
+  Article.findOne({
+      '_id': article_id
+    }, function(err, article) {
+      var content_md = md.render(article.content);
+      article.content = content_md;
+      Comment
         .find({
-              article: article_id})
+          article: article_id
+        })
         .populate('from', 'name')
         .populate('reply.from reply.to', 'name')
         .exec(function(err, comments) {
-            res.render('article_details', {
-                css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atelier-dune-dark.min.css"><link rel="stylesheet" href="/stylesheets/article.css">',
-                js_add:'<script src="/javascript/article.js"></script>',
-                title: '详情页面' + article.title,
-                article: article,
-                comments: comments,
-                user: req.session.user
-            })
+          res.render('article_details', {
+            css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atelier-dune-dark.min.css"><link rel="stylesheet" href="/stylesheets/article.css"><link rel="stylesheet" href="https://gitcdn.xyz/cdn/goessner/markdown-it-texmath/master/texmath.css"><link href="https://cdn.bootcss.com/KaTeX/0.9.0-alpha2/katex.min.css" rel="stylesheet">',
+            js_add: '<script src="/javascript/article.js"></script>',
+            title: '详情页面' + article.title,
+            article: article,
+            comments: comments,
+            user: req.session.user
+          })
         });
-  })
-      .populate('author','name');
+    })
+    .populate('author', 'name');
 };
 
 
@@ -51,7 +62,8 @@ exports.newArticle = function(req, res, next) {
 exports.editArticle = function(req, res, next) {
   var article_id = req.params._id;
   Article.findOne({
-    _id: article_id}, function(err, article) {
+    _id: article_id
+  }, function(err, article) {
     res.render('article_edit', {
       css_add: '<link rel="stylesheet" href="editormd.min.css" />',
       article: article
@@ -66,7 +78,7 @@ exports.postArticle = function(req, res, next) {
     Article.findById(req.body.article._id, function(err, article) {
       article.title = req.body.article.title;
       article.content = req.body.article.content;
-      article.desc = req.body.article.content.substring(0,500);//截取前50个字符作为简介
+      article.desc = req.body.article.content.substring(0, 500); //截取前50个字符作为简介
       article.save(function(err, article) {
         if (err) {
           console.log(err);
@@ -79,7 +91,7 @@ exports.postArticle = function(req, res, next) {
       title: req.body.article.title,
       content: req.body.article.content,
       author: req.session.user,
-      desc: req.body.article.content.substring(0,500),//截取前50个字符作为简介
+      desc: req.body.article.content.substring(0, 500), //截取前50个字符作为简介
       readc: 0,
       commentc: 0,
       applausec: 0
@@ -128,15 +140,15 @@ exports.detail = function(req, res) {
 
 
 exports.listarticles = function(req, res) {
-    Article.fetch(function(err, articles) {
-        if (err) {
-            console.log(err)
-        }
+  Article.fetch(function(err, articles) {
+    if (err) {
+      console.log(err)
+    }
 
-        res.render('admin_articles', {
-            user: req.session.user,
-            title: '文章列表页面',
-            articles: articles
-        })
+    res.render('admin_articles', {
+      user: req.session.user,
+      title: '文章列表页面',
+      articles: articles
     })
+  })
 };
