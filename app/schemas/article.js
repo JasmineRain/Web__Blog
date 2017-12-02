@@ -75,15 +75,13 @@ ArticleSchema.statics = {
       })
       .exec(cb)
   },
-  findBySearch: function findBySearch(query, cb) {
-    console.log("db");
-    console.log(query);
+  findBySearch: function findBySearch(query, limitNum, cb) {
     return this
       .find(query)
       .sort({
         'meta.updateAt': -1
       })
-      // .limit(limitNum)
+      .limit(limitNum)
       .exec(cb)
   }
 };
