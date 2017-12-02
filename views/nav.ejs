@@ -9,7 +9,11 @@
     <%- include('components/search_input')%>
   <li class="layui-nav-item">
     <a href="">
-            <img src="<%if(!user){%>/img/defaultAvatar.jpg<%}else{%>/<%-user.avatar%><%}%>" class="layui-nav-img">
+        <%if(user){%>
+            <img src="/<%-user.avatar%>" class="layui-nav-img">
+        <%}else{%>
+            <img src="/img/defaultAvatar.jpg" class="layui-nav-img">
+        <%}%>
             <%if(user){%>欢迎,&nbsp;<%=user.name%></a>
     <%}else{%>我</a>
       <%}%>
