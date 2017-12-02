@@ -1,6 +1,6 @@
 $(document).ready(function () {
   //返回顶部
-  $('.return').click(function () {
+  $('.return-top').click(function () {
     console.log('click');
     let height = $(document).scrollTop();
     //$().scrollTop(0);

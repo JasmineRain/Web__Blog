@@ -24,8 +24,6 @@ exports.index= function(req, res, next) {
                 .sort('-meta.createAt')
                 .limit(3)
                 .exec(function (err,mostNew) {
-                    console.log(mostHot);
-                    console.log(mostNew);
                     res.render('index', {
                         user:req.session.user,
                         HotArticles:mostHot,
@@ -35,4 +33,3 @@ exports.index= function(req, res, next) {
         });
 
 };
-
