@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Search = require('../middlewares/search')
+var Search = require('../app/middlewares/search')
+
+
 /* GET home page. */
-router.get('/search/:seach_content', User.signinRequired,Search.search);
-router.get('/test',Search.test);
+router.get('/:query',Search.search);
 
 module.exports = router;

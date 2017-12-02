@@ -9,8 +9,8 @@ var limit = 10;
  * 搜索功能
  */
 exports.search = function(req, res, next) {
-
-  var reg = new RegExp(req.params.search_content);
+  console.log(req.params.query);
+  var reg = new RegExp(req.params.query);
   var query = {
     $or: [{
         'title': reg
@@ -20,9 +20,9 @@ exports.search = function(req, res, next) {
       },
     ]
   };
-  Article.findBySearch(query, limit).then(function(obj) {
-    console.log(obj);
+  Article.findBySearch(query).then(function(obj) {
     if (!obj.length) {
+      console.log("article not found");
       var message = 'not found';
       res.send(message);
     } else {
@@ -37,11 +37,8 @@ exports.search = function(req, res, next) {
           applausec: obj[i].applausec
         }
       }
+      console.log(articles);
       res.send(articles);
     }
   });
-};
-exports.test = function(req, res, next) {
-  console.log("ok");
-  next();
 };
