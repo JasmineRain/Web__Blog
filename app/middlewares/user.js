@@ -1,6 +1,9 @@
+// import { port } from '_debugger';
+
 var User = require('../models/user');
 var Article = require('../models/article');
 var appData = require('../../data.json'); //虚拟数据
+var moment = require('moment');
 
 
 //登录页面
@@ -73,6 +76,7 @@ exports.signin = function (req, res) {
       if (isMatch) {
         //将用户登录信息存入session
         req.session.user = user;
+        req.flash('success', '登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功登录成功');
         return res.redirect('/')
       } else {
         return res.redirect('/users/signin')
@@ -86,7 +90,8 @@ exports.signin = function (req, res) {
 exports.logout = function (req, res) {
   var user = req.session.user;
   if (user) {
-    delete req.session.user;
+    req.session.user = null;
+    req.flash('success', '注销成功');
     res.redirect('/');
   } else {
     res.redirect('/users/signin');
@@ -97,23 +102,40 @@ exports.logout = function (req, res) {
 //个人主页相关操作
 //时间轴
 exports.Showpersonal = function (req, res) {
-  var _id= req.session.user._id;
+  var _id = req.session.user._id;
   User.findOne({
     '_id': _id
-  },function(err,user){
-    res.render('personal', {
-      user: req.session.user,
-      timeline: appData.timeline,
-      perDetail: user
-    });
+  }, function (err, user) {
+    Article.findLimitByUserId(req.session.user._id, function (err, posts) {
+      let timeline = [];
+
+
+      if (posts.length) {
+        for (let i = 0; i < posts.length; i++) {
+          let onepost = {};
+          onepost.postId = posts[i]._id;
+          onepost.updateAt = moment(posts[i].meta.updateAt).format('YYYY/MM/DD');
+          onepost.title = posts[i].title;
+          onepost.desc = posts[i].desc;
+
+          timeline.push(onepost);
+        }
+      }
+      console.log(timeline);
+      res.render('personal', {
+        user: req.session.user,
+        timeline: timeline,
+        perDetail: user
+      });
+    })
   })
 };
 //我的关注
 exports.ShowPeronalAttention = function (req, res) {
-  var _id= req.session.user._id;
+  var _id = req.session.user._id;
   User.findOne({
     '_id': _id
-  },function(err,user){
+  }, function (err, user) {
     res.render('personal-attention', {
       user: req.session.user,
       attention: appData.attention,
@@ -124,23 +146,43 @@ exports.ShowPeronalAttention = function (req, res) {
 };
 //我的文章
 exports.ShowPeronalPosts = function (req, res) {
-  var _id= req.session.user._id;
+  var _id = req.session.user._id;
   User.findOne({
     '_id': _id
-  },function(err,user){
-    res.render('personal-posts', {
-      user: req.session.user,
-      posts: appData.perPosts,
-      perDetail: user
-    });
+  }, function (err, user) {
+    Article.findByUserId(req.session.user._id, function (err, posts) {
+      let perPosts = [];
+      if (posts.length) {
+        for (let i = 0; i < posts.length; i++) {
+          let onepost = {};
+          onepost.postId = posts[i]._id;
+          onepost.cover = posts[i].cover;
+          onepost.createAt = moment(posts[i].meta.createAt).format('YYYY/MM/DD');
+          onepost.title = posts[i].title;
+          onepost.desc = posts[i].desc;
+          onepost.readc = posts[i].readc;
+          onepost.commentc = posts[i].commentc;
+          onepost.applausec = posts[i].applausec;
+          
+
+          perPosts.push(onepost);
+        }
+      }
+      res.render('personal-posts', {
+        user: req.session.user,
+        posts: perPosts,
+        perDetail: user
+      });
+    })
+
   })
 };
 //我的资料
 exports.ShowPeronalDetail = function (req, res) {
-  var _id= req.session.user._id;
+  var _id = req.session.user._id;
   User.findOne({
     '_id': _id
-  },function(err,user){
+  }, function (err, user) {
     res.render('personal-detail', {
       user: req.session.user,
       perDetail: user
@@ -149,10 +191,10 @@ exports.ShowPeronalDetail = function (req, res) {
 };
 //编辑我的资料
 exports.ShowPeronalDetailEdit = function (req, res) {
-  var _id= req.session.user._id;
+  var _id = req.session.user._id;
   User.findOne({
     '_id': _id
-  },function(err,user){
+  }, function (err, user) {
     res.render('personal-detail-edit', {
       user: req.session.user,
       perDetail: user
@@ -161,28 +203,28 @@ exports.ShowPeronalDetailEdit = function (req, res) {
 };
 
 exports.PeronalDetailEdit = function (req, res) {
-  var _user=req.body.user;
-  var _id= req.session.user._id;
+  var _user = req.body.user;
+  var _id = req.session.user._id;
   console.log(_user);
   User.findOne({
     '_id': _id
-  },function(err,user){
-    if(err){
+  }, function (err, user) {
+    if (err) {
       console.log(err);
     }
-    if(user){
-      if(_user.name){
-        user.name=_user.name;
+    if (user) {
+      if (_user.name) {
+        user.name = _user.name;
       }
-      if(_user.gender){
-        user.gender=_user.gender;
+      if (_user.gender) {
+        user.gender = _user.gender;
       }
-      user.email=_user.email;
-      user.signature=_user.signature;
-      user.desc=_user.desc;
+      user.email = _user.email;
+      user.signature = _user.signature;
+      user.desc = _user.desc;
 
-      user.save(function(err,user){
-        if(err){
+      user.save(function (err, user) {
+        if (err) {
           console.log(err);
         }
         console.log('更改成功');
@@ -198,20 +240,15 @@ exports.UploadChangeBackground = function (req, res) {
   console.log('执行');
   var _user = req.session.user;
   var backgroundPath = req.file.path;
-  //console.log('avatar文件上传 '+ req.file.filename);//, req.file, req.session.user);
-  //res.send(req.file.path);
-  //console.log(_user);
   console.log(_user.name, backgroundPath)
   User.findOne({
     '_id': _user._id
   }, function (err, user) {
     if (err) {
-      console.log('1111111111', err);
+      console.log(err);
     }
-    console.log('okkkkkk')
     if (user) {
       user.background = backgroundPath;
-      console.log('2', user)
       user.save(function (err, user) {
         if (err) {
           console.log('2', err);

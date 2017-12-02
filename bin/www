@@ -3,10 +3,22 @@
 /**
  * Module dependencies.
  */
-
+const flash = require('connect-flash')
 var app = require('../app');
 var debug = require('debug')('blog:server');
 var http = require('http');
+
+// flash 中间件，用来显示通知
+app.use(flash())
+
+// 添加模板必需的三个变量
+app.use(function (req, res, next) {
+  console.log('6666666666666666666666666');
+  res.locals.user = req.session.user
+  res.locals.success = req.flash('success').toString()
+  res.locals.error = req.flash('error').toString()
+  next()
+})
 
 /**
  * Get port from environment and store in Express.

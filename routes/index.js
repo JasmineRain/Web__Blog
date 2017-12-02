@@ -1,15 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
+var User = require('../app/middlewares/user');
+var Index = require('../app/middlewares/index');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log('session in req');
-  console.log(req.session.user);
-  res.render('index', {
-    user:req.session.user,
-    title: 'Express'
-  });
-});
+router.get('/', Index.index);
 
 module.exports = router;
