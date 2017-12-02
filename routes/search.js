@@ -4,6 +4,8 @@ var Search = require('../app/middlewares/search')
 
 
 /* GET home page. */
-router.get('/:query',Search.search);
+
+router.get('/:content',Search.search);
+
 
 module.exports = router;

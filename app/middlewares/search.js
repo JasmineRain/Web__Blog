@@ -9,7 +9,7 @@ var limit = 10;
  * 搜索功能
  */
 exports.search = function(req, res, next) {
-  var reg = new RegExp(req.params.query);
+  var reg = new RegExp(req.params.content);
   var query = {
     $or: [{
         'title': reg
@@ -19,7 +19,7 @@ exports.search = function(req, res, next) {
       },
     ]
   };
-  Article.findBySearch(query,limit).then(function(obj) {
+  Article.findBySearch(query, limit).then(function(obj) {
     if (!obj.length) {
       console.log("article not found");
       var message = 'not found';
@@ -33,7 +33,8 @@ exports.search = function(req, res, next) {
           author: obj[i].author,
           desc: obj[i].desc,
           readc: obj[i].readc,
-          applausec: obj[i].applausec
+          applausec: obj[i].applausec,
+          cover: obj[i].cover
         }
       }
       res.send(articles);
