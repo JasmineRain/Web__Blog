@@ -1,0 +1,15 @@
+<%- include('header')%>
+  <%- include('nav') %>
+    <link rel="stylesheet" href="/stylesheets/default.css">
+<div class="full"></div>
+<fieldset class="layui-elem-field layui-field-title">
+  <legend>搜索结果</legend>
+  <hr class="layui-bg-green">
+  <div class="result_field">
+      <%for(var i=0;i<articles.length;i++){%>
+      <%-include('components/search_per_article',{article:articles[i]})%>
+
+      <%}%>
+  </div>
+</fieldset>
+  <%- include('footer') %>

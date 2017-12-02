@@ -39,8 +39,8 @@ exports.showArticle = function(req, res, next) {
         .find({
           article: article_id
         })
-        .populate('from', 'name')
-        .populate('reply.from reply.to', 'name')
+        .populate('from')
+        .populate('reply.from reply.to')
         .exec(function(err, comments) {
           res.render('article_details', {
             css_add: '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atelier-dune-dark.min.css"><link rel="stylesheet" href="/stylesheets/article.css"><link rel="stylesheet" href="https://gitcdn.xyz/cdn/goessner/markdown-it-texmath/master/texmath.css"><link href="https://cdn.bootcss.com/KaTeX/0.9.0-alpha2/katex.min.css" rel="stylesheet">',

@@ -28,65 +28,77 @@
     <div class="full"></div>
     <div class="full"></div>
 
-<ul class="media-list">
-    <% for(var i=0;i<comments.length;i++) { %>
-    <li class="media">
-        <div class="media-left">
-            <a class="comment" href="#commentForm" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
-                <img class="media-object" src="/img/defaultAvatar.jpg"  width="64px" height="64px">
-            </a>
-        </div>
-        <div class="media-body">
-            <h4 class="media-heading"><%-comments[i].from.name%></h4>
-            <p><%-comments[i].content%></p>
-            <% if((comments[i].reply)&&(comments[i].reply.length>0)) {%>
+<fieldset class="layui-elem-field layui-field-title" style="margin-left: 20px">
+    <legend>评论区</legend>
+    <ul class="media-list">
+        <% for(var i=0;i<comments.length;i++) { %>
+        <li class="media">
+            <div class="media-left">
+                <a class="comment" href="#commentForm" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
+                    <img class="media-object" src="/<%-comments[i].from.avatar%>"  width="64px" height="64px">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><%-comments[i].from.name%></h4>
+                <p><%-comments[i].content%></p>
+                <% if((comments[i].reply)&&(comments[i].reply.length>0)) {%>
                 <%for(var j=0;j<comments[i].reply.length;j++){ %>
-                    <div class="media">
-                        <div class="media-left">
-                            <a href="#">
-                                 <img class="media-object" src="/img/defaultAvatar.jpg"  width="64px" height="64px">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"><%-comments[i].reply[j].from.name%></h4>
-                            <%-comments[i].reply[j].content%>
-                        </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="/<%-comments[i].reply[j].from.avatar%>"  width="64px" height="64px">
+                        </a>
                     </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><%-comments[i].reply[j].from.name%></h4>
+                        <%-comments[i].reply[j].content%>
+                    </div>
+                </div>
                 <%}%>
-            <%}%>
-        </div>
-    </li>
-    <div class="full_small"></div>
-    <%}%>
+                <%}%>
+            </div>
+        </li>
+        <hr class="layui-bg-gray" style="opacity: 0.1;width: 20%">
+        <div class="full_small"></div>
+        <%}%>
 
-</ul>
+    </ul>
+</fieldset>
+
+
 
 
     <div class="full"></div>
     <div class="full"></div>
-<form class="layui-form" <%if(user){%> action="/comment/new"<%}%>  method="post" id="commentForm">
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">评论</label>
-        <div class="layui-input-block">
-            <textarea name="comment[content]" placeholder="评价" class="layui-textarea"></textarea>
+
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>写评论</legend>
+    <form class="layui-form" <%if(user){%> action="/comment/new"<%}%>  method="post" id="commentForm">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">评论</label>
+            <div class="layui-input-block">
+                <textarea name="comment[content]" placeholder="评价" class="layui-textarea"></textarea>
+            </div>
         </div>
-    </div>
-    <input type="hidden" name="comment[article]" value=<%-article._id%>>
-    <%if(user){%>
+        <input type="hidden" name="comment[article]" value=<%-article._id%>>
+        <%if(user){%>
         <input type="hidden" name="comment[from]" value="<%-user._id%>">
-    <%}%>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <%if(user){%>
-            <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>
-            <%} else{%>
-            <a href="/users/signin">
-                <button type="button" class="layui-btn layui-btn-normal">登录</button>
-            </a>
-            <%}%>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        <%}%>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <%if(user){%>
+                <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>
+                <%} else{%>
+                <a href="/users/signin">
+                    <button type="button" class="layui-btn layui-btn-normal">登录</button>
+                </a>
+                <%}%>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</fieldset>
+
+
 
     <%- include('footer') %>
