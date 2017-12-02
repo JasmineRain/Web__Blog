@@ -13,12 +13,7 @@ exports.search = function(req, res, next) {
   var query = {
     $or: [{
         'title': reg
-      }
-      // ,
-      // {
-      //   'author': reg
-      // },
-    ]
+      }]
   };
   Article.findBySearch(query, limit).then(function(obj) {
     if (!obj.length) {
@@ -38,7 +33,10 @@ exports.search = function(req, res, next) {
           cover: obj[i].cover
         }
       }
-      res.send(articles);
+      res.render('search_result',{
+        articles:articles,
+        css_add:'<link rel="stylesheet" href="/stylesheets/search_result.css">'
+      });
     }
   });
 };
