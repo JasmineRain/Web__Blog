@@ -13,12 +13,11 @@ exports.search = function(req, res, next) {
   var query = {
     $or: [{
         'title': reg
-      },
-      {
-        'author': {
-          'name': reg
-        }
-      },
+      }
+      // ,
+      // {
+      //   'author': reg
+      // },
     ]
   };
   Article.findBySearch(query, limit).then(function(obj) {
