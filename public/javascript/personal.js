@@ -28,20 +28,20 @@ $(document).ready(function () {
   });
 
   //导航栏重定位
-  let scrollFlag=true;
+  let scrollFlag = true;
   $(window).scroll(function () {
-      let dy=$('.nav-cahnge').offset().top-$(document).scrollTop();
-      if(dy<0&&scrollFlag){
-        console.log("改变导航栏");
-        scrollFlag=false;
-         $('.per-guide').addClass("per-guide-flex layui-col-md8");
-         $('.per-guide-in').addClass("layui-col-md2");
-      }else if(dy>0&&!scrollFlag){
-        console.log("恢复导航栏");
-        scrollFlag=true;
-          $('.per-guide').removeClass("per-guide-flex layui-col-md8");
-          $('.per-guide-in').removeClass("layui-col-md2");
-      }
+    let dy = $('.nav-cahnge').offset().top - $(document).scrollTop();
+    if (dy < 0 && scrollFlag) {
+      console.log("改变导航栏");
+      scrollFlag = false;
+      $('.per-guide').addClass("per-guide-flex layui-col-md8");
+      $('.per-guide-in').addClass("layui-col-md2");
+    } else if (dy > 0 && !scrollFlag) {
+      console.log("恢复导航栏");
+      scrollFlag = true;
+      $('.per-guide').removeClass("per-guide-flex layui-col-md8");
+      $('.per-guide-in').removeClass("layui-col-md2");
+    }
 
   });
 })
@@ -75,6 +75,8 @@ layui.use('upload', function () {
       }
     },
     error: function () {
+      //上传完毕回调
+      layer.closeAll('loading'); //关闭loading
       //请求异常回调
       layui.use('layer', function () {
         var layer = layui.layer;
@@ -112,6 +114,8 @@ layui.use('upload', function () {
       }
     },
     error: function () {
+      //上传完毕回调
+      layer.closeAll('loading'); //关闭loading
       //请求异常回调
       layui.use('layer', function () {
         var layer = layui.layer;
@@ -134,11 +138,11 @@ layui.use('upload', function () {
 //       return '用户名不能全为数字';
 //     }
 //   }
-  
+
 //   //我们既支持上述函数式的方式，也支持下述数组的形式
 //   //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
 //   ,signature: [
 //     /^[\S]{6,12}$/
 //     ,'密码必须6到12位，且不能出现空格'
 //   ] 
-// });  
+// });

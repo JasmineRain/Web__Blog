@@ -36,7 +36,7 @@ if (canvas == null) {
   // 添加粒子
   // x，y为粒子坐标，xa, ya为粒子xy轴加速度，max为连线的最大距离
   var dots = [];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 15; i++) {
     var x = Math.random() * canvas.width;
     var y = Math.random() * canvas.height;
     var r = Math.random() * 30 + 30;

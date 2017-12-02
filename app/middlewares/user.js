@@ -213,17 +213,19 @@ exports.PeronalDetailEdit = function (req, res) {
       console.log(err);
     }
     if (user) {
+      let user2={};
       if (_user.name) {
-        user.name = _user.name;
+        user2.name = _user.name;
       }
       if (_user.gender) {
-        user.gender = _user.gender;
+        user2.gender = _user.gender;
       }
-      user.email = _user.email;
-      user.signature = _user.signature;
-      user.desc = _user.desc;
+      user2.email = _user.email;
+      user2.signature = _user.signature;
+      user2.desc = _user.desc;
+      console.log('66666666666666666',user2);
 
-      user.save(function (err, user) {
+      User.update({_id:_id},user2,function (err) {
         if (err) {
           console.log(err);
         }
@@ -248,8 +250,7 @@ exports.UploadChangeBackground = function (req, res) {
       console.log(err);
     }
     if (user) {
-      user.background = backgroundPath;
-      user.save(function (err, user) {
+      User.update({_id:_user._id},{background:backgroundPath},function (err) {
         if (err) {
           console.log('2', err);
         }
@@ -275,8 +276,7 @@ exports.UploadChangeAvatar = function (req, res) {
       console.log(err);
     }
     if (user) {
-      user.avatar = avatarPath;
-      user.save(function (err, user) {
+      User.update({_id:_user._id},{avatar:avatarPath},function (err, user) {
         if (err) {
           console.log(err);
         }
