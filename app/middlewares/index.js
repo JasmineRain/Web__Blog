@@ -16,13 +16,13 @@ exports.index= function(req, res, next) {
         .find({})
         .populate('author','name')
         .sort('readc')
-        .limit(4)
+        .limit(3)
         .exec(function (err, mostHot) {
             var mostNew = Article
                 .find({})
                 .populate('author','name')
                 .sort('-meta.createAt')
-                .limit(4)
+                .limit(3)
                 .exec(function (err,mostNew) {
                     res.render('index', {
                         user:req.session.user,

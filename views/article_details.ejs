@@ -64,7 +64,7 @@
 
     <div class="full"></div>
     <div class="full"></div>
-<form class="layui-form" action="/comment/new" method="post" id="commentForm">
+<form class="layui-form" <%if(user){%> action="/comment/new"<%}%>  method="post" id="commentForm">
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">评论</label>
         <div class="layui-input-block">
@@ -72,10 +72,18 @@
         </div>
     </div>
     <input type="hidden" name="comment[article]" value=<%-article._id%>>
-    <input type="hidden" name="comment[from]" value="<%-user._id%>">
+    <%if(user){%>
+        <input type="hidden" name="comment[from]" value="<%-user._id%>">
+    <%}%>
     <div class="layui-form-item">
         <div class="layui-input-block">
+            <%if(user){%>
             <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>
+            <%} else{%>
+            <a href="/users/signin">
+                <button type="button" class="layui-btn layui-btn-normal">登录</button>
+            </a>
+            <%}%>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>

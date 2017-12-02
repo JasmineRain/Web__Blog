@@ -25,6 +25,11 @@ md.use(require('markdown-it-emoji'))
 
 exports.showArticle = function(req, res, next) {
   var article_id = req.params._id;
+    Article.update({_id:article_id},{$inc:{readc:1}},function(err){
+        if(err){
+            console.log(err)
+        }
+    });
   Article.findOne({
       '_id': article_id
     }, function(err, article) {
@@ -113,11 +118,11 @@ exports.detail = function(req, res) {
   var id = req.params._id;
 
   //每次进入电影详情页则该电影访客数pv加一
-  // Movie.update({_id:id},{$inc:{pv:1}},function(err){
-  //     if(err){
-  //         console.log(err)
-  //     }
-  // })
+  Article.update({_id:id},{$inc:{readc:1}},function(err){
+      if(err){
+          console.log(err)
+      }
+  });
 
   Article.findById(id, function(err, article) {
     Comment
