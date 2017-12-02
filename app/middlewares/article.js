@@ -39,7 +39,7 @@ exports.showArticle = function(req, res, next) {
         .find({
           article: article_id
         })
-        .populate('from', 'name')
+        .populate('from')
         .populate('reply.from reply.to', 'name')
         .exec(function(err, comments) {
           res.render('article_details', {
