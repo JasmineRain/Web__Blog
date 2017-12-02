@@ -63,18 +63,20 @@ body {
     border-radius: 0px;
 }
 
-.return {
+.shortcut {
     position: fixed;
-    bottom: 40px;
+    bottom: 20px;
     right: 100px;
 }
-
-.return button {
+.shortcut-item{
+    margin: 10px;
+}
+.shortcut button {
     background: rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 992px) {
-    .return {
+    .shortcut {
         position: fixed;
         bottom: 20px;
         right: 20px;
