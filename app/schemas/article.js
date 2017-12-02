@@ -5,7 +5,7 @@ var ArticleSchema = new mongoose.Schema({
     title: String,
     cover:{
         type:String,
-        default: 'img\\defaultArticleCover.jpg'        
+        default: 'img\\defaultArticleCover.jpg'
     },
     meta: {
         createAt: {
@@ -70,7 +70,14 @@ ArticleSchema.statics = {
             })
             .sort({'meta.createAt':-1})
             .exec(cb)
-    }
+    },
+    findBySearch: function findBySearch(query,limitNum,cb) {
+        return this
+            .find(query)
+            .sort({'meta.updateAt':-1})
+            .limit(limitNum)
+            .exec(cb)
+},
 };
 ArticleSchema.pre('save', function (next) {
     var article = this;
