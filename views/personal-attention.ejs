@@ -1,32 +1,27 @@
 <%- include('header')%>
-<%- include('nav')%>
-<%- include('components/per-head')%>
-<div class="per-nav-val layui-row  layui-col-md8 layui-col-md-offset2" style="display:none">
-    <div class="layui-col-md2">
-        <div>
-            <%-include('components/per-guide')%>
-        </div>
-    </div>
-</div>
-<div class="nav-cahnge layui-row  layui-col-md8 layui-col-md-offset2">
-    <div class="layui-col-md2">
-        <div class="per-nav">
-            <%-include('components/per-guide')%>
-        </div>
+    <%- include('nav')%>
+        <%- include('components/per-head')%>
+            <div class="nav-cahnge layui-row">
+                <div class="layui-col-md8 layui-col-md-offset2">
+                    <div class="layui-col-md2">
+                        <div class="per-nav">
+                            <%-include('components/per-guide')%>
+                        </div>
 
-    </div>
-    <div class="per-content layui-col-md10">
-        <div class="per-content-title">
-            <h1>我的关注</h1>
-        </div>
-        <div>
-            <%for(var i=0;i<attention.length;i++){%>
-                <div class="one-content one-content-xs">
-                    <%-include('components/per-attention',{post:attention[i]})%>
+                    </div>
+                    <div class="per-content layui-col-md10">
+                        <div class="per-content-title">
+                            <h1>我的关注</h1>
+                        </div>
+                        <div>
+                            <%for(var i=0;i<attention.length;i++){%>
+                                <div class="one-content one-content-xs">
+                                    <%-include('components/per-attention',{post:attention[i]})%>
+                                </div>
+                                <%}%>
+                        </div>
+                    </div>
                 </div>
-                <%}%>
-        </div>
-    </div>
-</div>
-<%- include('components/return-top')%>
-<%- include('footer')%>
+            </div>
+            <%- include('components/return-top')%>
+                <%- include('footer')%>

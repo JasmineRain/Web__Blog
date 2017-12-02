@@ -819,28 +819,3 @@ fieldset[disabled] .btn-primary.focus {
     height: 100%;
     object-fit: cover;
 }
-.footer{
-    background: #06060B;
-    color: #aaa;
-    padding:50px 0 20px 0;
-}
-.footer-content{
-    text-align: center;
-}
-.footer-content div{
-    margin: 10px;
-}
-.footer-title{
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 20px;
-}
-.footer-link{
-    font-size: 10px;
-}
-.footer-author-title{
-    font-size: 14px;
-}
-.footer-author{
-    font-size: 12px;
-}
