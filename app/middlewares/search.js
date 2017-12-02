@@ -15,7 +15,9 @@ exports.search = function(req, res, next) {
         'title': reg
       },
       {
-        'author': reg
+        'author': {
+          'name': reg
+        }
       },
     ]
   };
