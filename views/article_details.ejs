@@ -11,7 +11,11 @@
         <div class="info">
           <span class="name"><a href="#"><%-article.author.name%></a></span>
           <!-- 关注用户按钮 -->
-          <a class="btn btn-success follow"><span>关注</span></a>
+          <%if(user){%>
+            <a class="btn btn-success follow" data-fid="<%-user._id%>" data-tid="<%-article.author._id%>"><span>关注</span></a>
+          <%}else{%>
+            <a class="btn btn-success follow" href="/users/signin"><span>登录后关注</span></a>
+          <%}%>
           <!-- 文章数据信息 -->
           <div class="meta">
             <span class="publish-time"><%-article.meta.updateAt%></span>
