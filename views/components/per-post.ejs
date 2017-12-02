@@ -19,6 +19,7 @@
                 <div class="post-mes-item"><i class="layui-icon">&#xe63a;</i><%=post.commentc%>评论</div>
                 <div class="clear"></div>
             </div>
+            <%if(thisUser){%>
             <div class="per-post-menu layui-col-md3 layui-row">
                 <div class="layui-col-md6 layui-col-xs6 layui-col-sm6">
                     <button class="layui-btn layui-btn-small layui-btn-primary ">编辑</button>
@@ -26,7 +27,8 @@
                 <div class="layui-col-md6 layui-col-xs6 layui-col-sm6">
                     <button class="layui-btn layui-btn-small layui-btn-primary">删除</button>
                 </div>
-            </div>            
+            </div>     
+            <%}%>       
         </div>
     </div>
 </fieldset>

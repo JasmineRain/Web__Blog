@@ -54,7 +54,7 @@ ArticleSchema.statics = {
       })
       .exec(cb) //执行callback
   },
-  findLimitByUserId: function(author, cb) {
+  findLimitByUserId: function(author,num, cb) {
     return this
       .find({
         author: author
@@ -62,7 +62,7 @@ ArticleSchema.statics = {
       .sort({
         'meta.updateAt': -1
       })
-      .limit(10)
+      .limit(num)
       .exec(cb)
   },
   findByUserId: function(author, cb) {

@@ -11,8 +11,12 @@
                     </div>
                     <div class="per-content layui-col-md10">
                         <div class="per-content-title">
-                            <h1>时间线</h1>
-                        </div>
+                                <%if(thisUser){%>
+                                    <h1>时间线</h1>
+                                <%}else{%>
+                                    <h1>他的时间线</h1>
+                                <%}%>
+                            </div>  
                         <div>
                             <div class="one-content">
                                 <%- include('components/per-timeline')%>

@@ -2,25 +2,25 @@
 <div class="per-mes-lab name">
     <label>
         <strong>姓名：</strong>
-        <%=perDetail.name%>
+        <%=toUser.name%>
     </label>
 </div>
-<div class="per-mes-lab gender">
+<!-- <div class="per-mes-lab gender">
     <label>
         <strong>性别：</strong>
-        <%=perDetail.gender%>
+        <%=toUser.gender%>
     </label>
-</div>
+</div> -->
 <div class="per-mes-lab intro">
     <label>
         <strong>电子邮箱：</strong>
-        <%=perDetail.email%>
+        <%=toUser.email%>
     </label>
 </div>
 <div class="per-mes-lab intro">
     <label>
         <strong>签名：</strong>
-        <%=perDetail.signature%>
+        <%=toUser.signature%>
     </label>
 </div>
 <div class="per-mes-lab intro">
@@ -28,7 +28,6 @@
         <strong>个人简介：</strong>
     </label>
     <p>
-        <%=perDetail.desc%>
+        <%=toUser.desc%>
     </p>
 </div>
-<button class="layui-btn layui-btn-primary" onclick="javascrtpt:window.location.href='/personal/detailEdit'">编辑</button>

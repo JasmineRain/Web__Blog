@@ -1,17 +1,18 @@
+<%if(thisUser){%>
 <div class="per-guide">
     <div class="per-guide-in">
         <ul class="layui-nav layui-nav-tree">
             <li class="layui-nav-item layui-nav-itemed">
-                <a href="/personal">时间线</a>
+                <a href="/personal/?id=<%=user._id%>">时间线</a>
             </li>
             <li class="layui-nav-item layui-nav-itemed">
-                <a href="/personal/attention">我的关注</a>
+                <a href="/personal/attention/?id=<%=user._id%>">我的关注</a>
             </li>
             <li class="layui-nav-item layui-nav-itemed">
-                <a href="/personal/posts">我的文章</a>
+                <a href="/personal/posts/?id=<%=user._id%>">我的文章</a>
             </li>
             <li class="layui-nav-item layui-nav-itemed">
-                <a href="/personal/detailEdit">个人设置</a>
+                <a href="/personal/detailEdit/?id=<%=user._id%>">个人设置</a>
             </li>
         </ul>
     </div>
@@ -23,18 +24,54 @@
             <a href="javascript:;">导航</a>
             <dl class="layui-nav-child">
                 <dd>
-                    <a href="/personal">时间线</a>
+                    <a href="/personal/?id=<%=user._id%>">时间线</a>
                 </dd>
                 <dd>
-                    <a href="/personal/attention">我的关注</a>
+                    <a href="/personal/attention/?id=<%=user._id%>">我的关注</a>
                 </dd>
                 <dd>
-                    <a href="/personal/posts">我的文章</a>
+                    <a href="/personal/posts/?id=<%=user._id%>">我的文章</a>
                 </dd>
                 <dd>
-                    <a href="/personal/detailEdit">个人设置</a>
+                    <a href="/personal/detailEdit/?id=<%=user._id%>">个人设置</a>
                 </dd>
             </dl>
         </li>
     </ul>
 </div>
+<%}else{%>
+    <div class="per-guide">
+            <div class="per-guide-in">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="/personal/?id=<%=toUser._id%>">他的时间线</a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="/personal/posts/?id=<%=toUser._id%>">他的文章</a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="/personal/detailEdit/?id=<%=toUser._id%>">他的信息</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="width:100%;height:1px;"></div>
+        <div class="per-guide-xs">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">导航</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="/personal/?id=<%=toUser._id%>">他的时间线</a>
+                        </dd>
+                        <dd>
+                            <a href="/personal/posts/?id=<%=toUser._id%>">他的文章</a>
+                        </dd>
+                        <dd>
+                            <a href="/personal/detailEdit/?id=<%=toUser._id%>">他的信息</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    <%}%>
