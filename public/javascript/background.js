@@ -36,19 +36,19 @@ if (canvas == null) {
   // 添加粒子
   // x，y为粒子坐标，xa, ya为粒子xy轴加速度，max为连线的最大距离
   var dots = [];
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < 10; i++) {
     var x = Math.random() * canvas.width;
     var y = Math.random() * canvas.height;
-    var r = Math.random() * 5 + 5;
+    var r = Math.random() * 30 + 30;
     var xa = Math.random() * 2 - 1;
     var ya = Math.random() * 2 - 1;
     dots.push({
       x: x,
       y: y,
       r: r,
-      xa: xa / 4,
-      ya: ya / 4,
-      max: 30000
+      xa: xa ,
+      ya: ya,
+      max: 150000
     })
   }
   // 延迟100秒开始执行动画，如果立即执行有时位置计算会出错
@@ -100,7 +100,7 @@ if (canvas == null) {
           // 画线
           ctx.beginPath();
           //ctx.lineWidth = ratio / 2;
-          ctx.lineWidth = ratio * 2;
+          ctx.lineWidth = ratio*15;
           // ctx.strokeStyle = 'rgba(255,255,255,' + (ratio + 0.2) + ')';
           ctx.strokeStyle = '#EEE';
           ctx.moveTo(dot.x, dot.y);
@@ -112,5 +112,13 @@ if (canvas == null) {
       ndots.splice(ndots.indexOf(dot), 1);
     });
     RAF(animate);
+  }
+}
+
+function maxNum(x, y) {
+  if (x > y) {
+    return x;
+  } else {
+    return y;
   }
 }
