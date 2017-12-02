@@ -10,12 +10,17 @@
   <li class="layui-nav-item">
     <a href="">
         <%if(user){%>
-            <img src="/<%-user.avatar%>" class="layui-nav-img">
+            <img src="/<%=user.avatar%>" class="layui-nav-img">
         <%}else{%>
             <img src="/img/defaultAvatar.jpg" class="layui-nav-img">
         <%}%>
+
+
+
+
             <%if(user){%>欢迎,&nbsp;<%=user.name%></a>
-    <%}else{%>我</a>
+    <%}else{%>我
+    </a>
       <%}%>
         <dl class="layui-nav-child">
           <%if(user){%>
