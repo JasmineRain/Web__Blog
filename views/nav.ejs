@@ -21,26 +21,5 @@
                 <dd><a href="/users/signup">注册</a></dd>
         </dl>
   </li>
-  <li class="search">
-    <form class="layui-form" action="/search">
-      <div class="layui-form-item">
-        <div class="layui-input-block">
-          <input type="text" name="content" required lay-verify="required" placeholder="请输入搜索内容" autocomplete="off" class="layui-input">
-          <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
-        </div>
-      </div>
-    </form>
-    <script>
-      //Demo
-      layui.use('form', function() {
-        var form = layui.form;
-
-        //监听提交
-        form.on('submit(formDemo)', function(data) {
-          layer.msg(JSON.stringify(data.field));
-          return false;
-        });
-      });
-    </script>
-  </li>
+  <%- include('components/search_input')%>
 </ul>

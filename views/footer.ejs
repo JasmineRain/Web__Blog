@@ -4,21 +4,10 @@
 <script src="/javascript/personal.js"></script>
 <script src="/javascript/detail.js"></script>
 <script src="/javascript/background.js"></script>
+<script src="/javascript/search.js"></script>
 <% if (locals.js_add) { %>
 <%-js_add%>
 <% } %>
-<script>
-  //Demo
-  layui.use('form', function() {
-    var form = layui.form;
-
-    //监听提交
-    form.on('submit(formDemo)', function(data) {
-      layer.msg(JSON.stringify(data.field));
-      return false;
-    });
-  });
-</script>
 </body>
 
 </html>
