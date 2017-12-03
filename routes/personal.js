@@ -14,6 +14,10 @@ router.get('/detail',User.signinRequired,Personal.ShowPeronalDetail);
 
 router.get('/detailEdit',User.signinRequired,Personal.ShowPeronalDetailEdit);
 
+router.get('/giveApplause/:_id',User.signinRequired,Personal.GiveApplause)
+
+
+
 
 router.post('/detailEdit',User.signinRequired,Personal.PeronalDetailEdit);
 

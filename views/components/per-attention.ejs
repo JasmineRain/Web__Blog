@@ -1,5 +1,6 @@
-<div class="per-attention">
+<div class="per-attention" data-id="<%=post.author._id%>">
     <div class="per-atten-head layui-row">
+        <a href="/personal?id=<%=post.author._id%>">
         <div class="per-atten-ico layui-col-md2 layui-col-xs2 layui-col-sm2">
             <div class="square">
                 <img src="\<%=post.author.avatar%>" alt="">
@@ -10,13 +11,15 @@
                 <h1><%=post.author.name%></h1>
             </div>
             <div>
-                <i class="layui-icon">&#xe637;</i> 发表于<%=post.updateAt%>
+                <i class="layui-icon">&#xe637;</i><span> <%=post.updateAt%></span>
             </div>
         </div>
+        </a>
         <div class="layui-col-md3 layui-col-xs3 layui-col-sm3">
-            <button class="per-atten-cancel layui-btn layui-btn-small layui-btn-sm layui-btn-primary">取消关注</button>
+            <button class="per-atten-cancel layui-btn layui-btn-small layui-btn-sm layui-btn-primary" data-name="<%=post.author.name%>" data-id="<%=post.author._id%>">取消关注</button>
         </div>
     </div>
+    <a href="/article/<%=post._id%>">
     <div class="per-atten-post">
         <p class="per-atten-post-content">
                 <img src="\<%=post.cover%>" align="left" hspace="5" vspace="5">
@@ -24,17 +27,20 @@
             <%=post.desc%>
         </p>
     </div>
+    </a>
     <hr>
     <div class="per-atten-option layui-row">
         <div class="per-atten-collect layui-col-md4 layui-col-xs4 layui-col-sm4">
             <!-- <i class="layui-icon">&#xe600;</i> 收藏</div> -->
-            <i class="layui-icon">&#xe705;</i> <%=post.readc%>
+            <i class="layui-icon">&#xe705;</i> <span><%=post.readc%></span>
         </div>
         <div class="per-atten-comment layui-col-md4 layui-col-xs4 layui-col-sm4">
-            <i class="layui-icon">&#xe63a;</i> <%=post.commentc%>
+            <i class="layui-icon">&#xe63a;</i> <span><%=post.commentc%></span>
         </div>
-        <div class="per-atten-praise layui-col-md4 layui-col-xs4 layui-col-sm4">
-            <i class="layui-icon">&#xe6c6;</i> <%=post.applausec%>
+        <div class="per-atten-praise layui-col-md4 layui-col-xs4 layui-col-sm4" data-id="<%=post._id%>">
+            <a href="javascript:void(0);">
+                <i class="layui-icon">&#xe6c6;</i> <span class="applausec"><%=post.applausec%></span>
+            </a>
         </div>
     </div>
 </div>

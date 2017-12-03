@@ -9,6 +9,64 @@ $(document).ready(function () {
     }, 500);
   })
 
+  //取消关注
+  $('.per-atten-cancel').click(function (data) {
+    let name = $(this).data('name');
+    let id = $(this).data('id');
+
+
+    layui.use('layer', function () {
+      var layer = layui.layer;
+      //弹窗提示
+      layer.open({
+        content: '确认取消关注' + name + '?',
+        btn: ['确定', '取消'],
+        yes: function (index, layero) {
+          $.ajax({
+            type: 'get',
+            url: '/follow/add?tid=' + id + '&op=1'
+          }).done(function (results) {
+            if (results.success === 1) {
+              //前端删除所有相关文章
+              $('.per-attention').each(function () {
+                if ($(this).data('id') === id) {
+                  $(this).parent().fadeOut();
+                }
+              })
+              layer.msg('取关成功！');
+            } else if (results.success === 0) {
+              layer.msg('取关失败！');
+            }
+          })
+          layer.close(index); //如果设定了yes回调，需进行手工关闭
+        },
+        btn2: function (index, layero) {},
+        cancel: function () {}
+      });
+    });
+  });
+
+  //点赞
+  $('.per-atten-praise').click(function () {
+    let id=$(this).data('id');
+    let thisd=$(this);
+    $.ajax({
+      type: 'get',
+      url: '/personal/giveApplause/' + id
+    }).done(function (results) {
+      if (results.success === 1) {
+        //前端增加点赞数
+        let num=thisd.find('.applausec').html();
+        num= parseInt(num)+1
+        thisd.find('.applausec').html(num)
+
+        layer.msg('点赞成功！');
+      } else if (results.success === 0) {
+        layer.msg('点赞失败！');
+      }
+    });
+  });
+
   //编辑
   $('.mes-edit-butt').click(function () {
     console.log('.mes-edit-butt click');

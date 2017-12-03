@@ -3,7 +3,9 @@
     <div class="layui-row layui-col-md8 layui-col-md-offset2">
         <div class=" layui-col-md2">
             <div class="guide-square">
-                <img class="per-head-avatar" src="\<%=toUser.avatar%>" alt="">
+                <a href="/personal?id=<%=toUser._id%>">
+                    <img class="per-head-avatar" src="\<%=toUser.avatar%>" alt="<%=toUser.name%>的博客">
+                </a>
             </div>
         </div>
         <div class="layui-col-md10">
