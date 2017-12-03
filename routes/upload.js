@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../app/middlewares/user');
 var multer = require('multer'); // 文件上传中间件
+var User = require('../app/middlewares/user');
+var Personal = require('../app/middlewares/personal');
 
 // 中间件设置
 var bstorage = multer.diskStorage({
@@ -35,7 +36,7 @@ var avatarUpload = multer({
 });
 
 /* GET users listing. */
-router.post('/background', User.signinRequired, backgroundUpload.single('background'), User.UploadChangeBackground);
+router.post('/background', User.signinRequired, backgroundUpload.single('background'), Personal.UploadChangeBackground);
 
-router.post('/avatar', User.signinRequired, avatarUpload.single('avatar'), User.UploadChangeAvatar);
+router.post('/avatar', User.signinRequired, avatarUpload.single('avatar'), Personal.UploadChangeAvatar);
 module.exports = router;
