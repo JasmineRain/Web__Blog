@@ -136,7 +136,7 @@ exports.postArticle = function(req, res, next) {
         if (err) {
           console.log(err);
         }
-        res.redirect('/');
+        res.redirect('/article/'+article._id);
       })
     })
   } else {
@@ -154,7 +154,7 @@ exports.postArticle = function(req, res, next) {
       if (err) {
         console.log(err);
       }
-      res.redirect('/');
+      res.redirect('/article/'+article._id);
     })
   }
 };
