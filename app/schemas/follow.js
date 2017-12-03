@@ -4,7 +4,7 @@ var ObjectId = Schema.Types.ObjectId;
 
 
 var FollowSchema = new Schema({
-    From:{type:ObjectId,ref:'User'},
+    from:{type:ObjectId,ref:'User'},
     to:[{type:ObjectId,ref:'User'}],
     meta:{
         createAt:{

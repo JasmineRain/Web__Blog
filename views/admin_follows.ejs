@@ -1,0 +1,33 @@
+<%- include('header')%>
+<%- include('nav') %>
+
+
+
+<div class="full"></div>
+
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>用户</th>
+        <th>关注</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%for(var i =0;i<follows.length;i++) { %>
+        <%for(var j=0;j<follows[i].to.length;j++){ %>
+            <tr>
+                <td><%=follows[i].from%></td>
+                <td><%=follows[i].to[j]%></td>
+            </tr>
+        <%}%>
+    <%}%>
+    </tbody>
+</table>
+
+
+<%- include('footer') %>

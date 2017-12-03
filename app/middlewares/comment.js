@@ -41,7 +41,7 @@ exports.listcomments = function(req, res) {
 
         res.render('admin_comments', {
             user: req.session.user,
-            title: '文章列表页面',
+            title: '评论列表页面',
             comments: comments
         })
     })

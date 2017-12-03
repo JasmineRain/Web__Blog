@@ -20,7 +20,7 @@ var admin = require('./routes/admin');
 var upload = require('./routes/upload');
 var comment = require('./routes/comment');
 var search = require('./routes/search');
-
+var follow = require('./routes/follow');
 
 var morgan = require("morgan");
 var app = express();
@@ -84,6 +84,7 @@ app.use('/admin', admin);
 app.use('/upload', upload);
 app.use('/comment', comment);
 app.use('/search', search);
+app.use('/follow', follow);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

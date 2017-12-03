@@ -3,7 +3,11 @@
     <a href="/">首页</a>
   </li>
   <li class="layui-nav-item">
-    <a href="/personal/?id=<%=user._id%>">个人中心</a>
+      <%if(user){%>
+        <a href="/personal/?id=<%=user._id%>">个人中心</a>
+      <%}else{%>
+        <a href="/users/signin">个人中心</a>
+      <%}%>
   </li>
 
     <%- include('components/search_input')%>
