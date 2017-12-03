@@ -12,7 +12,7 @@ exports.Showpersonal = function (req, res) {
     let usId = req.session.user._id;
     let thisUser = true;
     if (!targId) { //没写目标id
-        req.flash('error', '找不到该博主！')
+        req.flash('error', '找不到该博主！');
         return res.redirect('back'); //返回之前页面
     } else if (targId !== usId) {
         console.log('thisUser');
@@ -24,13 +24,13 @@ exports.Showpersonal = function (req, res) {
     }, function (err, user) {
         if (err) { //报错
             console.log(err);
-            req.flash('error', err)
+            req.flash('error', err);
             return res.redirect('back'); //返回之前页面
         }
         Article.findLimitByUserId(targId, 10, function (err, posts) {
             if (err) { //报错
                 console.log(err);
-                req.flash('error', err)
+                req.flash('error', err);
                 return res.redirect('back'); //返回之前页面
             }
             let timeline = [];
@@ -72,7 +72,7 @@ exports.ShowPeronalAttention = function (req, res) {
     }, function (err, user) {
         if(err){
             console.log(err);
-            req.flash('error', '访问出错！')
+            req.flash('error', '访问出错！');
             res.redirect('back')
         }
         //存在该用户
@@ -81,7 +81,7 @@ exports.ShowPeronalAttention = function (req, res) {
             console.log(follow.to);
             if(err){
                 console.log(err);
-                req.flash('error', '访问出错！')
+                req.flash('error', '访问出错！');
                 res.redirect('back')
             }
             Article
@@ -93,7 +93,7 @@ exports.ShowPeronalAttention = function (req, res) {
 
                 if(err){
                     console.log(err);
-                    req.flash('error', '访问出错！')
+                    req.flash('error', '访问出错！');
                     res.redirect('back')
                 }
 
@@ -110,7 +110,7 @@ exports.ShowPeronalAttention = function (req, res) {
                             readc:articles[i].readc,
                             commentc:articles[i].commentc,
                             applausec:articles[i].applausec,
-                        }
+                        };
                         attention.push(post);
                     }
                 }
@@ -135,7 +135,7 @@ exports.ShowPeronalPosts = function (req, res) {
     let usId = req.session.user._id;
     let thisUser = true;
     if (!targId) { //没写目标id
-        req.flash('error', '找不到该博主！')
+        req.flash('error', '找不到该博主！');
         return res.redirect('back'); //返回之前页面
     } else if (targId !== usId) {
         console.log('thisUser');
@@ -146,14 +146,14 @@ exports.ShowPeronalPosts = function (req, res) {
     }, function (err, user) {
         if (err) { //报错
             console.log(err);
-            req.flash('error', err)
+            req.flash('error', err);
             return res.redirect('back'); //返回之前页面
         }
 
         Article.findByUserId(targId, function (err, posts) {
             if (err) { //报错
                 console.log(err);
-                req.flash('error', err)
+                req.flash('error', err);
                 return res.redirect('back'); //返回之前页面
             }
 
@@ -191,7 +191,7 @@ exports.ShowPeronalDetail = function (req, res) {
     let usId = req.session.user._id;
     let thisUser = true;
     if (!targId) { //没写目标id
-        req.flash('error', '找不到该博主！')
+        req.flash('error', '找不到该博主！');
         return res.redirect('back'); //返回之前页面
     } else if (targId !== usId) {
         console.log('thisUser');
@@ -202,7 +202,7 @@ exports.ShowPeronalDetail = function (req, res) {
     }, function (err, user) {
         if (err) { //报错
             console.log(err);
-            req.flash('error', err)
+            req.flash('error', err);
             return res.redirect('back'); //返回之前页面
         }
 
@@ -220,7 +220,7 @@ exports.ShowPeronalDetailEdit = function (req, res) {
     let usId = req.session.user._id;
     let thisUser = true;
     if (!targId) { //没写目标id
-        req.flash('error', '找不到该博主！')
+        req.flash('error', '找不到该博主！');
         return res.redirect('back'); //返回之前页面
     } else if (targId !== usId) {
         console.log('thisUser');
@@ -231,7 +231,7 @@ exports.ShowPeronalDetailEdit = function (req, res) {
     }, function (err, user) {
         if (err) { //报错
             console.log(err);
-            req.flash('error', err)
+            req.flash('error', err);
             return res.redirect('back'); //返回之前页面
         }
         res.render('personal-detail', {

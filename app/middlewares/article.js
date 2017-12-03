@@ -41,6 +41,9 @@ exports.showArticle = function(req, res, next) {
 
       var content_md = md.render(article.content);
       article.content = content_md;
+
+
+
       Comment
         .find({
           article: article_id
@@ -147,35 +150,6 @@ exports.postArticle = function(req, res, next) {
 
 
 
-//detail page
-exports.detail = function(req, res) {
-  var id = req.params._id;
-
-  //每次进入电影详情页则该电影访客数pv加一
-  Article.update({_id:id},{$inc:{readc:1}},function(err){
-      if(err){
-          console.log(err)
-      }
-  });
-
-  Article.findById(id, function(err, article) {
-    Comment
-      .find({
-        article: id
-      })
-      .populate('from', 'name')
-      .populate('reply.from reply.to', 'name')
-      .exec(function(err, comments) {
-        console.log(comments);
-        res.render('detail', {
-          title: '详情页面' + article.title,
-          article: article,
-          comments: comments,
-          user: req.session.user
-        })
-      })
-  })
-};
 
 
 exports.listarticles = function(req, res) {
