@@ -1,20 +1,36 @@
 <%- include('header')%>
     <%- include('nav') %>
+        <link rel="stylesheet" href="/stylesheets/editormd.css" />
         <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
         <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
         <div class="layui-row content-footer">
-            <div class="layui-col-md10 layui-col-md-offset1" >
-                <div class="per-content">
-                    <div class="per-content-title">
+            <div class="layui-col-md10 layui-col-md-offset1">
+                <div class="editor-content">
+                    <div class="editor-title">
                         <h1>新建文章</h1>
+
                     </div>
-                    <div>
-                        <div id="layout">
-                            <div id="test-editormd">
-                                <textarea style="display:none;"></textarea>
+                    <div class="one-editor-content">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
                             </div>
-                        </div>
+                            <div id="layout">
+                                <div id="test-editormd">
+                                    <textarea style="display:none;"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <input type="file" name="photo" id="photo" style="display:none">
+                                <button type="button" class="layui-btn layui-btn-primary" onclick="F_Open_dialog()">选择封面</button>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </form>
                     </div>
+
                 </div>
 
             </div>
