@@ -3,3 +3,6 @@
   padding: 2em;
   border: 1px solid black;
 }
+.search_not_found{
+  text-align: center;
+}

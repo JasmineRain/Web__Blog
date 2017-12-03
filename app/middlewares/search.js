@@ -10,16 +10,25 @@ var limit = 10;
  */
 exports.search = function(req, res, next) {
   var reg = new RegExp(req.params.content);
+  console.log(reg);
   var query = {
     $or: [{
-        'title': reg
-      }]
+      'title': reg
+    }]
   };
+
+  // Article.find().populate('author', ['name']).exec(function(err, article) {　　
+  //   if (err) res.send(err);　　
+  //   console.log(article);
+  // });
   Article.findBySearch(query, limit).then(function(obj) {
     if (!obj.length) {
       console.log("article not found");
       var message = 'not found';
-      res.send(message);
+      res.render('search_result', {
+        message: message,
+        css_add: '<link rel="stylesheet" href="/stylesheets/search_result.css">'
+      });
     } else {
       var articles = [];
       for (var i = 0; i < obj.length; i++) {
@@ -33,9 +42,9 @@ exports.search = function(req, res, next) {
           cover: obj[i].cover
         }
       }
-      res.render('search_result',{
-        articles:articles,
-        css_add:'<link rel="stylesheet" href="/stylesheets/search_result.css">'
+      res.render('search_result', {
+        articles: articles,
+        css_add: '<link rel="stylesheet" href="/stylesheets/search_result.css">'
       });
     }
   });
