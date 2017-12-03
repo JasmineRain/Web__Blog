@@ -1,6 +1,7 @@
 <fieldset class="layui-elem-field">
     <legend><%=post.title%></legend>
     <div class="layui-field-box">
+        <a href="/article/<%=post._id%>">
         <div class="post-content layui-row">
             <div class="layui-col-md4 layui-col-sm4">
                 <div class="per-post-cover">
@@ -10,10 +11,11 @@
             <div class="layui-col-md8 layui-col-sm8 per-post-content">
                 <p><label style="font-size:25px;"><%=post.desc.substring(0,1)%></label><%=post.desc.substring(1,170)%> ...</p>
             </div>
+        </a>
         </div>
         <div class="layui-row">
             <div class="per-post-mes layui-col-md9">
-                <div class="post-mes-item"> <i class="layui-icon">&#xe637;</i>发表于<%=post.createAt%></div>
+                <div class="post-mes-item"> <i class="layui-icon">&#xe637;</i><%=post.createAt%></div>
                 <div class="post-mes-item"><i class="layui-icon">&#xe6c6;</i><%=post.applausec%>赞</div>
                 <div class="post-mes-item"><i class="layui-icon">&#xe705;</i><%=post.readc%>浏览</div>
                 <div class="post-mes-item"><i class="layui-icon">&#xe63a;</i><%=post.commentc%>评论</div>
@@ -22,7 +24,7 @@
             <%if(thisUser){%>
             <div class="per-post-menu layui-col-md3 layui-row">
                 <div class="layui-col-md6 layui-col-xs6 layui-col-sm6">
-                    <a  href="/article/edit/<%=post.postId%>"><button class="layui-btn layui-btn-small layui-btn-primary">编辑</button></a>
+                    <a  href="/article/edit/<%=post._id%>"><button class="layui-btn layui-btn-small layui-btn-primary">编辑</button></a>
                 </div>
                 <div class="layui-col-md6 layui-col-xs6 layui-col-sm6">
                     <button class="layui-btn layui-btn-small layui-btn-primary">删除</button>

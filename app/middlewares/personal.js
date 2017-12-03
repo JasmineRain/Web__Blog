@@ -6,6 +6,20 @@ var appData = require('../../data.json'); //虚拟数据
 var moment = require('moment');
 
 //个人主页相关操作
+//点赞
+exports.GiveApplause = function(req,res){
+    console.log(req.params._id);
+    let id=req.params._id;
+    Article.update({_id:id},{$inc:{applausec:1}},function(err){
+        if(err){
+            console.log(err)
+            return res.send({success:0})
+        }
+
+        return res.send({success:1})
+        
+    });
+}
 //时间轴
 exports.Showpersonal = function (req, res) {
     let targId = req.query.id;
@@ -15,7 +29,6 @@ exports.Showpersonal = function (req, res) {
         req.flash('error', '找不到该博主！');
         return res.redirect('back'); //返回之前页面
     } else if (targId !== usId) {
-        console.log('thisUser');
         thisUser = false;
     }
     console.log(targId, usId);
@@ -38,7 +51,7 @@ exports.Showpersonal = function (req, res) {
             if (posts.length) {
                 for (let i = 0; i < posts.length; i++) {
                     let onepost = {};
-                    onepost.postId = posts[i]._id;
+                    onepost._id = posts[i]._id;
                     onepost.updateAt = moment(posts[i].meta.updateAt).format('YYYY/MM/DD');
                     onepost.title = posts[i].title;
                     onepost.desc = posts[i].desc;
@@ -73,7 +86,7 @@ exports.ShowPeronalAttention = function (req, res) {
         if(err){
             console.log(err);
             req.flash('error', '访问出错！');
-            res.redirect('back')
+            return res.redirect('back')
         }
         //存在该用户
         //查找该用户关注的人的列表
@@ -82,7 +95,7 @@ exports.ShowPeronalAttention = function (req, res) {
             if(err){
                 console.log(err);
                 req.flash('error', '访问出错！');
-                res.redirect('back')
+                return res.redirect('back')
             }
             Article
             .find({author:{$in:follow.to}})
@@ -94,7 +107,7 @@ exports.ShowPeronalAttention = function (req, res) {
                 if(err){
                     console.log(err);
                     req.flash('error', '访问出错！');
-                    res.redirect('back')
+                    return res.redirect('back')
                 }
 
                 //提取需要的数据
@@ -102,6 +115,7 @@ exports.ShowPeronalAttention = function (req, res) {
                 if(articles){
                     for(var i=0;i<articles.length;i++){
                         let post={
+                            _id:articles[i]._id,
                             title:articles[i].title,
                             cover:articles[i].cover,
                             updateAt:moment(articles[i].updateAt).format('YYYY/MM/DD'),
@@ -117,7 +131,7 @@ exports.ShowPeronalAttention = function (req, res) {
                 console.log(attention);
                 //console.log('Article',articles);
                 //发送数据
-                res.render('personal-attention', {
+                return res.render('personal-attention', {
                     user: req.session.user,
                     thisUser: thisUser,
                     attention: attention,
@@ -161,7 +175,7 @@ exports.ShowPeronalPosts = function (req, res) {
             if (posts.length) {
                 for (let i = 0; i < posts.length; i++) {
                     let onepost = {};
-                    onepost.postId = posts[i]._id;
+                    onepost._id = posts[i]._id;
                     onepost.cover = posts[i].cover;
                     onepost.createAt = moment(posts[i].meta.createAt).format('YYYY/MM/DD');
                     onepost.title = posts[i].title;
