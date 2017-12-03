@@ -1,7 +1,19 @@
+body{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+}
+.content-footer {
+    padding-bottom: 200px;
+}
 .footer{
     background: #06060B;
     color: #aaa;
     padding:50px 0 20px 0;
+    clear: both;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
 }
 .footer-content{
     text-align: center;
