@@ -12,7 +12,7 @@ $(document).ready(function () {
             }).done(function(results) {
                 if(results.success===1){
                     target.html('关注') ;
-                    target.attr("data-state",0);
+                    target.data("state",0);
                     console.log(target.data('state'));
                 }
                 else if(results.success===0){
@@ -28,7 +28,7 @@ $(document).ready(function () {
             }).done(function(results) {
                 if(results.success===1){
                     target.html('已关注') ;
-                    target.attr("data-state",1);
+                    target.data("state",1);
                     console.log(target.data('state'));
                 }
                 else if(results.success===0){
