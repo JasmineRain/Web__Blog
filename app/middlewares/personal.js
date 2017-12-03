@@ -109,7 +109,7 @@ exports.ShowPeronalAttention = function (req, res) {
                             desc:articles[i].desc,
                             readc:articles[i].readc,
                             commentc:articles[i].commentc,
-                            appData:articles[i].applausec
+                            applausec:articles[i].applausec,
                         }
                         attention.push(post);
                     }
