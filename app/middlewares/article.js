@@ -109,6 +109,11 @@ exports.newArticle = function(req, res, next) {
   })
 };
 
+exports.Tset = function(req, res, next) {
+  res.render('eidtorTest');
+};
+
+
 
 
 exports.editArticle = function(req, res, next) {

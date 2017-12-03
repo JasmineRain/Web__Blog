@@ -6,6 +6,7 @@ var User = require('../app/middlewares/user');
 /* GET home page. */
 
 router.get('/new', User.signinRequired, Article.newArticle);
+router.get('/test', User.signinRequired, Article.Tset);
 router.get('/:_id', Article.showArticle);
 
 
