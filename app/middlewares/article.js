@@ -48,8 +48,11 @@ exports.showArticle = function(req, res, next) {
         .populate('from')
         .populate('reply.from reply.to')
         .exec(function(err, comments) {
-            Follow.findOne({from:req.session._id},function (err, follow) {
+            Follow.findOne({from:req.session.user._id},function (err, follow) {
                 var isFollow=0;
+                // console.log("req"+req.session.user._id);
+                // console.log(follow.to);
+                // console.log(article.author._id);
                 if(follow){
                     if(follow.to.indexOf(article.author._id)>=0){
                         isFollow=1;
