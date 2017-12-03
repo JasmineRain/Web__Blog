@@ -6,16 +6,16 @@
     <div class="article" class="article">
       <h1 class="title"><%-article.title%></h1>
       <div class="author">
-        <a class="avatar" href="/personal/?id=<%-article.author._id%>"><img src= "/<%-article.author.avatar%>">
+        <a class="avatar" href="/personal/?id=<%-article.author._id%>"><img src= "/<%=article.author.avatar%>">
         </a>
         <div class="info">
           <span class="name"><a href="#"><%-article.author.name%></a></span>
           <!-- 关注用户按钮 -->
           <%if(user){%>
               <%if(isFollow){%>
-                <a class="btn btn-success follow"><span data-tid="<%-article.author._id%>" id="follow">已关注</span></a>
+                <a class="btn btn-success follow"><span data-tid="<%-article.author._id%>" id="follow" data-state=1>已关注</span></a>
               <%}else{%>
-            <a class="btn btn-success follow"><span data-tid="<%-article.author._id%>" id="follow">关注</span></a>
+            <a class="btn btn-success follow"><span data-tid="<%-article.author._id%>" id="follow" data-state=0>关注</span></a>
               <%}%>
           <%}else{%>
             <a class="btn btn-success follow" href="/users/signin"><span>登录后关注</span></a>
@@ -36,7 +36,7 @@
     <div class="full"></div>
     <div class="full"></div>
 
-<fieldset class="layui-elem-field layui-field-title" style="margin-left: 20px">
+<fieldset class="layui-elem-field layui-field-title">
     <legend>评论区</legend>
     <ul class="media-list">
         <% for(var i=0;i<comments.length;i++) { %>
