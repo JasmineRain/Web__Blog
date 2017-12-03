@@ -64,24 +64,67 @@ exports.ShowPeronalAttention = function (req, res) {
     let usId = req.session.user._id;
     let thisUser = true;
     if (targId !== usId) {
-        req.flash('error', '无权访问该页面')
+        req.flash('error', '无权访问该页面');
         return res.redirect('back'); //返回之前页面
     }
     User.findOne({
         '_id': targId
     }, function (err, user) {
+        if(err){
+            console.log(err);
+            req.flash('error', '访问出错！')
+            res.redirect('back')
+        }
         //存在该用户
         //查找该用户关注的人的列表
-        Follow.findOne({_id:targId},function(err,follow){
-            console.log(follow);
-        })
+        Follow.findOne({from:targId},function(err,follow){
+            console.log(follow.to);
+            if(err){
+                console.log(err);
+                req.flash('error', '访问出错！')
+                res.redirect('back')
+            }
+            Article
+            .find({author:{$in:follow.to}})
+            .populate('author', ['name','avatar'])
+            .sort({'meta.updateAt': -1})
+            .exec(function(err,articles){
+                console.log(articles);
 
-        res.render('personal-attention', {
-            user: req.session.user,
-            thisUser: thisUser,
-            attention: appData.attention,
-            toUser: user
-        });
+                if(err){
+                    console.log(err);
+                    req.flash('error', '访问出错！')
+                    res.redirect('back')
+                }
+
+                //提取需要的数据
+                let attention=[];
+                if(articles){
+                    for(var i=0;i<articles.length;i++){
+                        let post={
+                            title:articles[i].title,
+                            cover:articles[i].cover,
+                            updateAt:moment(articles[i].updateAt).format('YYYY/MM/DD'),
+                            author:articles[i].author,
+                            desc:articles[i].desc,
+                            readc:articles[i].readc,
+                            commentc:articles[i].commentc,
+                            appData:articles[i].applausec
+                        }
+                        attention.push(post);
+                    }
+                }
+                console.log(attention);
+                //console.log('Article',articles);
+                //发送数据
+                res.render('personal-attention', {
+                    user: req.session.user,
+                    thisUser: thisUser,
+                    attention: attention,
+                    toUser: user
+                });
+            });
+        })
     })
 
 };

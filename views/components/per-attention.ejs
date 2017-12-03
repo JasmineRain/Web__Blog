@@ -2,32 +2,38 @@
     <div class="per-atten-head layui-row">
         <div class="per-atten-ico layui-col-md2 layui-col-xs2 layui-col-sm2">
             <div class="square">
-                <img src="<%=post.icon%>" alt="">
+                <img src="\<%=post.author.avatar%>" alt="">
             </div>
         </div>
         <div class="per-atten-author layui-col-md7 layui-col-xs7 layui-col-sm7">
             <div>
-                <h1><%=post.author%></h1>
+                <h1><%=post.author.name%></h1>
             </div>
             <div>
-                <i class="layui-icon">&#xe637;</i> 发表于<%=post.time%></div>
-            <div>
-                <i class="layui-icon">&#xe705;</i> <%=post.watch%></div>
+                <i class="layui-icon">&#xe637;</i> 发表于<%=post.updateAt%>
+            </div>
         </div>
         <div class="layui-col-md3 layui-col-xs3 layui-col-sm3">
             <button class="per-atten-cancel layui-btn layui-btn-small layui-btn-sm layui-btn-primary">取消关注</button>
         </div>
     </div>
     <div class="per-atten-post">
-        <p class="per-atten-post-content"><%=post.content%></p>
+        <p class="per-atten-post-content">
+                <img src="\<%=post.cover%>" align="left" hspace="5" vspace="5">
+            <%=post.desc%>
+        </p>
     </div>
     <hr>
     <div class="per-atten-option layui-row">
         <div class="per-atten-collect layui-col-md4 layui-col-xs4 layui-col-sm4">
-            <i class="layui-icon">&#xe600;</i> 收藏</div>
+            <!-- <i class="layui-icon">&#xe600;</i> 收藏</div> -->
+            <i class="layui-icon">&#xe705;</i> <%=post.readc%>
+        </div>
         <div class="per-atten-comment layui-col-md4 layui-col-xs4 layui-col-sm4">
-            <i class="layui-icon">&#xe63a;</i> <%=post.comment%></div>
+            <i class="layui-icon">&#xe63a;</i> <%=post.commentc%>
+        </div>
         <div class="per-atten-praise layui-col-md4 layui-col-xs4 layui-col-sm4">
-            <i class="layui-icon">&#xe6c6;</i> <%=post.praise%></div>
+            <i class="layui-icon">&#xe6c6;</i> <%=post.applausec%>
+        </div>
     </div>
 </div>
