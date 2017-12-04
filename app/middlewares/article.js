@@ -132,24 +132,26 @@ exports.editArticle = function(req, res, next) {
 exports.postArticle = function(req, res, next) {
   var _article = {};
   var reg = /[\\\`\*\_\[\]\#\+\-\!\>]/g;
-  if (req.body.article._id) {
-    Article.findById(req.body.article._id, function(err, article) {
-      article.title = req.body.article.title;
-      article.content = req.body.article.content;
-      article.desc = req.body.article.content.substring(0, 500).replace(reg, ""); //截取前50个字符作为简介
+  if (req.body._id) {
+    Article.findById(req.body._id, function(err, article) {
+      article.title = req.body.title;
+      article.content = req.body.content;
+      article.desc = req.body.content.substring(0, 500).replace(reg, ""); //截取前50个字符作为简介
       article.save(function(err, article) {
         if (err) {
           console.log(err);
+          res.send({success:0});
+
         }
-        res.redirect('/article/'+article._id);
+        res.send({success:1});
       })
     })
   } else {
     _article = {
-      title: req.body.article.title,
-      content: req.body.article.content,
+      title: req.body.title,
+      content: req.body.content,
       author: req.session.user,
-      desc: req.body.article.content.substring(0, 500).replace(reg, ""), //截取前50个字符作为简介
+      desc: req.body.content.substring(0, 500).replace(reg, ""), //截取前50个字符作为简介
       readc: 0,
       commentc: 0,
       applausec: 0
@@ -158,8 +160,10 @@ exports.postArticle = function(req, res, next) {
     article.save(function(err, article) {
       if (err) {
         console.log(err);
+        res.send({success:0});
+
       }
-      res.redirect('/article/'+article._id);
+      res.send({success:1});
     })
   }
 };

@@ -1,32 +1,92 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
-  <link rel="stylesheet" href="/stylesheets/article_edit.css">
-</head>
+<%- include('header')%>
+    <%- include('nav') %>
+        <link rel="stylesheet" href="/stylesheets/blog.css">
+        <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
+        <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+        <div class="layui-row content-footer">
+            <div class="layui-col-md10 layui-col-md-offset1">
+                <div class="blog-content">
+                    <div class="blog-title">
+                        <h1>新建文章</h1>
+                    </div>
+                    <div class="one-editor-content">
+                        <!-- <form class="layui-form" action="/article/post" method="POST"> -->
+                            <div class="layui-form-item">
+                              <% if(locals.article) { %>
+                                <input type="text" name="_id" value="<%-article._id%>" style="display:none">
+                                <input type="text" name="title" value="<%-article.title%>" required lay-verify="required" autocomplete="off" class="layui-input">
+                                <% } else { %>
+                                  <input type="text" name="title" value="新文章" required lay-verify="required" autocomplete="off" class="layui-input">
+                                  <% } %>
+                            </div>
+                            <div id="layout">
+                                <!-- <div id="test-editormd">
+                                    <textarea style="display:none;"></textarea>
+                                </div> -->
+                                <div id="editormd">
+                                  <textarea name="content"><%if(locals.article){%><%-article.content%><%}else{%><%="### Hello Editor.md !"%><%}%></textarea>
+                                </div>
 
-<body>
-  <form class="contain" action="/article/post" method="POST">
-    <% if(locals.article) { %>
-      <input type="text" name="article[_id]" value="<%-article._id%>" style="display:none">
-      <input type="text" class="title" name="article[title]" value="<%-article.title%>">
-      <% } else { %>
-        <input type="text" class="title" name="article[title]" value="新文章">
-        <% } %>
-    <%-include('components/editor')%>
-    <input type="submit" class="submit" name="submit" value="提&nbsp;交">
-  </form>
+                            </div>
+                            <div class="layui-form-item">
+                                <input type="file" name="photo" id="photo" style="display:none">
+                                <button type="button" class="layui-btn layui-btn-primary" onclick="F_Open_dialog()">选择封面</button>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn submit" lay-submit lay-filter="formDemo">立即提交</button>
+                            </div>
+                        <!-- </form> -->
+                    </div>
 
-  <script src="/libs/jquery/dist/jquery.min.js"></script>
-  <script src="/libs/editor.md/editormd.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      var editor = editormd("editormd", {
-        path: "/libs/editor.md/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
-      });
-    });
-  </script>
-</body>
-</html>
+                </div>
+
+            </div>
+
+
+        </div>
+        <script src="/libs/jquery/dist/jquery.min.js"></script>
+        <script src="/libs/editor.md/editormd.min.js"></script>
+        <script type="text/javascript">
+            var testEditor;
+
+            $(function () {
+                testEditor = editormd("editormd", {
+                    width: "100%",
+                    height: 640,
+                    syncScrolling: "single",
+                    path: "/libs/editor.md/lib/"
+                });
+                $('button.submit').click(function(){
+                  var article={};
+                  var $_id=$('[name=_id]');
+                  var $title=$('[name=title]');
+                  var $content=$('[name=content]');
+                  if($_id.length>0){//如果有_id
+                    article={
+                      _id:$_id.val(),
+                      title:$title.val(),
+                      content:$content.val()
+                    }
+                  }else {
+                    article={
+                      title:$title.val(),
+                      content:$content.val()
+                    }
+                  }
+                  $.ajax({
+                    url:'/article/post',
+                    type:'POST',
+                    data:article,
+                    timeout:5000
+                  }).done(function (results) {
+                    if (results.success === 1) {
+                      layer.msg('提交成功！');
+                    } else if (results.success === 0) {
+                      layer.msg('提交失败！');
+                    }
+                  });
+                })
+
+            });
+        </script>
+        <%- include('footer') %>
