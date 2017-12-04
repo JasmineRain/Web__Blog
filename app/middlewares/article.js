@@ -174,11 +174,12 @@ exports.deleteArticle = function (req, res) {
         if(err)
             console.log(err);
         if(article){
-            console.log(' i am running');
             Comment.find({article: ArticleId})
                 .exec(function (err, comments) {
-                    console.log(comments.length);
-                    Comment.remove({article:ArticleId});
+                    Comment.remove({article:ArticleId},function (err, comments) {
+                        if(err)
+                            console.log(err)
+                    });
                 })
         }
         Article.remove({_id:ArticleId},function (err, article) {
