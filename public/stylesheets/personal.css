@@ -91,7 +91,8 @@ body {
 
 .per-head {
     position: relative;
-    height: 300px;
+    height: 340px;
+    padding: 20px;
 }
 
 .per-head-background {
@@ -121,7 +122,7 @@ body {
 
 .per-mes-mini {
     margin-left: 20px;
-    margin-top: 120px;
+    margin-top: 60px;
     color: #fff;
     padding: 20px;
 }
