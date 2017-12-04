@@ -1,8 +1,6 @@
 var User = require('../models/user');
 var Article = require('../models/article');
 var Follow = require('../models/follow');
-
-var appData = require('../../data.json'); //虚拟数据
 var moment = require('moment');
 
 //个人主页相关操作

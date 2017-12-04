@@ -2,7 +2,6 @@
 
 var User = require('../models/user');
 var Article = require('../models/article');
-var appData = require('../../data.json'); //虚拟数据
 var moment = require('moment');
 
 
