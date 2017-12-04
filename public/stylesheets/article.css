@@ -1,7 +1,5 @@
 .article {
-  width: 38%;
-  min-width: 500px;
-  margin: auto;
+  width: 100%;
   word-break: normal;
   margin-top: 50px;
 }
