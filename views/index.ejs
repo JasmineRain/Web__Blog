@@ -1,7 +1,5 @@
 <%- include('header')%>
 <%- include('nav') %>
-<link rel="stylesheet" href="/stylesheets/default.css">
-
 
 <div class="layui-row blog-main">
         <div class="layui-col-md10 layui-col-md-offset1">
@@ -9,27 +7,26 @@
                 <div class="blog-title">
                     <h1>最热推荐</h1>
                 </div>
-                <fieldset class="layui-elem-field layui-field-title">
-                    <div class="full"></div>
-                    <div class="row">
-                        <%for(var i=0;i<HotArticles.length;i++) {%>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <div class="index-item-img">
+                <div class="layui-row layui-col-space20">
+                        <%for(var i=0;i<HotArticles.length;i++){%>
+                            <div class="layui-col-md4">
+                                <div class="layui-col-md12">
+                                    <div class="index-item-img">
                                     <img src="<%-HotArticles[i].cover%>">
-                                </div>
-                                <div class="caption">
-                                    <div style="height:100px;overflow:hidden">
-                                        <h3><%-HotArticles[i].title%></h3>
-                                        <p><strong>Author:&nbsp;<%-HotArticles[i].author.name%></strong></p>
                                     </div>
-                                    <p><a href="/article/show/<%-HotArticles[i].id%>" class="btn btn-primary" role="button">查看</a>
                                 </div>
+                                <div class="layui-col-md12 blog-title">
+                                    <h3><%-HotArticles[i].title%></h3>
+                                </div>
+                                <div class="blog-title">
+                                    <p><strong>Author:&nbsp;<%-HotArticles[i].author.name%></strong></p>
+                                </div>                                                
+                                <a href="/article/show/<%-HotArticles[i].id%>">
+                                    <button class="layui-btn layui-btn-normal">查看</button>
+                                </a>
                             </div>
-                        </div>
                         <%}%>
-                    </div>
-                </fieldset>
+                </div>
             </div>
         </div>
         <div class="layui-col-md10 layui-col-md-offset1">
@@ -37,37 +34,29 @@
                 <div class="blog-title">
                     <h1>最新推荐</h1>
                 </div>
-                <fieldset class="layui-elem-field layui-field-title">
-                    <div class="full"></div>
-                        <div class="row">
-                            <%for(var i=0;i<NewArticles.length;i++) {%>
-                            <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail">
-                                    <div  class="index-item-img">
-                                        <img src="<%-NewArticles[i].cover%>">
-                                    </div>
-                                    <div class="caption">
-                                        <div style="height:100px;overflow:hidden">
-                                        <h3><%-NewArticles[i].title%></h3>
-                                        <p><strong>Author:&nbsp;<%-NewArticles[i].author.name%></strong></p>
-                                    </div>
-                                        <p><a href="/article/show/<%-NewArticles[i].id%>" class="btn btn-primary" role="button">查看</a>
-                                    
-                                        
+                <div class="layui-row layui-col-space20">
+                        <%for(var i=0;i<NewArticles.length;i++) {%>
+                            <div class="layui-col-md4">
+                                <div class="layui-col-md12">
+                                    <div class="index-item-img">
+                                    <img src="<%-HotArticles[i].cover%>">
                                     </div>
                                 </div>
+                                <div class="layui-col-md12 blog-title">
+                                    <h3><%-NewArticles[i].title%></h3>
+                                </div>
+                                <div class="blog-title">
+                                    <p><strong>Author:&nbsp;<%-NewArticles[i].author.name%></strong></p>
+                                </div>                                                
+                                <a href="/article/show/<%-NewArticles[i].id%>">
+                                    <button class="layui-btn layui-btn-normal">查看</button>
+                                </a>
                             </div>
-                            <%}%>                            
-                    </div>
-                </fieldset>
+                        <%}%>
+                </div>
             </div>                            
         </div>
 </div>
-
-
-
-
-
 
 
 <%- include('footer') %>
