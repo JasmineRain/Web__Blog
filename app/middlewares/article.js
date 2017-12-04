@@ -37,18 +37,18 @@ exports.showArticle = function (req, res, next) {
     }
   }, function (err) {
     if (err) {
-      console.log(err)
+      console.log(err);
     }
   });
-
-
 
   Article.findOne({
       '_id': article_id
     }, function (err, article) {
-
-
-
+      if (err) {
+        console.log(err)
+        req.flash('error', '找不到该文章！');
+        return res.redirect('back'); //返回之前页面
+      }
       var content_md = md.render(article.content);
       article.content = content_md;
 
@@ -96,9 +96,6 @@ exports.showArticle = function (req, res, next) {
               user: req.session.user
             })
           }
-
-
-
         });
     })
     .populate('author');
@@ -137,7 +134,7 @@ exports.postArticle = function (req, res, next) {
   //判断封面
   if (req.body.cover) {
     uploadpath = imageUpload(req.body.cover, 'upload/image/articleCover/');
-    console.log('uploadpath',uploadpath)
+    console.log('uploadpath', uploadpath)
   }
   var reg = /[\\\`\*\_\[\]\#\+\-\!\>]/g;
   if (req.body._id) {
@@ -161,24 +158,25 @@ exports.postArticle = function (req, res, next) {
 
         }
         res.send({
-          success: 1
+          success: 1,
+          id: article._id
         });
       })
     })
   } else {
-    if (uploadpath !== 0){
+    if (uploadpath !== 0) {
       _article = {
         title: req.body.title,
         content: req.body.content,
         author: req.session.user,
-        cover:uploadpath,
+        cover: uploadpath,
         desc: req.body.content.substring(0, 500).replace(reg, ""), //截取前50个字符作为简介
         readc: 0,
         commentc: 0,
         applausec: 0
       };
-      console.log('_article',_article);
-    }else{
+      console.log('_article', _article);
+    } else {
       _article = {
         title: req.body.title,
         content: req.body.content,
@@ -199,7 +197,8 @@ exports.postArticle = function (req, res, next) {
 
       }
       res.send({
-        success: 1
+        success: 1,
+        id: article._id
       });
     })
   }
@@ -213,10 +212,10 @@ exports.postArticle = function (req, res, next) {
     let dataBuffer = new Buffer(base64Data, 'base64');
     let filename = "image_upload_" + Date.parse(new Date()) + ".png";
     let str = uploadpath + filename;
-    
+
     fs.writeFile(str, dataBuffer, function (err) {
       if (err) {
-        console.log('66666655555555555555',err);
+        console.log('66666655555555555555', err);
       } else {
         console.log('success')
       }

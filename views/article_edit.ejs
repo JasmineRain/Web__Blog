@@ -22,13 +22,7 @@
                         <div id="layout">
 
                             <div id="editormd">
-                                <textarea name="content">
-                                    <%if(locals.article){%>
-                                        <%-article.content%>
-                                            <%}else{%>
-                                                <%="### Hello Editor.md !"%>
-                                                    <%}%>
-                                </textarea>
+                                <textarea name="content"><%if(locals.article){%><%-article.content%><%}else{%><%="### Hello Editor.md !"%><%}%></textarea>
                             </div>
 
                         </div>
@@ -43,6 +37,7 @@
                         <div class="layui-form-item">
                             <button class="layui-btn submit" lay-submit lay-filter="formDemo">立即提交</button>
                         </div>
+
                         <!-- </form> -->
                     </div>
 
@@ -131,7 +126,6 @@
                 if ($_id.length > 0) { //如果有_id
                     article._id=$_id.val();
                 }
-                console.log('article',article);
                 $.ajax({
                     url: '/article/post',
                     type: 'POST',
@@ -139,7 +133,21 @@
                     timeout: 5000
                 }).done(function (results) {
                     if (results.success === 1) {
-                        layer.msg('提交成功！');
+                        console.log('results.id',results.id);
+                                            //弹窗提示
+                    layer.open({
+                        content: '提交成功！是否立即查看文章页',
+                        btn: ['确定', '取消'],
+                        yes: function (index, layero) {
+                            //发送无图片文章
+                            window.location.href='/article/show/'+results.id
+                            layer.close(index); //如果设定了yes回调，需进行手工关闭
+                        },
+                        btn2: function (index, layero) {
+                            return;
+                        },
+                        cancel: function () {}
+                    });
                     } else if (results.success === 0) {
                         layer.msg('提交失败！');
                     }
