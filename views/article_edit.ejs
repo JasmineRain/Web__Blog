@@ -31,7 +31,7 @@
                             <button type="button" class="layui-btn layui-btn-primary" onclick="F_Open_dialog()">选择封面</button>
                         </div>
                         <div class="layui-form-item">
-                            <img src="" id="deal" width="400px">
+                            <img src="" id="deal" width="400px" style="display:none">
                         </div>
 
                         <div class="layui-form-item">
@@ -101,7 +101,7 @@
                 article.title= $title.val(),
                 article.content= $content.val()
 
-                if (!articlePhoto) {
+                if (!articlePhoto&&$_id.length==0) {
                     //弹窗提示
                     layer.open({
                         content: '未选择文章封面，系统将使用默认图片作为封面。',
@@ -166,6 +166,7 @@
                 reader.onload = function (e) {
                     getImgData(this.result, orientation, function (data) {
                         //这里可以使用校正后的图片data了
+                        $('#deal').fadeIn();
                         $('#deal')[0].src = data;
                         articlePhoto = data;
                     });

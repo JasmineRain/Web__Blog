@@ -33,7 +33,8 @@ p{
 }
 
 .blog-title{
-    padding: 10px 0;
+    padding: 15px 0;
+    height: 70px;
 }
 
 .blog-title h1{
@@ -42,6 +43,14 @@ p{
 
 .blog-title h3{
     font-size: 20px;
+}
+
+.blog-article{
+    padding:0 20px 0 30px; ;
+}
+
+.blog-article >p >img{
+    max-width: 100%
 }
 
 /* 加载动画 */
@@ -167,13 +176,8 @@ p{
 
 /* 首页 */
 
-.index-item-img {
-    width: 100%;
-    height:30%;
-}
-
 .index-item-img img{
     width: 100%;
-    height: 100%;
+    height: 230px;
     object-fit: cover;
 }

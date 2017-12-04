@@ -74,6 +74,7 @@ exports.ShowPeronalAttention = function (req, res) {
     let targId = req.query.id;
     let usId = req.session.user._id;
     let thisUser = true;
+    let attention=[];
     if (targId !== usId) {
         req.flash('error', '无权访问该页面');
         return res.redirect('back'); //返回之前页面
@@ -89,12 +90,12 @@ exports.ShowPeronalAttention = function (req, res) {
         //存在该用户
         //查找该用户关注的人的列表
         Follow.findOne({from:targId},function(err,follow){
-            console.log(follow.to);
             if(err){
                 console.log(err);
                 req.flash('error', '访问出错！');
                 return res.redirect('back')
             }
+            if(follow){
             Article
             .find({author:{$in:follow.to}})
             .populate('author', ['name','avatar'])
@@ -107,9 +108,6 @@ exports.ShowPeronalAttention = function (req, res) {
                     req.flash('error', '访问出错！');
                     return res.redirect('back')
                 }
-
-                //提取需要的数据
-                let attention=[];
                 if(articles){
                     for(var i=0;i<articles.length;i++){
                         let post={
@@ -136,6 +134,14 @@ exports.ShowPeronalAttention = function (req, res) {
                     toUser: user
                 });
             });
+        }else{
+            return res.render('personal-attention', {
+                user: req.session.user,
+                thisUser: thisUser,
+                attention: attention,
+                toUser: user
+            });
+        }
         })
     })
 

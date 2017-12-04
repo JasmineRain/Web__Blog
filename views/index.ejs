@@ -10,11 +10,10 @@
                 <div class="layui-row layui-col-space20">
                         <%for(var i=0;i<HotArticles.length;i++){%>
                             <div class="layui-col-md4">
-                                <div class="layui-col-md12">
-                                    <div class="index-item-img">
+                                <div class="index-item-img">
                                     <img src="<%-HotArticles[i].cover%>">
-                                    </div>
                                 </div>
+                               
                                 <div class="layui-col-md12 blog-title">
                                     <h3><%-HotArticles[i].title%></h3>
                                 </div>
@@ -36,22 +35,22 @@
                 </div>
                 <div class="layui-row layui-col-space20">
                         <%for(var i=0;i<NewArticles.length;i++) {%>
+
                             <div class="layui-col-md4">
-                                <div class="layui-col-md12">
                                     <div class="index-item-img">
-                                    <img src="<%-HotArticles[i].cover%>">
+                                        <img src="<%-NewArticles[i].cover%>">
                                     </div>
+                                   
+                                    <div class="layui-col-md12 blog-title">
+                                        <h3><%-NewArticles[i].title%></h3>
+                                    </div>
+                                    <div class="blog-title">
+                                        <p><strong>Author:&nbsp;<%-NewArticles[i].author.name%></strong></p>
+                                    </div>                                                
+                                    <a href="/article/show/<%-NewArticles[i].id%>">
+                                        <button class="layui-btn layui-btn-normal">查看</button>
+                                    </a>
                                 </div>
-                                <div class="layui-col-md12 blog-title">
-                                    <h3><%-NewArticles[i].title%></h3>
-                                </div>
-                                <div class="blog-title">
-                                    <p><strong>Author:&nbsp;<%-NewArticles[i].author.name%></strong></p>
-                                </div>                                                
-                                <a href="/article/show/<%-NewArticles[i].id%>">
-                                    <button class="layui-btn layui-btn-normal">查看</button>
-                                </a>
-                            </div>
                         <%}%>
                 </div>
             </div>                            
