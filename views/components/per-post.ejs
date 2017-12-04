@@ -13,7 +13,6 @@
                 </div>
             </div>
         </a>
-        </div>
         <div class="layui-row">
             <div class="per-post-mes layui-col-md9">
                 <div class="post-mes-item"> <i class="layui-icon">&#xe637;</i><%=post.createAt%></div>
@@ -28,9 +27,9 @@
                     <a  href="/article/edit/<%=post._id%>"><button class="layui-btn layui-btn-small layui-btn-primary">编辑</button></a>
                 </div>
                 <div class="layui-col-md6 layui-col-xs6 layui-col-sm6">
-                    <button class="layui-btn layui-btn-small layui-btn-primary"><span data-articleid="<%-post._id%>" id="del">删除</span></button>
+                    <button class="layui-btn layui-btn-small layui-btn-primary"><span data-aid="<%-post._id%>" id="del">删除</span></button>
                 </div>
-            </div>     
+            </div>
             <%}%>       
         </div>
     </div>

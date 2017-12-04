@@ -169,26 +169,24 @@ exports.postArticle = function(req, res, next) {
 };
 
 exports.deleteArticle = function (req, res) {
-    var ArticleId = req.query.articleid;
+    var ArticleId = req.query.aid;
     console.log(ArticleId);
     Article.findOne({_id:ArticleId},function (err, article) {
         if(err)
             console.log(err);
         if(article){
             console.log(' i am runing');
-            // Comment.findOne({'article': ArticleId},function (err, comment) {
-            //     console.log(comment);
-            // });
-            // Comment.remove({
-            //         'article': ArticleId
-            // })
+            Comment.find({article: ArticleId},function (err, comment) {
+                console.log('输出评论'+typeof comment);
+                Comment.remove({article:ArticleId});
+            });
         }
+        Article.remove({_id:ArticleId},function (err, article) {
+            if(err)
+                console.log(err);
+            console.log('输出文章:'+typeof article);
+        });
     });
-    // Article.remove({'_id':ArticleId},function (err, article) {
-    //     if(err)
-    //         console.log(err);
-    //     res.json({success:1})
-    // });
     res.json({success:1})
 };
 

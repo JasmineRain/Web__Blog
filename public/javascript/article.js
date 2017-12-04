@@ -16,12 +16,10 @@ $(function(){
 $(document).ready(function () {
     $('#del').click(function () {
         var target = $('#del');
-        console.log(target);
-        var articleID = target.data('articleid');
-        console.log(articleID);
+        var aid = target.data('aid');
         $.ajax({
             type:'get',
-            url:'/article/delete?articleid='+articleID
+            url:'/article/delete?aid='+aid
         }).done(function(results) {
             //将前端的文章项目删除
             console.log(results);
