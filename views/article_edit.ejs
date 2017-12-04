@@ -7,7 +7,7 @@
             <div class="layui-col-md10 layui-col-md-offset1">
                 <div class="blog-content">
                     <div class="blog-title">
-                        <h1>新建文章</h1>
+                        <h1>新文章</h1>
                     </div>
                     <div class="one-editor-content">
                         <!-- <form class="layui-form" action="/article/post" method="POST"> -->
@@ -16,13 +16,19 @@
                                 <input type="text" name="_id" value="<%-article._id%>" style="display:none">
                                 <input type="text" name="title" value="<%-article.title%>" required lay-verify="required" autocomplete="off" class="layui-input">
                                 <% } else { %>
-                                    <input type="text" name="title" value="新文章" required lay-verify="required" autocomplete="off" class="layui-input">
+                                    <input type="text" placeholder="请输入文章标题" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
                                     <% } %>
                         </div>
                         <div id="layout">
 
                             <div id="editormd">
-                                <textarea name="content"><%if(locals.article){%><%-article.content%><%}else{%><%="### Hello Editor.md !"%><%}%></textarea>
+                                <textarea name="content">
+                                    <%if(locals.article){%>
+                                        <%-article.content%>
+                                            <%}else{%>
+                                                <%="### Hello Editor.md !"%>
+                                                    <%}%>
+                                </textarea>
                             </div>
 
                         </div>
@@ -51,7 +57,7 @@
         <script type="text/javascript" src="/javascript/exif.js"></script>
         <script type="text/javascript">
             var testEditor;
-            var articlePhoto;//图片数据
+            var articlePhoto; //图片数据
 
             function F_Open_dialog() {
                 document.getElementById("articlePhoto").click();
@@ -64,7 +70,7 @@
                 let file = this.files[0];
                 minSize(file);
             }
-
+            //初始化md
             $(function () {
                 testEditor = editormd("editormd", {
                     width: "100%",
@@ -72,41 +78,75 @@
                     syncScrolling: "single",
                     path: "/libs/editor.md/lib/"
                 });
-                $('button.submit').click(function () {
-                    var article = {};
-                    var $_id = $('[name=_id]');
-                    var $title = $('[name=title]');
-                    var $content = $('[name=content]');
-                    if ($_id.length > 0) { //如果有_id
-                        article = {
-                            _id: $_id.val(),
-                            title: $title.val(),
-                            content: $content.val()
-                        }
-                    } else {
-                        article = {
-                            title: $title.val(),
-                            content: $content.val()
-                        }
-                    }
-                    $.ajax({
-                        url: '/article/post',
-                        type: 'POST',
-                        data: article,
-                        timeout: 5000
-                    }).done(function (results) {
-                        if (results.success === 1) {
-                            layer.msg('提交成功！');
-                        } else if (results.success === 0) {
-                            layer.msg('提交失败！');
-                        }
-                    });
-                })
-
             });
 
-                    //压缩函数
-                    function minSize(file) {
+            $('button.submit').click(function () {
+                var article = {};
+                var $_id = $('[name=_id]');
+                var $title = $('[name=title]');
+                var $content = $('[name=content]');
+                var article = {
+                                _id: '',
+                                title: '',
+                                content: '',
+                                cover:''
+                            }
+                console.log($_id, $title, $content)
+                try {
+                    if (!$title.val()) {
+                        throw ("请填写文章标题!")
+                    }
+                    if (!$content.val()) {
+                        throw ("文章长度不能为零!")
+                    }
+                } catch (err) {
+                    return layer.msg(err);
+                }
+
+                article.title= $title.val(),
+                article.content= $content.val()
+
+                if (!articlePhoto) {
+                    //弹窗提示
+                    layer.open({
+                        content: '未选择文章封面，系统将使用默认图片作为封面。',
+                        btn: ['确定', '取消'],
+                        yes: function (index, layero) {
+                            //发送无图片文章
+                            sendArticle($_id,article);
+                            layer.close(index); //如果设定了yes回调，需进行手工关闭
+                        },
+                        btn2: function (index, layero) {
+                            return;
+                        },
+                        cancel: function () {}
+                    });
+                }else{
+                    article.cover=articlePhoto;
+                    sendArticle($_id,article);
+                }
+            })
+
+            function sendArticle($_id,article) {
+                if ($_id.length > 0) { //如果有_id
+                    article._id=$_id.val();
+                }
+                console.log('article',article);
+                $.ajax({
+                    url: '/article/post',
+                    type: 'POST',
+                    data: article,
+                    timeout: 5000
+                }).done(function (results) {
+                    if (results.success === 1) {
+                        layer.msg('提交成功！');
+                    } else if (results.success === 0) {
+                        layer.msg('提交失败！');
+                    }
+                });
+            }
+            //压缩函数
+            function minSize(file) {
                 //此方法为file input元素的change事件
                 //var file = this.files[0];
                 var orientation;

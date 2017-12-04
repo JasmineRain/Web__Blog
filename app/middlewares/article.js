@@ -1,6 +1,8 @@
 var Article = require('../models/article.js');
 var Comment = require('../models/comment');
 var Follow = require('../models/follow');
+let fs = require('fs');
+let path = require('path');
 
 var hljs = require('highlight.js'); // https://highlightjs.org/
 let kt = require('katex'),
@@ -131,9 +133,22 @@ exports.editArticle = function (req, res, next) {
 //提交文章
 exports.postArticle = function (req, res, next) {
   var _article = {};
+  let uploadpath = 0;
+  //判断封面
+  if (req.body.cover) {
+    uploadpath = imageUpload(req.body.cover, 'upload/image/articleCover/');
+    console.log('uploadpath',uploadpath)
+  }
   var reg = /[\\\`\*\_\[\]\#\+\-\!\>]/g;
   if (req.body._id) {
     Article.findById(req.body._id, function (err, article) {
+      if (!article) {
+        return res.send({
+          success: 0
+        }); //返回之前页面
+      }
+      if (req.body.cover)
+        article.cover = uploadpath;
       article.title = req.body.title;
       article.content = req.body.content;
       article.desc = req.body.content.substring(0, 500).replace(reg, ""); //截取前50个字符作为简介
@@ -151,15 +166,29 @@ exports.postArticle = function (req, res, next) {
       })
     })
   } else {
-    _article = {
-      title: req.body.title,
-      content: req.body.content,
-      author: req.session.user,
-      desc: req.body.content.substring(0, 500).replace(reg, ""), //截取前50个字符作为简介
-      readc: 0,
-      commentc: 0,
-      applausec: 0
-    };
+    if (uploadpath !== 0){
+      _article = {
+        title: req.body.title,
+        content: req.body.content,
+        author: req.session.user,
+        cover:uploadpath,
+        desc: req.body.content.substring(0, 500).replace(reg, ""), //截取前50个字符作为简介
+        readc: 0,
+        commentc: 0,
+        applausec: 0
+      };
+      console.log('_article',_article);
+    }else{
+      _article = {
+        title: req.body.title,
+        content: req.body.content,
+        author: req.session.user,
+        desc: req.body.content.substring(0, 500).replace(reg, ""), //截取前50个字符作为简介
+        readc: 0,
+        commentc: 0,
+        applausec: 0
+      };
+    }
     var article = new Article(_article);
     article.save(function (err, article) {
       if (err) {
@@ -178,20 +207,22 @@ exports.postArticle = function (req, res, next) {
 
   // imgData：传来的图片数据
   // path：保存的路径  这里建议使用 “upload/image/articleCover/”
-  function imageUpload(imgData, path) {
+  function imageUpload(imgData, uploadpath) {
+    console.log('dadadadasdsadad');
     let base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
     let dataBuffer = new Buffer(base64Data, 'base64');
     let filename = "image_upload_" + Date.parse(new Date()) + ".png";
-    let str = path + filename;
+    let str = uploadpath + filename;
+    
     fs.writeFile(str, dataBuffer, function (err) {
       if (err) {
-        console.log(err);
-        return 0;
+        console.log('66666655555555555555',err);
       } else {
         console.log('success')
-        return str;//返回要保存的链接地址
       }
     });
+
+    return str
   }
 };
 
