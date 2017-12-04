@@ -16,6 +16,10 @@ body{
     height: 100%;
 }
 
+p{
+    word-wrap:break-word;
+}
+
 .blog-main{
     flex: 1 0 auto;
 }

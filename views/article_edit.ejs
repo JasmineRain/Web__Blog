@@ -22,13 +22,7 @@
                         <div id="layout">
 
                             <div id="editormd">
-                                <textarea name="content">
-                                    <%if(locals.article){%>
-                                        <%-article.content%>
-                                            <%}else{%>
-                                                <%="### Hello Editor.md !"%>
-                                                    <%}%>
-                                </textarea>
+                                <textarea name="content"><%if(locals.article){%><%-article.content%><%}else{%><%="### Hello Editor.md !"%><%}%></textarea>
                             </div>
 
                         </div>
