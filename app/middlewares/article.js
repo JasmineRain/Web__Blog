@@ -166,21 +166,21 @@ exports.postArticle = function(req, res, next) {
 
 exports.deleteArticle = function (req, res) {
     var ArticleId = req.query.aid;
-    console.log(ArticleId);
     Article.findOne({_id:ArticleId},function (err, article) {
         if(err)
             console.log(err);
         if(article){
             console.log(' i am runing');
-            Comment.find({article: ArticleId},function (err, comment) {
-                console.log('输出评论'+typeof comment);
-                Comment.remove({article:ArticleId});
-            });
+            Comment.find({article: ArticleId})
+                .exec(function (err, comments) {
+                    console.log(comments.length);
+                    Comment.remove({article:ArticleId});
+                    Comment.save();
+                })
         }
         Article.remove({_id:ArticleId},function (err, article) {
             if(err)
                 console.log(err);
-            console.log('输出文章:'+typeof article);
         });
     });
     res.json({success:1})
