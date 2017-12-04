@@ -9,7 +9,7 @@ var md = require('markdown-it')({
   html: true,
   linkify: true,
   typography: true,
-  highlight: function(str, lang) {
+  highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(lang, str).value;
@@ -25,7 +25,7 @@ md.use(require('markdown-it-emoji'))
 
 
 
-exports.showArticle = function(req, res, next) {
+exports.showArticle = function (req, res, next) {
   var article_id = req.params._id;
   Article.update({
     _id: article_id
@@ -33,7 +33,7 @@ exports.showArticle = function(req, res, next) {
     $inc: {
       readc: 1
     }
-  }, function(err) {
+  }, function (err) {
     if (err) {
       console.log(err)
     }
@@ -43,7 +43,7 @@ exports.showArticle = function(req, res, next) {
 
   Article.findOne({
       '_id': article_id
-    }, function(err, article) {
+    }, function (err, article) {
 
 
 
@@ -58,11 +58,11 @@ exports.showArticle = function(req, res, next) {
         })
         .populate('from')
         .populate('reply.from reply.to')
-        .exec(function(err, comments) {
+        .exec(function (err, comments) {
           if (req.session.user) {
             Follow.findOne({
               from: req.session.user._id
-            }, function(err, follow) {
+            }, function (err, follow) {
               var isFollow = 0;
               // console.log("req"+req.session.user._id);
               // console.log(follow.to);
@@ -103,24 +103,24 @@ exports.showArticle = function(req, res, next) {
 };
 
 
-exports.newArticle = function(req, res, next) {
+exports.newArticle = function (req, res, next) {
   res.render('article_edit', {
     css_add: '<link rel="stylesheet" href="editormd.min.css" />'
   })
 };
 
-exports.Tset = function(req, res, next) {
+exports.Tset = function (req, res, next) {
   res.render('eidtorTest');
 };
 
 
 
 
-exports.editArticle = function(req, res, next) {
+exports.editArticle = function (req, res, next) {
   var article_id = req.params._id;
   Article.findOne({
     _id: article_id
-  }, function(err, article) {
+  }, function (err, article) {
     res.render('article_edit', {
       css_add: '<link rel="stylesheet" href="editormd.min.css" />',
       article: article
@@ -129,21 +129,25 @@ exports.editArticle = function(req, res, next) {
 };
 
 //提交文章
-exports.postArticle = function(req, res, next) {
+exports.postArticle = function (req, res, next) {
   var _article = {};
   var reg = /[\\\`\*\_\[\]\#\+\-\!\>]/g;
   if (req.body._id) {
-    Article.findById(req.body._id, function(err, article) {
+    Article.findById(req.body._id, function (err, article) {
       article.title = req.body.title;
       article.content = req.body.content;
       article.desc = req.body.content.substring(0, 500).replace(reg, ""); //截取前50个字符作为简介
-      article.save(function(err, article) {
+      article.save(function (err, article) {
         if (err) {
           console.log(err);
-          res.send({success:0});
+          res.send({
+            success: 0
+          });
 
         }
-        res.send({success:1});
+        res.send({
+          success: 1
+        });
       })
     })
   } else {
@@ -157,43 +161,76 @@ exports.postArticle = function(req, res, next) {
       applausec: 0
     };
     var article = new Article(_article);
-    article.save(function(err, article) {
+    article.save(function (err, article) {
       if (err) {
         console.log(err);
-        res.send({success:0});
+        res.send({
+          success: 0
+        });
 
       }
-      res.send({success:1});
+      res.send({
+        success: 1
+      });
     })
+  }
+
+
+  // imgData：传来的图片数据
+  // path：保存的路径  这里建议使用 “upload/image/articleCover/”
+  function imageUpload(imgData, path) {
+    let base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+    let dataBuffer = new Buffer(base64Data, 'base64');
+    let filename = "image_upload_" + Date.parse(new Date()) + ".png";
+    let str = path + filename;
+    fs.writeFile(str, dataBuffer, function (err) {
+      if (err) {
+        console.log(err);
+        return 0;
+      } else {
+        console.log('success')
+        return str;//返回要保存的链接地址
+      }
+    });
   }
 };
 
 exports.deleteArticle = function (req, res) {
-    var ArticleId = req.query.aid;
-    Article.findOne({_id:ArticleId},function (err, article) {
-        if(err)
-            console.log(err);
-        if(article){
-            Comment.find({article: ArticleId})
-                .exec(function (err, comments) {
-                    Comment.remove({article:ArticleId},function (err, comments) {
-                        if(err)
-                            console.log(err)
-                    });
-                })
-        }
-        Article.remove({_id:ArticleId},function (err, article) {
-            if(err)
-                console.log(err);
-        });
+  var ArticleId = req.query.aid;
+  Article.findOne({
+    _id: ArticleId
+  }, function (err, article) {
+    if (err)
+      console.log(err);
+    if (article) {
+      Comment.find({
+          article: ArticleId
+        })
+        .exec(function (err, comments) {
+          Comment.remove({
+            article: ArticleId
+          }, function (err, comments) {
+            if (err)
+              console.log(err)
+          });
+        })
+    }
+    Article.remove({
+      _id: ArticleId
+    }, function (err, article) {
+      if (err)
+        console.log(err);
     });
-    res.json({success:1})
+  });
+  res.json({
+    success: 1
+  })
 };
 
 
 
-exports.listarticles = function(req, res) {
-  Article.fetch(function(err, articles) {
+exports.listarticles = function (req, res) {
+  Article.fetch(function (err, articles) {
     if (err) {
       console.log(err)
     }
