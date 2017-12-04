@@ -1,13 +1,143 @@
+body{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+}
+
 .blog-content{
     padding: 20px;
     margin: 20px;
     background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
 }
 
 .blog-title{
-    padding: 16px 0;
+    padding: 10px 0;
 }
 
 .blog-title h1{
     font-size: 30px;
+}
+
+/* 加载动画 */
+  .spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -60px;
+  width: 50px;
+  height: 60px;
+  text-align: center;
+  font-size: 10px;
+  z-index: 999;
+}
+
+.spinner>div {
+  background-color: #67CF22;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4)
+  }
+  20% {
+    -webkit-transform: scaleY(1.0)
+  }
+}
+
+@keyframes stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }20% {
+       transform: scaleY(1.0);
+       -webkit-transform: scaleY(1.0);
+   }
+}
+
+
+
+/* 标题栏 */
+.blog-nav{
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-weight: 600;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0,34,77,.1);
+    z-index: 999;
+}
+
+
+.blog-nav a:link {color: black; text-decoration:none;} 
+.blog-nav a:active:{color: black;text-decoration:none; }
+.blog-nav a:visited {color:black;text-decoration:none;} 
+.blog-nav a:hover {color: black; text-decoration:none;} 
+
+
+/* 底栏 */
+.content-footer {
+    padding-bottom: 200px;
+}
+.footer{
+    background: #06060B;
+    color: #aaa;
+    padding:30px 0 20px 0;
+    clear: both;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    z-index: -1;
+}
+.footer-content{
+    text-align: center;
+}
+.footer-content div{
+    margin: 10px;
+}
+.footer-title{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+}
+.footer-link{
+    font-size: 10px;
+}
+.footer-author-title{
+    font-size: 14px;
+}
+.footer-author{
+    font-size: 12px;
 }

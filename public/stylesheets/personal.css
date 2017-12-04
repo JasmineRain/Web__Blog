@@ -2,7 +2,7 @@
 .per-content a:link {color: black; text-decoration:none;} 
 .per-content a:active:{color: black;text-decoration:none; }
 .per-content a:visited {color:black;text-decoration:none;} 
-.per-content a:hover {color: black; text-decoration:none;;} 
+.per-content a:hover {color: black; text-decoration:none;} 
 
 .notification {
     position: fixed;
