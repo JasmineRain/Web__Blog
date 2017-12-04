@@ -2,14 +2,15 @@
     <legend><%=post.title%></legend>
     <div class="layui-field-box">
         <a href="/article/<%=post._id%>">
-        <div class="post-content layui-row">
-            <div class="layui-col-md4 layui-col-sm4">
-                <div class="per-post-cover">
-                    <img src="/<%=post.cover%>">
+            <div class="post-content layui-row">
+                <div class="layui-col-md4 layui-col-sm4">
+                    <div class="per-post-cover">
+                        <img src="/<%=post.cover%>">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-col-md8 layui-col-sm8 per-post-content">
-                <p><label style="font-size:25px;"><%=post.desc.substring(0,1)%></label><%=post.desc.substring(1,170)%> ...</p>
+                <div class="layui-col-md8 layui-col-sm8 per-post-content">
+                    <p><label style="font-size:25px;"><%=post.desc.substring(0,1)%></label><%=post.desc.substring(1,170)%> ...</p>
+                </div>
             </div>
         </a>
         </div>
@@ -27,7 +28,7 @@
                     <a  href="/article/edit/<%=post._id%>"><button class="layui-btn layui-btn-small layui-btn-primary">编辑</button></a>
                 </div>
                 <div class="layui-col-md6 layui-col-xs6 layui-col-sm6">
-                    <button class="layui-btn layui-btn-small layui-btn-primary">删除</button>
+                    <button class="layui-btn layui-btn-small layui-btn-primary"><span data-articleid="<%-post._id%>" id="del">删除</span></button>
                 </div>
             </div>     
             <%}%>       

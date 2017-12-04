@@ -12,3 +12,19 @@ $(function(){
         }
     });
 });
+
+$(document).ready(function () {
+    $('#del').click(function () {
+        var target = $('#del');
+        console.log(target);
+        var articleID = target.data('articleid');
+        console.log(articleID);
+        $.ajax({
+            type:'get',
+            url:'/article/delete?articleid='+articleID
+        }).done(function(results) {
+            //将前端的文章项目删除
+            console.log(results);
+        })
+    })
+});

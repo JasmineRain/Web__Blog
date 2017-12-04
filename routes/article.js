@@ -14,5 +14,6 @@ router.get('/edit/:_id', User.signinRequired, User.authorCheck, Article.editArti
 
 router.post('/post', User.signinRequired, Article.postArticle);
 
+router.get('/delete',User.signinRequired, User.authorCheck, Article.deleteArticle);
 
 module.exports = router;
