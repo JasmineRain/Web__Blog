@@ -1,0 +1,27 @@
+{
+  "name": "blog",
+  "description": "A blog platform",
+  "main": "bowerrc",
+  "authors": [
+    "Mr.Lee Mr.Zhang Mr.Gao"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Blog"
+  ],
+  "homepage": "https://github.com/JasmineRain/Web__Blog",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "editor.md": "^1.5.0",
+    "jquery": "^3.2.1"
+  },
+  "directory" : "public/libs"
+}
