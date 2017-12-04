@@ -165,27 +165,28 @@ exports.postArticle = function(req, res, next) {
 };
 
 exports.deleteArticle = function (req, res) {
-    var ArticleId = req.query.articleid;
-    console.log(ArticleId);
-    Article.findOne({_id:ArticleId},function (err, article) {
-        if(err)
-            console.log(err);
-        if(article){
-            console.log(' i am runing');
-            // Comment.findOne({'article': ArticleId},function (err, comment) {
-            //     console.log(comment);
-            // });
-            // Comment.remove({
-            //         'article': ArticleId
-            // })
-        }
-    });
-    // Article.remove({'_id':ArticleId},function (err, article) {
+  console.log('deleteArticle666666666666666');
+    // var ArticleId = req.query.articleid;
+    // console.log(ArticleId);
+    // Article.findOne({_id:ArticleId},function (err, article) {
     //     if(err)
     //         console.log(err);
-    //     res.json({success:1})
+    //     if(article){
+    //         console.log(' i am runing');
+    //         // Comment.findOne({'article': ArticleId},function (err, comment) {
+    //         //     console.log(comment);
+    //         // });
+    //         // Comment.remove({
+    //         //         'article': ArticleId
+    //         // })
+    //     }
     // });
-    res.json({success:1})
+    // // Article.remove({'_id':ArticleId},function (err, article) {
+    // //     if(err)
+    // //         console.log(err);
+    // //     res.json({success:1})
+    // // });
+    // res.json({success:1})
 };
 
 

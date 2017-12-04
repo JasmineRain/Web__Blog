@@ -114,7 +114,7 @@ body{
 .footer{
     background: #06060B;
     color: #aaa;
-    padding:30px 0 20px 0;
+    padding:16px 0;
     clear: both;
     position: absolute;
     width: 100%;
@@ -128,15 +128,15 @@ body{
     margin: 10px;
 }
 .footer-title{
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    line-height: 20px;
+    line-height: 16px;
 }
 .footer-link{
     font-size: 10px;
 }
 .footer-author-title{
-    font-size: 14px;
+    font-size: 12px;
 }
 .footer-author{
     font-size: 12px;
