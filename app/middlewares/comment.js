@@ -19,7 +19,7 @@ exports.save = function(req,res){
                 if(err){
                     console.log(err)
                 }
-                res.redirect('/article/'+articleId)
+                res.redirect('/article/show/'+articleId)
             })
         })
     }else{
