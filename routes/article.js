@@ -7,13 +7,9 @@ var User = require('../app/middlewares/user');
 
 router.get('/new', User.signinRequired, Article.newArticle);
 router.get('/test', User.signinRequired, Article.Tset);
-router.get('/:_id', Article.showArticle);
-
-
 router.get('/edit/:_id', User.signinRequired, User.authorCheck, Article.editArticle);
-
 router.post('/post', User.signinRequired, Article.postArticle);
-
 router.get('/delete',User.signinRequired, User.authorCheck, Article.deleteArticle);
+router.get('/:_id', Article.showArticle);
 
 module.exports = router;

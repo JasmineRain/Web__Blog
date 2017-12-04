@@ -173,12 +173,16 @@ exports.deleteArticle = function (req, res) {
         if(article){
             console.log(' i am runing');
             Comment.find({article: ArticleId},function (err, comment) {
-                comment.remove();
+                console.log('输出评论'+typeof comment);
+                Comment.remove({article:ArticleId});
             });
         }
-        article.remove();
+        Article.remove({_id:ArticleId},function (err, article) {
+            if(err)
+                console.log(err);
+            console.log('输出文章:'+typeof article);
+        });
     });
-
     res.json({success:1})
 };
 

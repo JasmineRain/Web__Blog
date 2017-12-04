@@ -1,18 +1,25 @@
 <%- include('header')%>
   <%- include('nav') %>
     <link rel="stylesheet" href="/stylesheets/default.css">
-    <div class="full"></div>
-    <fieldset class="layui-elem-field layui-field-title">
-      <legend>搜索结果</legend>
-      <hr class="layui-bg-green">
-      <% if(locals.articles) { %>
-        <div class="result_field">
-          <%for(var i=0;i<articles.length;i++){%>
-            <%-include('components/search_per_article',{article:articles[i]})%>
-          <%}%>
+    <div class="layui-row content-footer">
+      <div class="layui-col-md8 layui-col-md-offset2">
+        <div class="blog-content">
+          <div class="blog-title">
+            <h1>搜索结果</h1>
+          </div>
+          <fieldset class="layui-elem-field layui-field-title">
+            <% if(locals.articles) { %>
+              <div class="result_field">
+                <%for(var i=0;i<articles.length;i++){%>
+                  <%-include('components/search_per_article',{article:articles[i]})%>
+                    <%}%>
+              </div>
+              <%}else if(locals.message=="not found"){%>
+                <%-include('components/search_not_found')%>
+                  <%}%>
+          </fieldset>
         </div>
-      <%}else if(locals.message=="not found"){%>
-        <%-include('components/search_not_found')%>
-      <%}%>
-    </fieldset>
+      </div>
+    </div>
+
     <%- include('footer') %>
