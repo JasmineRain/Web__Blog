@@ -10,6 +10,6 @@ router.get('/test', User.signinRequired, Article.Tset);
 router.get('/edit/:_id', User.signinRequired, User.authorCheck, Article.editArticle);
 router.post('/post', User.signinRequired, Article.postArticle);
 router.get('/delete',User.signinRequired, User.authorCheck, Article.deleteArticle);
-router.get('/:_id', Article.showArticle);
+router.get('/show/:_id', Article.showArticle);
 
 module.exports = router;
