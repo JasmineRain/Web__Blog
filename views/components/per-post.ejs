@@ -1,7 +1,7 @@
-<fieldset class="layui-elem-field">
+<fieldset class="layui-elem-field per-post1" data-id="<%=post._id%>">
     <legend><%=post.title%></legend>
     <div class="layui-field-box">
-        <a href="/article/<%=post._id%>">
+        <a href="/article/show/<%=post._id%>">
             <div class="post-content layui-row">
                 <div class="layui-col-md4 layui-col-sm4">
                     <div class="per-post-cover">
@@ -27,7 +27,7 @@
                     <a  href="/article/edit/<%=post._id%>"><button class="layui-btn layui-btn-small layui-btn-primary">编辑</button></a>
                 </div>
                 <div class="layui-col-md6 layui-col-xs6 layui-col-sm6">
-                    <button class="layui-btn layui-btn-small layui-btn-primary"><span data-aid="<%-post._id%>" id="del">删除</span></button>
+                    <button class="article-delete layui-btn layui-btn-small layui-btn-primary" data-id="<%=post._id%>"><span data-aid="<%-post._id%>" id="del">删除</span></button>
                 </div>
             </div>
             <%}%>       

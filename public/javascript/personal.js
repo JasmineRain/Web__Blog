@@ -8,9 +8,46 @@ $(document).ready(function () {
       scrollTop: 0
     }, 500);
   })
+  //删除文章
+  $('.article-delete').click(function () {
+    let id = $(this).data('id');
+    console.log('.article-delete',$(this).data('id'))
+    layui.use('layer', function () {
+      var layer = layui.layer;
+      //弹窗提示
+      layer.open({
+        content: '删除文章操作不可恢复！是否继续删除?',
+        btn: ['确定', '取消'],
+        yes: function (index, layero) {
+          $.ajax({
+            type: 'get',
+            url: '/article/delete?aid=' + id
+          }).done(function (results) {
+            if (results.success === 1) {
+             
+              //前端删除所有相关文章
+              $('.per-post1').each(function () {
+                console.log('delete',$(this).data('id'))
+                if ($(this).data('id') === id) {
+                  console.log('删除文章操作不可恢复！是否继续删除ok')
+                  $(this).parent().fadeOut();
+                }
+              })
+              layer.msg('删除成功！');
+            } else if (results.success === 0) {
+              layer.msg('删除失败！');
+            }
+          })
+          layer.close(index); //如果设定了yes回调，需进行手工关闭
+        },
+        btn2: function (index, layero) {},
+        cancel: function () {}
+      });
+    });
+  })
 
   //取消关注
-  $('.per-atten-cancel').click(function (data) {
+  $('.per-atten-cancel').click(function () {
     let name = $(this).data('name');
     let id = $(this).data('id');
 
@@ -48,16 +85,16 @@ $(document).ready(function () {
 
   //点赞
   $('.per-atten-praise').click(function () {
-    let id=$(this).data('id');
-    let thisd=$(this);
+    let id = $(this).data('id');
+    let thisd = $(this);
     $.ajax({
       type: 'get',
       url: '/personal/giveApplause/' + id
     }).done(function (results) {
       if (results.success === 1) {
         //前端增加点赞数
-        let num=thisd.find('.applausec').html();
-        num= parseInt(num)+1
+        let num = thisd.find('.applausec').html();
+        num = parseInt(num) + 1
         thisd.find('.applausec').html(num)
 
         layer.msg('点赞成功！');
@@ -87,21 +124,26 @@ $(document).ready(function () {
 
   //导航栏重定位
   let scrollFlag = true;
+
   $(window).scroll(function () {
-    let dy = $('.nav-cahnge').offset().top - $(document).scrollTop();
-    if (dy < 0 && scrollFlag) {
-      console.log("改变导航栏");
-      scrollFlag = false;
-      $('.per-guide').addClass("per-guide-flex layui-col-md8");
-      $('.per-guide-in').addClass("layui-col-md2");
-    } else if (dy > 0 && !scrollFlag) {
-      console.log("恢复导航栏");
-      scrollFlag = true;
-      $('.per-guide').removeClass("per-guide-flex layui-col-md8");
-      $('.per-guide-in').removeClass("layui-col-md2");
+    if ($('.nav-cahnge').offset()) {
+      let dy = $('.nav-cahnge').offset().top - $(document).scrollTop();
+      if (dy < 0 && scrollFlag) {
+        console.log("改变导航栏");
+        scrollFlag = false;
+        $('.per-guide').addClass("per-guide-flex layui-col-md8");
+        $('.per-guide-in').addClass("layui-col-md2");
+      } else if (dy > 0 && !scrollFlag) {
+        console.log("恢复导航栏");
+        scrollFlag = true;
+        $('.per-guide').removeClass("per-guide-flex layui-col-md8");
+        $('.per-guide-in').removeClass("layui-col-md2");
+      }
     }
 
   });
+
+
 })
 
 //背景上传
@@ -168,7 +210,7 @@ layui.use('upload', function () {
 
         //应用变化
         $('.per-head-avatar')[0].src = ("\\" + res.path);
-        $('.nav-avatar')[0].src = ("\\" + res.path);
+        //$('.nav-avatar')[0].src = ("\\" + res.path);
       }
     },
     error: function () {
