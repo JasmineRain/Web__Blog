@@ -11,42 +11,38 @@ exports.add = function(req,res){
             Follow.findOne({from:_user._id},function (err, follow) {
                 if(err){
                     console.log(err);
-                    return res.send({success:0});
+                    res.send({success:0});
                 }
                    
                 if(follow){
                     if(follow.to.indexOf(_tid)>=0){
-                        //console.log(follow.to.indexOf(_tid));
                         follow.to.remove({_id:_tid});
                         follow.save();
-                        //console.log(follow.to.indexOf(_tid));
-
-                        return res.send({success:1});
-
+                        res.send({success:1});
                     }else{
-                        return res.send({success:0});
+                        res.send({success:0});
                     }
                 }
                 else{
-                    return res.send({success:0});
+                    res.send({success:0});
                 }
             })
         }else if(op==='0'){
             Follow.findOne({from:_user._id},function(err,follow){
                 if(err){
                     console.log(err);
-                    return res.send({success:0});
+                    res.send({success:0});
                 }
                    
                 if(follow){
                     if(follow.to.indexOf(_tid)>=0)
-                        return res.send({success:1});
+                        res.send({success:1});
                     else{
                         follow.to.push(_tid);
                         follow.save(function(err,follow){
                             if(err){
                                 console.log(err);
-                                return res.send({success:0});
+                                res.send({success:0});
                             }
                             res.send({success:1});
                         })
@@ -59,20 +55,20 @@ exports.add = function(req,res){
                     _follow.save(function (err, follow) {
                         if(err){
                             console.log(err);
-                            return res.send({success:0});
+                            res.send({success:0});
                         }
                            
-                        return res.send({success:1});
+                        res.send({success:1});
                     });
                 }
             })
         }else{
-            return res.send({success:0});
+            res.send({success:0});
         }
 
 
     }else{
-        return res.send({success:0});
+        res.send({success:0});
     }
 };
 
