@@ -133,6 +133,15 @@ p{
     box-shadow: 0 1px 3px 0 rgba(0,34,77,.1);
     z-index: 999;
 }
+@media screen and (max-width: 992px) {
+    .blog-nav {
+        height: 90px;
+        line-height: 40px;
+    }
+}
+
+
+
 
 
 .blog-nav a:link {color: #777; text-decoration:none;} 

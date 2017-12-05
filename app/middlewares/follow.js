@@ -9,8 +9,11 @@ exports.add = function(req,res){
     if(_user._id){
         if(op==='1'){
             Follow.findOne({from:_user._id},function (err, follow) {
-                if(err)
+                if(err){
                     console.log(err);
+                    return res.send({success:0});
+                }
+                   
                 if(follow){
                     if(follow.to.indexOf(_tid)>=0){
                         //console.log(follow.to.indexOf(_tid));
@@ -18,28 +21,32 @@ exports.add = function(req,res){
                         follow.save();
                         //console.log(follow.to.indexOf(_tid));
 
-                        res.send({success:1});
+                        return res.send({success:1});
 
                     }else{
-                        res.send({success:1});
+                        return res.send({success:0});
                     }
                 }
                 else{
-                    res.send({success:1});
+                    return res.send({success:0});
                 }
             })
-        }else{
+        }else if(op==='0'){
             Follow.findOne({from:_user._id},function(err,follow){
-                if(err)
+                if(err){
                     console.log(err);
+                    return res.send({success:0});
+                }
+                   
                 if(follow){
                     if(follow.to.indexOf(_tid)>=0)
-                        res.send({success:1});
+                        return res.send({success:1});
                     else{
                         follow.to.push(_tid);
                         follow.save(function(err,follow){
                             if(err){
-                                console.log(err)
+                                console.log(err);
+                                return res.send({success:0});
                             }
                             res.send({success:1});
                         })
@@ -49,18 +56,23 @@ exports.add = function(req,res){
                         from: _user._id,
                         to:[_tid]
                     });
-                    _follow.save(function (err, res) {
-                        if(err)
+                    _follow.save(function (err, follow) {
+                        if(err){
                             console.log(err);
-                        res.send({success:1});
+                            return res.send({success:0});
+                        }
+                           
+                        return res.send({success:1});
                     });
                 }
             })
+        }else{
+            return res.send({success:0});
         }
 
 
     }else{
-        res.send({success:0});
+        return res.send({success:0});
     }
 };
 

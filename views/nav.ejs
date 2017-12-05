@@ -1,8 +1,8 @@
 
   <div class="blog-nav layui-row">
     <div class="layui-col-md8">
-      <div class="layui-col-md1">BLOG</div>
-      <div class="layui-col-md3">
+      <div class="layui-col-md1 layui-hide-xs">BLOG</div>
+      <div class="layui-col-md3 layui-hide-xs">
           <div class="layui-col-md6">
               <a href="/"><i class="layui-icon">&#xe68e; </i>首页</a>
           </div>
@@ -14,7 +14,23 @@
               <%}%>
           </div>
       </div>
-      <div class="layui-col-md5">
+      <!-- 移动端 -->
+      <div class="layui-col-xs8 layui-hide-md layui-hide-sm">
+
+        <div class="layui-col-xs5">
+            <%if(user){%>
+              <a href="/personal?id=<%=user._id%>"></i>个人中心</a>
+            <%}else{%>
+              <a href="/users/signin"></i>个人中心</a>
+            <%}%>
+        </div>
+        <div class="layui-col-xs6 layui-col-xs-offset1">
+          <a href="/">BLOG</a>
+      </div>
+    </div>
+
+
+      <div class="layui-col-md5 layui-hide-xs">
           <div class="layui-input-inline search">
             <input type="text" name="search_content" required lay-verify="required" placeholder="请输入搜索内容" class="layui-input" />
           </div>
@@ -23,22 +39,34 @@
           </div>
       </div>
     </div>
-    <div class="layui-col-md2 layui-col-md-offset2">
+    <div class="layui-col-md2 layui-col-md-offset2 layui-col-xs4">
       <%if(!user){%>
-        <div class="layui-col-md3 layui-col-md-offset4">
+        <div class="layui-col-md3 layui-col-md-offset4 layui-col-xs6">
           <a href="/users/signin">登录</a>
         </div>
-        <div class="layui-col-md3">
+        <div class="layui-col-md3 layui-col-xs6">
           <a href="/users/signup">注册</a>
         </div>
       <%}else{%>
-        <div class="layui-col-md3 layui-col-md-offset4">
+        <div class="layui-col-md8 layui-hide-xs">
             <a href="/personal?id=<%=user._id%>"><%=user.name%></a>
-          </div>
-        <div class="layui-col-md3">
+        </div>
+        <div class="layui-col-md3 layui-hide-xs ">
           <a href="/users/logout">注销</a>
         </div>
+      <div class="layui-col-xs6 layui-col-xs-offset5 layui-hide-md layui-hide-sm">
+        <a href="/users/logout">注销</a>
+      </div>
       <%}%>
     </div>
+    <div class="layui-col-xs12 layui-hide-md layui-hide-sm">
+      <div class="layui-input-inline search">
+        <input type="text" name="search_content" required lay-verify="required" placeholder="请输入搜索内容" class="layui-input" />
+      </div>
+      <div class="layui-input-inline search">
+        <button class="layui-btn layui-btn-normal search_submit" style="margin-top:-2px;">搜索</button>
+      </div>
+  </div>
+
   </div>
 </div>
