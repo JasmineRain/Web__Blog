@@ -1,141 +1,174 @@
 <%- include('header')%>
-    <%- include('nav')%>
-        <link rel="stylesheet" href="/stylesheets/default.css">
-        <link rel="stylesheet" href="/stylesheets/blog.css">
-        <div class="layui-row content-footer">
-            <div class="layui-col-md8 layui-col-md-offset2 blog-main">
-                <div class="blog-content">
-                    <div class="blog-article" >
-                        <h1 class="title">
-                            <%-article.title%>
-                        </h1>
-                        <div class="author">
-                            <a class="avatar" href="/personal?id=<%-article.author._id%>">
-                                <img src="/<%=article.author.avatar%>">
-                            </a>
-                            <div class="info">
-                                <span class="name">
-                                    <a href="#">
-                                        <%-article.author.name%>
-                                    </a>
-                                </span>
-                                <!-- 关注用户按钮 -->
-                                <%if(user){%>
-                                    <%if(isFollow){%>
-                                        <a class="btn btn-success follow">
-                                            <span data-tid="<%-article.author._id%>" id="follow" data-state=1>已关注</span>
-                                        </a>
-                                        <%}else{%>
-                                            <a class="btn btn-success follow">
-                                                <span data-tid="<%-article.author._id%>" id="follow" data-state=0>关注</span>
-                                            </a>
-                                            <%}%>
-                                                <%}else{%>
-                                                    <a class="btn btn-success follow" href="/users/signin">
-                                                        <span>登录后关注</span>
-                                                    </a>
-                                                    <%}%>
-                                                        <!-- 文章数据信息 -->
-                                                        <div class="meta">
-                                                            <span class="publish-time">
-                                                                <%-article.meta.updateAt%>
-                                                            </span>
-                                                            <span class="views-count">阅读
-                                                                <%-article.readc%>
-                                                            </span>
-                                                            <span class="comments-count">评论
-                                                                <%-article.commentc%>
-                                                            </span>
-                                                            <span class="rewards-count ">赞赏
-                                                                <%-article.applausec%>
-                                                            </span>
-                                                        </div>
+<%- include('nav')%>
+<link rel="stylesheet" href="/stylesheets/default.css">
+<link rel="stylesheet" href="/libs/editor.md/css/editormd.preview.css" />
 
-                            </div>
-                            <!-- 如果是当前作者，加入编辑按钮 -->
-                        </div>
-                        <%-article.content%>
+
+
+
+<div class="layui-row content-footer">
+    <div class="layui-col-md8 layui-col-md-offset2 blog-main">
+        <div class="blog-content">
+            <div class="blog-article" >
+                <h1 class="title">
+                    <%-article.title%>
+                </h1>
+            <div class="author">
+            <a class="avatar" href="/personal?id=<%-article.author._id%>">
+                <img src="/<%=article.author.avatar%>">
+            </a>
+            <div class="info">
+                <span class="name">
+                    <a href="#">
+                        <%-article.author.name%>
+                    </a>
+               </span>
+                <!-- 关注用户按钮 -->
+                <%if(user){%>
+                    <%if(isFollow){%>
+                        <a class="follow">
+                            <button  class="layui-btn layui-btn-mini  layui-btn-radius"  data-tid="<%-article.author._id%>" id="follow" data-state=1>已关注</button>
+                        </a>
+                        <%}else{%>
+                        <a class=" follow">
+                            <button class="layui-btn layui-btn-mini  layui-btn-radius" data-tid="<%-article.author._id%>" id="follow" data-state=0>关注</button>
+                        </a>
+                        <%}%>
+                    <%}else{%>
+                        <a class="follow" href="/users/signin">
+                            <button class="layui-btn layui-btn-mini  layui-btn-radius layui-btn-disabled">登录后关注</button>
+                        </a>
+                    <%}%>
+                    <!-- 文章数据信息 -->
+                    <div class="meta">
+                    <span class="publish-time"><%-time%></span>
+                    <span class="views-count">阅读<%-article.readc%></span>
+                    <span class="comments-count">评论<%-article.commentc%></span>
+                    <span class="rewards-count ">赞赏<%-article.applausec%></span>
+                </div>
+            </div>
+            <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+
+ <!-- 文章主体内容 -->
+        <div id="layout">
+            <div id="test-editormd-view2">
+                <textarea id="append-test" style="display:none;"><%-article.content%></textarea>          
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="full"></div>
+    <div class="full"></div>
+
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>评论区</legend>
+            <ul class="media-list">
+                <% for(var i=0;i<comments.length;i++) { %>
+                    <li class="media">
+                    <div class="media-left">
+                        <a class="comment" href="#commentForm" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
+                            <img class="media-object" src="/<%-comments[i].from.avatar%>" width="64px" height="64px">
+                        </a>
                     </div>
-
-                    <div class="full"></div>
-                    <div class="full"></div>
-
-                    <fieldset class="layui-elem-field layui-field-title">
-                        <legend>评论区</legend>
-                        <ul class="media-list">
-                            <% for(var i=0;i<comments.length;i++) { %>
-                                <li class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <%-comments[i].from.name%>
+                        </h4>
+                        <p>
+                            <%-comments[i].content%>
+                        </p>
+                        <% if((comments[i].reply)&&(comments[i].reply.length>0)) {%>
+                            <%for(var j=0;j<comments[i].reply.length;j++){ %>
+                                <div class="media">
                                     <div class="media-left">
-                                        <a class="comment" href="#commentForm" data-cid="<%-comments[i]._id%>" data-tid="<%-comments[i].from._id%>">
-                                            <img class="media-object" src="/<%-comments[i].from.avatar%>" width="64px" height="64px">
+                                        <a href="#">
+                                            <img class="media-object" src="/<%-comments[i].reply[j].from.avatar%>" width="64px" height="64px">
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">
-                                            <%-comments[i].from.name%>
+                                            <%-comments[i].reply[j].from.name%>
                                         </h4>
-                                        <p>
-                                            <%-comments[i].content%>
-                                        </p>
-                                        <% if((comments[i].reply)&&(comments[i].reply.length>0)) {%>
-                                            <%for(var j=0;j<comments[i].reply.length;j++){ %>
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="media-object" src="/<%-comments[i].reply[j].from.avatar%>" width="64px" height="64px">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4 class="media-heading">
-                                                            <%-comments[i].reply[j].from.name%>
-                                                        </h4>
-                                                        <%-comments[i].reply[j].content%>
-                                                    </div>
-                                                </div>
-                                                <%}%>
-                                                    <%}%>
-                                    </div>
-                                </li>
-                                <hr class="layui-bg-gray" style="opacity: 0.1;width: 20%">
-                                <div class="full_small"></div>
-                                <%}%>
-
-                        </ul>
-                    </fieldset>
-
-                    <div class="full"></div>
-                    <div class="full"></div>
-
-                    <fieldset class="layui-elem-field layui-field-title">
-                        <legend>写评论</legend>
-                        <form class="layui-form" <%if(user){%> action="/comment/new"
-                            <%}%> method="post" id="commentForm">
-                                <div class="layui-form-item layui-form-text">
-                                    <label class="layui-form-label">评论</label>
-                                    <div class="layui-input-block">
-                                        <textarea name="comment[content]" placeholder="评价" class="layui-textarea"></textarea>
+                                            <%-comments[i].reply[j].content%>
                                     </div>
                                 </div>
-                                <input type="hidden" name="comment[article]" value=<%-article._id%>>
-                                <%if(user){%>
-                                    <input type="hidden" name="comment[from]" value="<%-user._id%>">
-                                    <%}%>
-                                        <div class="layui-form-item">
-                                            <div class="layui-input-block">
-                                                <%if(user){%>
-                                                    <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>
-                                                    <%} else{%>
-                                                        <a href="/users/signin">
-                                                            <button type="button" class="layui-btn layui-btn-normal">登录</button>
-                                                        </a>
-                                                        <%}%>
-                                                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                            </div>
-                                        </div>
-                        </form>
-                    </fieldset>
-                </div>
+                            <%}%>
+                        <%}%>
+                    </div>
+                </li>
+                <hr class="layui-bg-gray" style="opacity: 0.1;width: 20%">
+                <div class="full_small"></div>
+                <%}%>
+                 </ul>
+            </fieldset>
+
+                <div class="full"></div>
+                <div class="full"></div>
+
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>写评论</legend>
+                    <form class="layui-form" <%if(user){%> action="/comment/new"
+                        <%}%> method="post" id="commentForm">
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">评论</label>
+                                <div class="layui-input-block">
+                                    <textarea name="comment[content]" placeholder="评价" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" name="comment[article]" value=<%-article._id%>>
+                            <%if(user){%>
+                                <input type="hidden" name="comment[from]" value="<%-user._id%>">
+                                <%}%>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <%if(user){%>
+                                                <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>
+                                                <%} else{%>
+                                                    <a href="/users/signin">
+                                                        <button type="button" class="layui-btn layui-btn-normal">登录</button>
+                                                    </a>
+                                                <%}%>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                    </div>
+                            </div>
+                    </form>
+                </fieldset>
             </div>
         </div>
-        <%- include('components/return-top')%>
-        <%- include('footer') %>
+    </div>
+
+
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/editor.md/lib/marked.min.js"></script>
+<script src="/libs/editor.md/lib/prettify.min.js"></script>
+
+<script src="/libs/editor.md/lib/raphael.min.js"></script>
+<script src="/libs/editor.md/lib/underscore.min.js"></script>
+<script src="/libs/editor.md/lib/sequence-diagram.min.js"></script>
+<script src="/libs/editor.md/lib/flowchart.min.js"></script>
+<script src="/libs/editor.md/lib/jquery.flowchart.min.js"></script>
+
+
+<script src="/libs/editor.md/editormd.min.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        var testEditormdView2;
+            
+        testEditormdView2 = editormd.markdownToHTML("test-editormd-view2", {
+            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+    });
+</script>
+
+<%- include('components/return-top')%>
+<%- include('footer') %>

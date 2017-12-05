@@ -146,7 +146,7 @@ body {
 }
 
 .per-guide {
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
 .per-guide-xs {
@@ -198,14 +198,6 @@ body {
     border: 5px solid rgba(255, 255, 255, 0.3);
     box-sizing: border-box;
 }
-
-
-/* 主体内容 */
-
-.per-content {
-    padding: 10px;
-}
-
 
 /* 时间线 */
 

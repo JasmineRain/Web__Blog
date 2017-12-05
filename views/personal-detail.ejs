@@ -8,22 +8,24 @@
                             <%-include('components/per-guide')%>
                         </div>
                     </div>
-                    <div class="per-content layui-col-md10">
-                        <%if(thisUser){%>
-                            <div class="per-content-title">
-                                <h1>个人设置</h1>
+                    <div class="layui-col-md10">
+                            <div class="blog-content">
+                                <%if(thisUser){%>
+                                    <div class="per-content-title">
+                                        <h1>个人设置</h1>
+                                    </div>
+                                    <div class="one-content">
+                                        <%-include('components/per-detail-edit')%>
+                                    </div>
+                                <%}else{%>
+                                    <div class="per-content-title">
+                                        <h1>他的信息</h1>
+                                    </div>
+                                    <div class="one-content">
+                                        <%-include('components/per-detail')%>
+                                    </div>
+                                <%}%>
                             </div>
-                            <div class="one-content">
-                                <%-include('components/per-detail-edit')%>
-                            </div>
-                        <%}else{%>
-                            <div class="per-content-title">
-                                <h1>他的信息</h1>
-                            </div>
-                            <div class="one-content">
-                                <%-include('components/per-detail')%>
-                            </div>
-                        <%}%>
                     </div>
                 </div>
             </div>

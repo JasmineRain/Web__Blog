@@ -7,18 +7,21 @@
           <div class="blog-title">
             <h1>搜索结果</h1>
           </div>
-          <fieldset class="layui-elem-field layui-field-title">
+        </div>
+      </div>
+      <div class="layui-col-md8 layui-col-md-offset2">
+        <div >
             <% if(locals.articles) { %>
-              <div class="result_field">
                 <%for(var i=0;i<articles.length;i++){%>
-                  <%-include('components/search_per_article',{article:articles[i]})%>
+                  <div class="blog-content">
+                      <%-include('components/search-result',{post:articles[i]})%>
+                  </div>
                     <%}%>
               </div>
               <%}else if(locals.message=="not found"){%>
                 <%-include('components/search_not_found')%>
                   <%}%>
-          </fieldset>
-        </div>
+              </div>
       </div>
     </div>
 

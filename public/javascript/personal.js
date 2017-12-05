@@ -30,7 +30,7 @@ $(document).ready(function () {
                 console.log('delete',$(this).data('id'))
                 if ($(this).data('id') === id) {
                   console.log('删除文章操作不可恢复！是否继续删除ok')
-                  $(this).parent().fadeOut();
+                  $(this).parent().parent().fadeOut();
                 }
               })
               layer.msg('删除成功！');
@@ -67,7 +67,7 @@ $(document).ready(function () {
               //前端删除所有相关文章
               $('.per-attention').each(function () {
                 if ($(this).data('id') === id) {
-                  $(this).parent().fadeOut();
+                  $(this).parent().parent().fadeOut();
                 }
               })
               layer.msg('取关成功！');

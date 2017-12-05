@@ -9,19 +9,22 @@
                         </div>
 
                     </div>
-                    <div class="per-content layui-col-md10">
-                        <div class="per-content-title">
-                                <%if(thisUser){%>
-                                    <h1>时间线</h1>
-                                <%}else{%>
-                                    <h1>他的时间线</h1>
-                                <%}%>
-                            </div>  
-                        <div>
-                            <div class="one-content">
-                                <%- include('components/per-timeline')%>
-                            </div>
+                    <div class="layui-col-md10">
+                        <div class="blog-content">
+                                <div class="per-content-title">
+                                        <%if(thisUser){%>
+                                            <h1>时间线</h1>
+                                        <%}else{%>
+                                            <h1>他的时间线</h1>
+                                        <%}%>
+                                    </div>  
+                                <div>
+                                    <div class="one-content">
+                                        <%- include('components/per-timeline')%>
+                                    </div>
+                                </div>
                         </div>
+
                     </div>
                 </div>
             </div>

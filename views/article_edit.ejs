@@ -1,13 +1,19 @@
 <%- include('header')%>
     <%- include('nav') %>
-        <link rel="stylesheet" href="/stylesheets/blog.css">
         <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
-        <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
         <div class="layui-row blog-main">
             <div class="layui-col-md10 layui-col-md-offset1">
                 <div class="blog-content">
-                    <div class="blog-title">
-                      <%if(locals.article){%><h1>修改文章</h1><%}else{%><h1>新文章</h1><%}%></div>
+                        <% if(locals.article) { %>
+                            <div class="blog-title">
+                                    <h1>编辑文章</h1>
+                                </div>
+                            <% } else { %>
+                                <div class="blog-title">
+                                        <h1>新文章</h1>
+                                    </div>
+                                <% } %>
+
                     <div class="one-editor-content">
                         <!-- <form class="layui-form" action="/article/post" method="POST"> -->
                         <div class="layui-form-item">
@@ -70,8 +76,16 @@
                 testEditor = editormd("editormd", {
                     width: "100%",
                     height: 640,
+                    path: "/libs/editor.md/lib/",
                     syncScrolling: "single",
-                    path: "/libs/editor.md/lib/"
+                    codeFold : true,
+                    saveHTMLToTextarea : true,
+                    searchReplace : true,
+                    emoji : true,
+                    taskList : true,
+                    tocm : true,             // Using [TOCM]
+                    tex : true,              // 开启科学公式TeX语言支持，默认关闭
+                    sequenceDiagram : true  // 开启时序/序列图支持，默认关闭,
                 });
             });
 

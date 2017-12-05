@@ -43,8 +43,7 @@ exports.search = function(req, res, next) {
         }
       }
       res.render('search_result', {
-        articles: articles,
-        css_add: '<link rel="stylesheet" href="/stylesheets/search_result.css">'
+        articles: articles
       });
     }
   });

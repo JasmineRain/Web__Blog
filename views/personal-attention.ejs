@@ -9,17 +9,20 @@
                         </div>
 
                     </div>
-                    <div class="per-content layui-col-md10">
-                        <div class="per-content-title">
-                            <h1>我的关注</h1>
-                        </div>
-                        <div>
-                            <%for(var i=0;i<attention.length;i++){%>
-                                <div class="one-content one-content-xs">
-                                    <%-include('components/per-attention',{post:attention[i]})%>
+                    <div class="layui-col-md10">
+                            <div class="blog-content">
+                                <div class="per-content-title">
+                                    <h1>我的关注</h1>
                                 </div>
+                            </div>
+                                <%for(var i=0;i<attention.length;i++){%>
+                                    <div class="blog-content">
+                                        <div class=" one-content-xs">
+                                            <%-include('components/per-attention',{post:attention[i]})%>
+                                        </div>
+                                    </div>
                                 <%}%>
-                        </div>
+                            </div>     
                     </div>
                 </div>
             </div>
