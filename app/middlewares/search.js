@@ -9,7 +9,7 @@ var limit = 10;
  * 搜索功能
  */
 exports.search = function(req, res, next) {
-  var reg = new RegExp(req.params.content);
+  var reg = new RegExp(req.params.content,"i");
   console.log(reg);
   var query = {
     $or: [{
