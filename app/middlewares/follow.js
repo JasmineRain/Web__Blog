@@ -49,7 +49,7 @@ exports.add = function(req,res){
                         from: _user._id,
                         to:[_tid]
                     });
-                    _follow.save(function (err, res) {
+                    _follow.save(function (err, follow) {
                         if(err)
                             console.log(err);
                         res.send({success:1});
