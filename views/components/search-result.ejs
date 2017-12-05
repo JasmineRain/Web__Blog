@@ -1,0 +1,26 @@
+<div class="per-attention" data-id="<%=post.author._id%>">
+        <a href="/article/show/<%=post._id%>">
+        <div class="per-atten-post">
+            <p class="per-atten-post-content">
+                    <img src="\<%=post.cover%>" align="left" hspace="5" vspace="5">
+                    <h1 style="font-size:20px;"><%=post.title%></h1>
+                <%=post.desc%>
+            </p>
+        </div>
+        </a>
+        <hr>
+        <div class="per-atten-option layui-row">
+            <div class="per-atten-collect layui-col-md4 layui-col-xs4 layui-col-sm4">
+                <!-- <i class="layui-icon">&#xe600;</i> 收藏</div> -->
+                <i class="layui-icon">&#xe705;</i> <span><%=post.readc%></span>
+            </div>
+            <div class="per-atten-comment layui-col-md4 layui-col-xs4 layui-col-sm4">
+                <i class="layui-icon">&#xe63a;</i> <span><%=post.commentc%></span>
+            </div>
+            <div class="per-atten-praise layui-col-md4 layui-col-xs4 layui-col-sm4" data-id="<%=post._id%>">
+                <a href="javascript:void(0);">
+                    <i class="layui-icon">&#xe6c6;</i> <span class="applausec"><%=post.applausec%></span>
+                </a>
+            </div>
+        </div>
+    </div>

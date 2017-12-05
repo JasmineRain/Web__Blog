@@ -3,6 +3,7 @@ var Comment = require('../models/comment');
 var Follow = require('../models/follow');
 let fs = require('fs');
 let path = require('path');
+var moment = require('moment');
 
 var hljs = require('highlight.js'); // https://highlightjs.org/
 let kt = require('katex'),
@@ -49,9 +50,6 @@ exports.showArticle = function (req, res, next) {
         req.flash('error', '找不到该文章！');
         return res.redirect('back'); //返回之前页面
       }
-      var content_md = md.render(article.content);
-      article.content = content_md;
-
 
 
       Comment
@@ -83,7 +81,8 @@ exports.showArticle = function (req, res, next) {
                 article: article,
                 comments: comments,
                 user: req.session.user,
-                isFollow: isFollow
+                isFollow: isFollow,
+                time:moment(article.meta.updateAt).format('YYYY/MM/DD')
               })
             });
           } else {
@@ -93,7 +92,8 @@ exports.showArticle = function (req, res, next) {
               title: '详情页面' + article.title,
               article: article,
               comments: comments,
-              user: req.session.user
+              user: req.session.user,
+              time:moment(article.meta.updateAt).format('YYYY/MM/DD')
             })
           }
         });
