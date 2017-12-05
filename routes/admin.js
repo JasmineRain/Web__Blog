@@ -5,6 +5,10 @@ var Article = require('../app/middlewares/article');
 var Comment = require('../app/middlewares/comment');
 var Follow = require('../app/middlewares/follow');
 
+router.get('/', User.signinRequired, User.adminRequired,function(req,res){
+    res.render('admin')
+});
+
 router.get('/userlist', User.signinRequired, User.adminRequired, User.listusers);
 
 router.get('/articlelist', User.signinRequired, User.adminRequired, Article.listarticles);
