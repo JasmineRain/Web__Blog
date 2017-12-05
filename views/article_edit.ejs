@@ -133,6 +133,12 @@
                     timeout: 5000
                 }).done(function (results) {
                     if (results.success === 1) {
+                        if ($('[name=_id]').length > 0) {
+                          localStorage.removeItem($('[name=_id]').val());
+                        }else{
+                          localStorage.removeItem('newArticle');
+                        }
+                        localStorage.setItem('autosave','0');
                         console.log('results.id',results.id, $('.article-title'));
                         $('#article-title').after("<input type=\"text\" name=\"_id\" value=\""+results.id+"\" style=\"display:none\">")
                                             //弹窗提示

@@ -11,7 +11,7 @@ var md = require('markdown-it')({
   html: true,
   linkify: true,
   typography: true,
-  highlight: function (str, lang) {
+  highlight: function(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(lang, str).value;
@@ -27,7 +27,7 @@ md.use(require('markdown-it-emoji'))
 
 
 
-exports.showArticle = function (req, res, next) {
+exports.showArticle = function(req, res, next) {
   var article_id = req.params._id;
   Article.update({
     _id: article_id
@@ -35,7 +35,7 @@ exports.showArticle = function (req, res, next) {
     $inc: {
       readc: 1
     }
-  }, function (err) {
+  }, function(err) {
     if (err) {
       console.log(err);
     }
@@ -43,7 +43,7 @@ exports.showArticle = function (req, res, next) {
 
   Article.findOne({
       '_id': article_id
-    }, function (err, article) {
+    }, function(err, article) {
       if (err) {
         console.log(err)
         req.flash('error', '找不到该文章！');
@@ -60,11 +60,11 @@ exports.showArticle = function (req, res, next) {
         })
         .populate('from')
         .populate('reply.from reply.to')
-        .exec(function (err, comments) {
+        .exec(function(err, comments) {
           if (req.session.user) {
             Follow.findOne({
               from: req.session.user._id
-            }, function (err, follow) {
+            }, function(err, follow) {
               var isFollow = 0;
               // console.log("req"+req.session.user._id);
               // console.log(follow.to);
@@ -102,33 +102,35 @@ exports.showArticle = function (req, res, next) {
 };
 
 
-exports.newArticle = function (req, res, next) {
+exports.newArticle = function(req, res, next) {
   res.render('article_edit', {
-    css_add: '<link rel="stylesheet" href="editormd.min.css" />'
+    css_add: '<link rel="stylesheet" href="editormd.min.css" />',
+    js_add: '<script src="/javascript/autoSave.js"></script>'
   })
 };
 
-exports.Tset = function (req, res, next) {
+exports.Tset = function(req, res, next) {
   res.render('eidtorTest');
 };
 
 
 
 
-exports.editArticle = function (req, res, next) {
+exports.editArticle = function(req, res, next) {
   var article_id = req.params._id;
   Article.findOne({
     _id: article_id
-  }, function (err, article) {
+  }, function(err, article) {
     res.render('article_edit', {
       css_add: '<link rel="stylesheet" href="editormd.min.css" />',
+      js_add: '<script src="/javascript/autoSave.js"></script>',
       article: article
     })
   })
 };
 
 //提交文章
-exports.postArticle = function (req, res, next) {
+exports.postArticle = function(req, res, next) {
   var _article = {};
   let uploadpath = 0;
   //判断封面
@@ -138,7 +140,7 @@ exports.postArticle = function (req, res, next) {
   }
   var reg = /[\\\`\*\_\[\]\#\+\-\!\>]/g;
   if (req.body._id) {
-    Article.findById(req.body._id, function (err, article) {
+    Article.findById(req.body._id, function(err, article) {
       if (!article) {
         return res.send({
           success: 0
@@ -149,7 +151,7 @@ exports.postArticle = function (req, res, next) {
       article.title = req.body.title;
       article.content = req.body.content;
       article.desc = req.body.content.substring(0, 500).replace(reg, ""); //截取前50个字符作为简介
-      article.save(function (err, article) {
+      article.save(function(err, article) {
         if (err) {
           console.log(err);
           res.send({
@@ -188,7 +190,7 @@ exports.postArticle = function (req, res, next) {
       };
     }
     var article = new Article(_article);
-    article.save(function (err, article) {
+    article.save(function(err, article) {
       if (err) {
         console.log(err);
         res.send({
@@ -213,7 +215,7 @@ exports.postArticle = function (req, res, next) {
     let filename = "image_upload_" + Date.parse(new Date()) + ".png";
     let str = uploadpath + filename;
 
-    fs.writeFile(str, dataBuffer, function (err) {
+    fs.writeFile(str, dataBuffer, function(err) {
       if (err) {
         console.log('66666655555555555555', err);
       } else {
@@ -225,21 +227,21 @@ exports.postArticle = function (req, res, next) {
   }
 };
 
-exports.deleteArticle = function (req, res) {
+exports.deleteArticle = function(req, res) {
   var ArticleId = req.query.aid;
   Article.findOne({
     _id: ArticleId
-  }, function (err, article) {
+  }, function(err, article) {
     if (err)
       console.log(err);
     if (article) {
       Comment.find({
           article: ArticleId
         })
-        .exec(function (err, comments) {
+        .exec(function(err, comments) {
           Comment.remove({
             article: ArticleId
-          }, function (err, comments) {
+          }, function(err, comments) {
             if (err)
               console.log(err)
           });
@@ -247,7 +249,7 @@ exports.deleteArticle = function (req, res) {
     }
     Article.remove({
       _id: ArticleId
-    }, function (err, article) {
+    }, function(err, article) {
       if (err)
         console.log(err);
     });
@@ -259,8 +261,8 @@ exports.deleteArticle = function (req, res) {
 
 
 
-exports.listarticles = function (req, res) {
-  Article.fetch(function (err, articles) {
+exports.listarticles = function(req, res) {
+  Article.fetch(function(err, articles) {
     if (err) {
       console.log(err)
     }
