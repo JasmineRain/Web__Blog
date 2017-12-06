@@ -1,3 +1,52 @@
-<h1><%= message %></h1>
+<!-- <h1><%= message %></h1>
 <h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<pre><%= error.stack %></pre> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="张烙铭">
+    
+    <title>Flappy Bird</title>
+    <script src="/javascript/flappy-source_load.js"></script>
+    <script src="/javascript/flappy-birds.js"></script>
+    <script src="/javascript/flappy-sky.js"></script>
+    <script src="/javascript/flappy-land.js"></script>
+    <script src="/javascript/flappy-pipe.js"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <style>
+        html{
+            -webkit-tap-highlight-color: transparent;
+        }
+        html,body{
+            margin: 0;
+            height: 100%;
+        }
+        #cvs{
+            display: block;
+            margin: 0 auto;
+        }
+        .return{
+            position: fixed;
+            top:15px;
+            left:15px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        a:link {color: #fff; text-decoration:none;} 
+        a:active:{color: #fff;text-decoration:none; }
+        a:visited {color:#fff;text-decoration:none;} 
+        a:hover {color: #fff; text-decoration:none;} 
+    </style>
+</head>
+<body>
+<div class="return">
+    <a href="/">返回首页</a>
+</div>
+<canvas id="cvs" >error</canvas>
+<script src="/javascript/flappy-main.js"></script>
+</body>
+
+</html>
