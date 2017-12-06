@@ -48,15 +48,15 @@
           <a href="/users/signup">注册</a>
         </div>
       <%}else{%>
-        <div class="layui-col-md8 layui-hide-xs">
+        <div class="layui-col-md7 layui-hide-xs">
             <a href="/personal?id=<%=user._id%>"><%=user.name%></a>
         </div>
         <div class="layui-col-md3 layui-hide-xs ">
           <a href="/users/logout">注销</a>
         </div>
-      <div class="layui-col-xs6 layui-col-xs-offset5 layui-hide-md layui-hide-sm">
-        <a href="/users/logout">注销</a>
-      </div>
+        <div class="layui-col-xs6 layui-col-xs-offset5 layui-hide-md layui-hide-sm">
+          <a href="/users/logout">注销</a>
+        </div>
       <%}%>
     </div>
     <div class="layui-col-xs12 layui-hide-md layui-hide-sm">

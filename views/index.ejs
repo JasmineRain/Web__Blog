@@ -10,6 +10,7 @@
                 <div class="layui-row layui-col-space20">
                         <%for(var i=0;i<HotArticles.length;i++){%>
                             <div class="layui-col-md4">
+                                 <a href="/article/show/<%-HotArticles[i].id%>">
                                 <div class="index-item-img">
                                     <img src="<%-HotArticles[i].cover%>">
                                 </div>
@@ -20,8 +21,6 @@
                                 <div class="blog-title">
                                     <p><strong>Author:&nbsp;<%-HotArticles[i].author.name%></strong></p>
                                 </div>                                                
-                                <a href="/article/show/<%-HotArticles[i].id%>">
-                                    <button class="layui-btn layui-btn-normal">查看</button>
                                 </a>
                             </div>
                         <%}%>
@@ -37,6 +36,7 @@
                         <%for(var i=0;i<NewArticles.length;i++) {%>
 
                             <div class="layui-col-md4">
+                                   <a href="/article/show/<%-NewArticles[i].id%>">
                                     <div class="index-item-img">
                                         <img src="<%-NewArticles[i].cover%>">
                                     </div>
@@ -47,8 +47,6 @@
                                     <div class="blog-title">
                                         <p><strong>Author:&nbsp;<%-NewArticles[i].author.name%></strong></p>
                                     </div>                                                
-                                    <a href="/article/show/<%-NewArticles[i].id%>">
-                                        <button class="layui-btn layui-btn-normal">查看</button>
                                     </a>
                                 </div>
                         <%}%>

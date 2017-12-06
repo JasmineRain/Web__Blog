@@ -41,10 +41,14 @@
                     <%}%>
                     <!-- 文章数据信息 -->
                     <div class="meta">
-                    <span class="publish-time"><%-time%></span>
-                    <span class="views-count">阅读<%-article.readc%></span>
-                    <span class="comments-count">评论<%-article.commentc%></span>
-                    <span class="rewards-count ">赞赏<%-article.applausec%></span>
+                    <span class="publish-time"><i class="layui-icon">&#xe637;</i> <%-time%> </span>
+                    <span class="views-count"><i class="layui-icon">&#xe705;</i> <%-article.readc%> </span>
+                    <span class="comments-count"><i class="layui-icon">&#xe63a;</i> <%-article.commentc%> </span>
+
+            <a href="javascript:void(0);" class="per-atten-praise" data-id="<%=article._id%>">
+                <i class="layui-icon">&#xe6c6;</i> <span class="applausec-a"><%=article.applausec%></span>
+            </a>
+  
                 </div>
             </div>
             <!-- 如果是当前作者，加入编辑按钮 -->
@@ -126,13 +130,14 @@
                                     <div class="layui-form-item">
                                         <div class="layui-input-block">
                                             <%if(user){%>
-                                                <button class="mes-edit-push layui-btn" lay-submit lay-filter="perFormPush">发表</button>
+                                                <button class="mes-edit-push layui-btn layui-btn-normal" lay-submit lay-filter="perFormPush">发表</button>
+                                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                                                 <%} else{%>
                                                     <a href="/users/signin">
-                                                        <button type="button" class="layui-btn layui-btn-normal">登录</button>
+                                                        <button type="button" class="layui-btn layui-btn-normal">请先登录</button>
                                                     </a>
                                                 <%}%>
-                                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                            
                                     </div>
                             </div>
                     </form>
@@ -168,6 +173,30 @@
             sequenceDiagram : true,  // 默认不解析
         });
     });
+
+
+  //点赞
+  $('.per-atten-praise').click(function () {
+    let id = $(this).data('id');
+    let thisd = $(this);
+    $.ajax({
+      type: 'get',
+      url: '/personal/giveApplause/' + id
+    }).done(function (results) {
+      if (results.success === 1) {
+        //前端增加点赞数
+        let num = thisd.find('.applausec-a').html();
+        num = parseInt(num) + 1
+        thisd.find('.applausec-a').html(num)
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            layer.msg('点赞成功！');
+        });
+      } else if (results.success === 0) {
+        layer.msg('点赞失败！');
+      }
+    });
+  });
 </script>
 
 <%- include('components/return-top')%>

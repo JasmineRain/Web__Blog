@@ -5,29 +5,6 @@ let fs = require('fs');
 let path = require('path');
 var moment = require('moment');
 
-var hljs = require('highlight.js'); // https://highlightjs.org/
-let kt = require('katex'),
-  tm = require('markdown-it-texmath').use(kt);
-var md = require('markdown-it')({
-  html: true,
-  linkify: true,
-  typography: true,
-  highlight: function(str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, str).value;
-      } catch (__) {}
-    }
-
-    return ''; // use external default escaping
-  }
-});
-md.use(require('markdown-it-emoji'))
-  .use(require('markdown-it-toc'))
-  .use(tm);
-
-
-
 exports.showArticle = function(req, res, next) {
   var article_id = req.params._id;
   Article.update({

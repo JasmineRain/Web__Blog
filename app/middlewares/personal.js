@@ -18,6 +18,7 @@ exports.GiveApplause = function(req,res){
         
     });
 }
+
 //时间轴
 exports.Showpersonal = function (req, res) {
     let targId = req.query.id;

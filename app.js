@@ -24,7 +24,7 @@ var follow = require('./routes/follow');
 
 var morgan = require("morgan");
 var app = express();
-var dbUrl = 'mongodb://localhost/test';
+var dbUrl = 'mongodb://localhost/codeBlog';
 
 mongoose.connect(dbUrl);
 app.use(session({

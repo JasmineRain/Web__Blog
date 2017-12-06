@@ -1,9 +1,45 @@
 var Comment=require('../models/comment');
+var Article=require('../models/article');
+
+exports.giveApplause = function(req,res){
+    var articleId=req.query.id;
+     Article.update({
+        _id: articleId
+    }, {
+        $inc: {
+          applausec: 1
+        }
+      }, function(err) {
+        if (err) {
+          console.log(err);
+          res.send({
+              success: 0
+          })
+        }else{
+          res.send({
+              success: 1
+          })
+        }
+    });
+}
+
 
 //admin post movie
 exports.save = function(req,res){
     var _comment=req.body.comment;
     var articleId=_comment.article;
+
+    Article.update({
+        _id: articleId
+    }, {
+        $inc: {
+          commentc: 1
+        }
+      }, function(err) {
+        if (err) {
+          console.log(err);
+        }
+    });
 
 //如果已经有这条评论，此时就是给这条评论再增加评论，即叠楼
     if(_comment.cid){
