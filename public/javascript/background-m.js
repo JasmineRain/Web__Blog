@@ -1,4 +1,4 @@
-var canvas = document.getElementById("cas");
+var canvas = document.getElementById("cas-m");
 
 if (canvas == null) {
   console.log('canvas not exist');
@@ -46,8 +46,8 @@ if (canvas == null) {
       x: x,
       y: y,
       r: r,
-      xa: xa ,
-      ya: ya,
+      xa: xa/2,
+      ya: ya/2,
       max: 150000
     })
   }
