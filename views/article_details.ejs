@@ -23,11 +23,11 @@
                         <%if(user){%>
                         <%if(isFollow){%>
                         <a class="follow">
-                            <button  class="layui-btn layui-btn-mini  layui-btn-radius"  data-tid="<%-article.author._id%>" id="follow" data-state=1>已关注</button>
+                            <button  class="layui-btn layui-btn-xs layui-btn-mini  layui-btn-radius"  data-tid="<%-article.author._id%>" id="follow" data-state=1>已关注</button>
                         </a>
                         <%}else{%>
                         <a class=" follow">
-                            <button class="layui-btn layui-btn-mini  layui-btn-radius" data-tid="<%-article.author._id%>" id="follow" data-state=0>关注</button>
+                            <button class="layui-btn layui-btn-xs layui-btn-mini  layui-btn-radius" data-tid="<%-article.author._id%>" id="follow" data-state=0>关注</button>
                         </a>
                         <%}%>
                         <%}else{%>
