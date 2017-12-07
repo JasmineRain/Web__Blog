@@ -2,57 +2,57 @@
 <%- include('nav') %>
 
 <div class="layui-row blog-main">
-        <div class="layui-col-md10 layui-col-md-offset1">
-            <div class="blog-content">
-                <div class="blog-title">
-                    <h1>最热推荐</h1>
-                </div>
-                <div class="layui-row layui-col-space20">
-                        <%for(var i=0;i<HotArticles.length;i++){%>
-                            <div class="layui-col-md4">
-                                 <a href="/article/show/<%-HotArticles[i].id%>">
-                                <div class="index-item-img">
-                                    <img src="<%-HotArticles[i].cover%>">
-                                </div>
-                               
-                                <div class="layui-col-md12 blog-title">
-                                    <h3><%-HotArticles[i].title%></h3>
-                                </div>
-                                <div class="blog-title">
-                                    <p><strong>Author:&nbsp;<%-HotArticles[i].author.name%></strong></p>
-                                </div>                                                
-                                </a>
-                            </div>
-                        <%}%>
-                </div>
+    <div class="layui-col-md10 layui-col-md-offset1">
+        <div class="blog-content">
+            <div class="blog-title">
+                <h1>最热推荐</h1>
             </div>
+            <div class="layui-row layui-col-space20">
+                <%for(var i=0;i<HotArticles.length;i++){%>
+                <div class="layui-col-md4">
+                   <a href="/article/show/<%-HotArticles[i].id%>">
+                    <div class="index-item-img">
+                        <img src="<%-HotArticles[i].cover%>">
+                    </div>
+                    
+                    <div class="layui-col-md12 blog-title">
+                        <h3><%-HotArticles[i].title%></h3>
+                    </div>
+                    <div class="blog-title">
+                        <p><strong>Author:&nbsp;<%-HotArticles[i].author.name%></strong></p>
+                    </div>                                                
+                </a>
+            </div>
+            <%}%>
         </div>
-        <div class="layui-col-md10 layui-col-md-offset1">
-            <div class="blog-content">
-                <div class="blog-title">
-                    <h1>最新推荐</h1>
-                </div>
-                <div class="layui-row layui-col-space20">
-                        <%for(var i=0;i<NewArticles.length;i++) {%>
+    </div>
+</div>
+<div class="layui-col-md10 layui-col-md-offset1">
+    <div class="blog-content">
+        <div class="blog-title">
+            <h1>最新推荐</h1>
+        </div>
+        <div class="layui-row layui-col-space20">
+            <%for(var i=0;i<NewArticles.length;i++) {%>
 
-                            <div class="layui-col-md4">
-                                   <a href="/article/show/<%-NewArticles[i].id%>">
-                                    <div class="index-item-img">
-                                        <img src="<%-NewArticles[i].cover%>">
-                                    </div>
-                                   
-                                    <div class="layui-col-md12 blog-title">
-                                        <h3><%-NewArticles[i].title%></h3>
-                                    </div>
-                                    <div class="blog-title">
-                                        <p><strong>Author:&nbsp;<%-NewArticles[i].author.name%></strong></p>
-                                    </div>                                                
-                                    </a>
-                                </div>
-                        <%}%>
+            <div class="layui-col-md4">
+             <a href="/article/show/<%-NewArticles[i].id%>">
+                <div class="index-item-img">
+                    <img src="<%-NewArticles[i].cover%>">
                 </div>
-            </div>                            
+                
+                <div class="layui-col-md12 blog-title">
+                    <h3><%-NewArticles[i].title%></h3>
+                </div>
+                <div class="blog-title">
+                    <p><strong>Author:&nbsp;<%-NewArticles[i].author.name%></strong></p>
+                </div>                                                
+            </a>
         </div>
+        <%}%>
+    </div>
+</div>                            
+</div>
 </div>
 
 

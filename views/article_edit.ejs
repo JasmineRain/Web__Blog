@@ -1,63 +1,63 @@
 <%- include('header')%>
-    <%- include('nav') %>
-        <link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
-        <div class="layui-row blog-main">
-            <div class="layui-col-md10 layui-col-md-offset1">
-                <div class="blog-content">
+<%- include('nav') %>
+<link rel="stylesheet" href="/libs/editor.md/css/editormd.css" />
+<div class="layui-row blog-main">
+    <div class="layui-col-md10 layui-col-md-offset1">
+        <div class="blog-content">
+            <% if(locals.article) { %>
+            <div class="blog-title">
+                <h1>编辑文章</h1>
+            </div>
+            <% } else { %>
+            <div class="blog-title">
+                <h1>新文章</h1>
+            </div>
+            <% } %>
+
+            <div class="one-editor-content">
+                <!-- <form class="layui-form" action="/article/post" method="POST"> -->
+                    <div class="layui-form-item">
+                        <div id="article-title"></div>
                         <% if(locals.article) { %>
-                            <div class="blog-title">
-                                    <h1>编辑文章</h1>
-                                </div>
-                            <% } else { %>
-                                <div class="blog-title">
-                                        <h1>新文章</h1>
-                                    </div>
-                                <% } %>
+                        <input type="text" name="_id" value="<%-article._id%>" style="display:none">
+                        <input type="text" name="title" value="<%-article.title%>" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <% } else { %>
+                        <input type="text" placeholder="请输入文章标题" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+                        <% } %>
+                    </div>
+                    <div id="layout">
 
-                    <div class="one-editor-content">
-                        <!-- <form class="layui-form" action="/article/post" method="POST"> -->
-                        <div class="layui-form-item">
-                            <div id="article-title"></div>
-                            <% if(locals.article) { %>
-                                <input type="text" name="_id" value="<%-article._id%>" style="display:none">
-                                <input type="text" name="title" value="<%-article.title%>" required lay-verify="required" autocomplete="off" class="layui-input">
-                                <% } else { %>
-                                    <input type="text" placeholder="请输入文章标题" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
-                                    <% } %>
-                        </div>
-                        <div id="layout">
-
-                            <div id="editormd">
-                                <textarea name="content"><%if(locals.article){%><%-article.content%><%}else{%><%="### Hello Editor.md !"%><%}%></textarea>
-                            </div>
-
-                        </div>
-                        <div class="layui-form-item">
-                            <input type="file" name="articlePhoto" id="articlePhoto" style="display:none">
-                            <button type="button" class="layui-btn layui-btn-primary" onclick="F_Open_dialog()">选择封面</button>
-                        </div>
-                        <div class="layui-form-item">
-                            <img src="" id="deal" width="400px" style="display:none">
+                        <div id="editormd">
+                            <textarea name="content"><%if(locals.article){%><%-article.content%><%}else{%><%="### Hello Editor.md !"%><%}%></textarea>
                         </div>
 
-                        <div class="layui-form-item">
-                            <button class="layui-btn layui-btn-normal submit" lay-submit lay-filter="formDemo">立即提交</button>
-                        </div>
-
-                        <!-- </form> -->
+                    </div>
+                    <div class="layui-form-item">
+                        <input type="file" name="articlePhoto" id="articlePhoto" style="display:none">
+                        <button type="button" class="layui-btn layui-btn-primary" onclick="F_Open_dialog()">选择封面</button>
+                    </div>
+                    <div class="layui-form-item">
+                        <img src="" id="deal" width="400px" style="display:none">
                     </div>
 
+                    <div class="layui-form-item">
+                        <button class="layui-btn layui-btn-normal submit" lay-submit lay-filter="formDemo">立即提交</button>
+                    </div>
+
+                    <!-- </form> -->
                 </div>
 
             </div>
 
-
         </div>
-        <script src="/libs/jquery/dist/jquery.min.js"></script>
-        <script src="/libs/editor.md/editormd.min.js"></script>
-        <script type="text/javascript" src="/javascript/exif.js"></script>
-        <script type="text/javascript">
-            var testEditor;
+
+
+    </div>
+    <script src="/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/libs/editor.md/editormd.min.js"></script>
+    <script type="text/javascript" src="/javascript/exif.js"></script>
+    <script type="text/javascript">
+        var testEditor;
             var articlePhoto; //图片数据
 
             function F_Open_dialog() {
@@ -95,11 +95,11 @@
                 var $title = $('[name=title]');
                 var $content = $('[name=content]');
                 var article = {
-                                _id: '',
-                                title: '',
-                                content: '',
-                                cover:''
-                            }
+                    _id: '',
+                    title: '',
+                    content: '',
+                    cover:''
+                }
                 console.log($_id, $title, $content)
                 try {
                     if (!$title.val()) {
@@ -149,17 +149,17 @@
                     if (results.success === 1) {
                         if ($('[name=_id]').length > 0) {
                           localStorage.removeItem($('[name=_id]').val());
-                        }else{
+                      }else{
                           localStorage.removeItem('newArticle');
-                        }
-                        localStorage.setItem('autosave','0');
-                        console.log('results.id',results.id, $('.article-title'));
-                        $('#article-title').after("<input type=\"text\" name=\"_id\" value=\""+results.id+"\" style=\"display:none\">")
+                      }
+                      localStorage.setItem('autosave','0');
+                      console.log('results.id',results.id, $('.article-title'));
+                      $('#article-title').after("<input type=\"text\" name=\"_id\" value=\""+results.id+"\" style=\"display:none\">")
                                             //弹窗提示
-                    layer.open({
-                        content: '提交成功！是否立即查看文章页',
-                        btn: ['确定', '取消'],
-                        yes: function (index, layero) {
+                                            layer.open({
+                                                content: '提交成功！是否立即查看文章页',
+                                                btn: ['确定', '取消'],
+                                                yes: function (index, layero) {
                             //发送无图片文章
                             window.location.href='/article/show/'+results.id
                             layer.close(index); //如果设定了yes回调，需进行手工关闭
@@ -169,10 +169,10 @@
                         },
                         cancel: function () {}
                     });
-                    } else if (results.success === 0) {
-                        layer.msg('提交失败！');
-                    }
-                });
+                                        } else if (results.success === 0) {
+                                            layer.msg('提交失败！');
+                                        }
+                                    });
             }
             //压缩函数
             function minSize(file) {
@@ -203,7 +203,7 @@
                 var image = new Image();
                 image.onload = function () {
                     var degree = 0,
-                        drawWidth, drawHeight, width, height;
+                    drawWidth, drawHeight, width, height;
                     drawWidth = this.naturalWidth;
                     drawHeight = this.naturalHeight;
                     //以下改变一下图片大小
@@ -228,12 +228,12 @@
                     switch (dir) {
                         //iphone横屏拍摄，此时home键在左侧
                         case 3:
-                            degree = 180;
-                            drawWidth = -width;
-                            drawHeight = -height;
-                            break;
+                        degree = 180;
+                        drawWidth = -width;
+                        drawHeight = -height;
+                        break;
                             //iphone竖屏拍摄，此时home键在下方(正常拿手机的方向)
-                        case 6:
+                            case 6:
                             canvas.width = height;
                             canvas.height = width;
                             degree = 90;
@@ -241,14 +241,14 @@
                             drawHeight = -height;
                             break;
                             //iphone竖屏拍摄，此时home键在上方
-                        case 8:
+                            case 8:
                             canvas.width = height;
                             canvas.height = width;
                             degree = 270;
                             drawWidth = -width;
                             drawHeight = height;
                             break;
-                    }
+                        }
                     //使用canvas旋转校正
                     context.rotate(degree * Math.PI / 180);
                     context.drawImage(this, 0, 0, drawWidth, drawHeight);

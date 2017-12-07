@@ -1,30 +1,30 @@
 <%- include('header')%>
-  <%- include('nav') %>
+<%- include('nav') %>
 
-    <div class="layui-row blog-main">
-      <div class="layui-col-md8 layui-col-md-offset2">
-        <div class="blog-content">
-          <div class="blog-title">
-            <h1>搜索结果</h1>
-          </div>
-        </div>
-      </div>
-      <div class="layui-col-md8 layui-col-md-offset2">
-        <div >
-            <% if(locals.articles) { %>
-                <%for(var i=0;i<articles.length;i++){%>
-                  <div class="blog-content">
-                      <%-include('components/search-result',{post:articles[i]})%>
-                  </div>
-                    <%}%>
-              </div>
-              <%}else if(locals.message=="not found"){%>
-              <div class="blog-content">
-                没有找到相关结果！
-               </div>
-               <%}%>
-              </div>
+<div class="layui-row blog-main">
+  <div class="layui-col-md8 layui-col-md-offset2">
+    <div class="blog-content">
+      <div class="blog-title">
+        <h1>搜索结果</h1>
       </div>
     </div>
+  </div>
+  <div class="layui-col-md8 layui-col-md-offset2">
+    <div >
+      <% if(locals.articles) { %>
+      <%for(var i=0;i<articles.length;i++){%>
+      <div class="blog-content">
+        <%-include('components/search-result',{post:articles[i]})%>
+      </div>
+      <%}%>
+    </div>
+    <%}else if(locals.message=="not found"){%>
+    <div class="blog-content">
+      没有找到相关结果！
+    </div>
+    <%}%>
+  </div>
+</div>
+</div>
 
-    <%- include('footer') %>
+<%- include('footer') %>

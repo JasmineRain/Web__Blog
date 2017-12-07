@@ -1,43 +1,40 @@
 <%- include('header')%>
 <%- include('nav') %>
-
-
 <div class="layui-row blog-main">
     <div class="layui-col-md10 layui-col-md-offset1">
         <div class="blog-content">
-                <div class="blog-title">
-                    <h1>文章列表</h1>
-                </div>
+            <div class="blog-title">
+                <h1>文章列表</h1>
+            </div>
         </div>
         <div class="blog-content">
-                <table class="layui-table">
-                        <colgroup>
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>用户</th>
-                            <th>标题</th>
-                            <th>内容</th>
-                            <th>时间</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <%for(var i =0;i<articles.length;i++) { %>
-                        <tr>
-                            <td><%=articles[i]._id%></td>
-                            <td><%=articles[i].title%></td>
-                            <td><%=articles[i].desc%></td>
-                            <td><%=articles[i].meta.createAt%></td>
-                        </tr>
-                        <%}%>
-                        </tbody>
-                    </table>
-                    
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>用户</th>
+                        <th>标题</th>
+                        <th>内容</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(var i =0;i<articles.length;i++) { %>
+                    <tr>
+                        <td><%=articles[i]._id%></td>
+                        <td><%=articles[i].title%></td>
+                        <td><%=articles[i].desc%></td>
+                        <td><%=articles[i].meta.createAt%></td>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+            
         </div>
     </div>
 </div>
-
 <%- include('footer') %>
