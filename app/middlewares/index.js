@@ -15,7 +15,7 @@ exports.index= function(req, res, next) {
     var mostHot = Article
         .find({})
         .populate('author','name')
-        .sort('readc')
+        .sort({'readc':-1})
         .limit(3)
         .exec(function (err, mostHot) {
             var mostNew = Article
