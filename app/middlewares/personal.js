@@ -359,3 +359,12 @@ exports.UploadChangeAvatar = function (req, res) {
         }
     })
 };
+
+//上传文章图片
+exports.UploadArticleImg = function(req,res){
+    console.log('执行');
+    res.send({
+        code: 0,
+        path: req.file.path
+    });
+}

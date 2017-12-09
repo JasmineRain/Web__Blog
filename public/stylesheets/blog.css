@@ -1,61 +1,55 @@
-/* body{
-    position: absolute;
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-} */
 html{
-    height: 100%;
+  height: 100%;
 }
 
 body{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: #F7FAFC;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #F7FAFC;
 }
 
 p{
-    word-wrap:break-word;
+  word-wrap:break-word;
 }
 
 .blog-main{
-    flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 .blog-content{
-    padding: 20px;
-    margin: 20px;
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  padding: 20px;
+  margin: 20px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
 }
 
 .blog-title{
-    padding: 15px 0;
-    height: 70px;
+  padding: 15px 0;
+  height: 70px;
 }
 
 .blog-title h1{
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .blog-title h3{
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .blog-article{
-    padding:0 20px 0 30px; ;
+  padding:0 20px 0 30px; ;
 }
 
 .blog-article >p >img{
-    max-width: 100%
+  max-width: 100%
 }
 
 /* 加载动画 */
-  .spinner {
+.spinner {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -114,30 +108,31 @@ p{
   100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }20% {
-       transform: scaleY(1.0);
-       -webkit-transform: scaleY(1.0);
+    }20% {
+     transform: scaleY(1.0);
+     -webkit-transform: scaleY(1.0);
    }
-}
+ }
 
 
 
-/* 标题栏 */
-.blog-nav{
-    flex: 0 0 auto;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
-    font-weight: 600;
-    background: #fff;
-    overflow: hidden;
-    box-shadow: 0 1px 3px 0 rgba(0,34,77,.1);
+ /* 标题栏 */
+ .blog-nav{
+  -webkit-flex:  0 0 auto;;
+  flex: 0 0 auto;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-weight: 600;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0,34,77,.1);
 }
 @media screen and (max-width: 992px) {
-    .blog-nav {
-        height: 90px;
-        line-height: 40px;
-    }
+  .blog-nav {
+    height: 90px;
+    line-height: 40px;
+  }
 }
 
 
@@ -152,42 +147,43 @@ p{
 
 /* 底栏 */
 .footer{
-    flex: 0 0 auto;
-    background: #fff;
-    color: #06060B;
-    padding:16px 0;
-    /* clear: both; */
-    /* position: absolute; */
-    width: 100%;
-    /* bottom: 0px; */
-    box-shadow: 0 1px 3px rgba(0,0,0,.1);
-    z-index: -1;
+  -webkit-flex:0 0 auto;
+  flex: 0 0 auto;
+  background: #fff;
+  color: #06060B;
+  padding:16px 0;
+  /* clear: both; */
+  /* position: absolute; */
+  width: 100%;
+  /* bottom: 0px; */
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  z-index: -1;
 }
 .footer-content{
-    text-align: center;
+  text-align: center;
 }
 .footer-content div{
-    margin: 10px;
+  margin: 10px;
 }
 .footer-title{
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
 }
 .footer-link{
-    font-size: 10px;
+  font-size: 10px;
 }
 .footer-author-title{
-    font-size: 12px;
+  font-size: 12px;
 }
 .footer-author{
-    font-size: 12px;
+  font-size: 12px;
 }
 
 /* 首页 */
 
 .index-item-img img{
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
 }

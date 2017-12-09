@@ -81,7 +81,6 @@ exports.showArticle = function(req, res, next) {
 
 exports.newArticle = function(req, res, next) {
   res.render('article_edit', {
-    css_add: '<link rel="stylesheet" href="editormd.min.css" />',
     js_add: '<script src="/javascript/autoSave.js"></script>'
   })
 };
