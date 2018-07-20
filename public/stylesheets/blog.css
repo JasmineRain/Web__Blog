@@ -29,7 +29,6 @@ p{
 
 .blog-title{
   padding: 15px 0;
-  height: 70px;
 }
 
 .blog-title h1{
@@ -186,4 +185,8 @@ p{
   width: 100%;
   height: 230px;
   object-fit: cover;
+}
+
+.row{
+  margin-left: 0;!important;
 }

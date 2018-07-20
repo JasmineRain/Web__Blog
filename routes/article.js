@@ -4,7 +4,7 @@ var Article = require('../app/middlewares/article');
 var User = require('../app/middlewares/user');
 
 /* GET home page. */
-router.get('/all', Article.getAllArticles);
+router.get('/all', Article.allarticles);
 router.get('/new', User.signinRequired, Article.newArticle);
 router.get('/test', User.signinRequired, Article.Tset);
 router.get('/edit/:_id', User.signinRequired, User.authorCheck, Article.editArticle);

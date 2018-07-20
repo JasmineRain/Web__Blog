@@ -251,7 +251,7 @@ exports.listarticles = function(req, res) {
   })
 };
 
-exports.getAllArticles = function (req, res) {
+exports.allarticles = function(req, res) {
     Article.fetch(function(err, articles) {
         if (err) {
             console.log(err)
@@ -259,7 +259,7 @@ exports.getAllArticles = function (req, res) {
 
         res.render('article_list', {
             user: req.session.user,
-            title: '全部文章',
+            title: '文章列表页面',
             articles: articles
         })
     })
