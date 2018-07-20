@@ -1,14 +1,14 @@
 <%- include('header')%>
 <%- include('nav') %>
-<div class="row">
+<div style="margin: 30px 0">
     <%var cnt=0,i=0%>
     <% while(cnt<articles.length) {%>
         <%if(cnt%3==0){%>
             <div class="row">
-                <%for(;i==0||i%3!=0;i++) {%>
+                <%for(;i<articles.length;i++) {%>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="/<%-articles[i].cover%>" width="400px">
+                        <img src="/<%-articles[i].cover%>" width="350px">
                         <div class="caption">
                             <h3 style="margin: 10px 0"><%=articles[i].title%></h3>
                             <p><%=articles[i].desc%></p>
@@ -19,12 +19,14 @@
                     </div>
                 </div>
                 <%cnt++%>
+                <%if(cnt%3==0){%>
+                <%i++;break}%>
                 <%}%>
             </div>
         <%}%>
     <%console.log(articles.length,i,cnt)%>
     <%}%>
 </div>
-
+<div class="full"></div>
 
 <%- include('footer') %>
