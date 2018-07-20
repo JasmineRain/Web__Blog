@@ -2,11 +2,14 @@
 <div class="blog-nav layui-row">
   <div class="layui-col-md8">
     <div class="layui-col-md1 layui-hide-xs">BLOG</div>
-    <div class="layui-col-md3 layui-hide-xs">
-      <div class="layui-col-md6">
+    <div class="layui-col-md4 layui-hide-xs">
+      <div class="layui-col-md4">
         <a href="/"><i class="layui-icon">&#xe68e; </i>首页</a>
       </div>
-      <div class="layui-col-md6">
+      <div class="layui-col-md4">
+        <a href="/article/all"><i class="layui-icon">&#xe68e; </i>全部文章</a>
+      </div>
+      <div class="layui-col-md4">
         <%if(user){%>
         <a href="/personal?id=<%=user._id%>"><i class="layui-icon">&#xe600; </i>个人中心</a>
         <%}else{%>
@@ -25,7 +28,7 @@
         <%}%>
       </div>
       <div class="layui-col-xs6 layui-col-xs-offset1">
-        <a href="/">BLOG</a>
+        <a href="/article/all">全部文章</a>
       </div>
     </div>
 

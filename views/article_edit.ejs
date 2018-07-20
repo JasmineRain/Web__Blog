@@ -58,7 +58,7 @@
     </div>
     <script src="/libs/jquery/dist/jquery.min.js"></script>
     <script src="/libs/editor.md/editormd.min.js"></script>
-    <script type="text/javascript" src="/javascript/exif.js"></script>
+<script type="text/javascript" src="/javascript/exif.js"></script>
     <script type="text/javascript">
         var testEditor;
             var articlePhoto; //图片数据
@@ -159,7 +159,7 @@
                       $('#article-title').after("<input type=\"text\" name=\"_id\" value=\""+results.id+"\" style=\"display:none\">")
                                             //弹窗提示
                                             layer.open({
-                                                content: '提交成功！是否立即查看文章页',
+                                                content: '确定要提交吗？',
                                                 btn: ['确定', '取消'],
                                                 yes: function (index, layero) {
                             //发送无图片文章

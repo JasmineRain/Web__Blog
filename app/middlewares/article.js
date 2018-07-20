@@ -250,3 +250,17 @@ exports.listarticles = function(req, res) {
     })
   })
 };
+
+exports.getAllArticles = function (req, res) {
+    Article.fetch(function(err, articles) {
+        if (err) {
+            console.log(err)
+        }
+
+        res.render('article_list', {
+            user: req.session.user,
+            title: '全部文章',
+            articles: articles
+        })
+    })
+};
