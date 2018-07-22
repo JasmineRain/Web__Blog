@@ -28,7 +28,6 @@ exports.giveApplause = function(req,res){
 exports.save = function(req,res){
     var _comment=req.body.comment;
     var articleId=_comment.article;
-
     Article.update({
         _id: articleId
     }, {

@@ -22,7 +22,7 @@ var CommentSchema = new Schema({
             default:Date.now()
         }
     }
-});
+},{usePushEach:true});
 
 //每次存储数据之前都调用这个方法 pre save
 CommentSchema.pre('save',function(next){
